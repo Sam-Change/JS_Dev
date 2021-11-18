@@ -1,0 +1,135 @@
+<body>
+  <a>WebView</a>
+</body>
+
+<script>
+//! (iOS)返回首頁
+function iGoHome() {
+  var action = "{\"type\":\"goHome\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)上一頁
+function iGoPreview() {
+  var action = "{\"type\":\"goPreview\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)轉跳指定功能
+function iGoFunc() {
+  var action = "{\"type\":\"goFunc\", \"data\":\"{\"FuncNo\":\"160000\"}\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)Login
+function iLogin() {
+  var action = "{\"type\":\"login\", \"data\":\"{\"token\":\"1234567890000000\", \"sessionId\":\"1234567890000000\"}\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)更新token通知
+function iSetAuthdata() {
+  var action = "{\"type\":\"setAuthdata\", \"data\":\"{\"auth\":\"1234567890000000\", \"sessionId\":\"1234567890000000\"}\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)交易驗證狀態
+function iCheckCertstatus() {
+  var action = "{\"type\":\"checkCertstatus\", \"data\":\"{\"sessionId\":\"1234567890000000\"}\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)交易驗證
+function iOnVerification() {
+  var action = "{\"type\":\"onVerification\", \"data\":\"{\"sessionId\":\"1234567890000000\"}\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)getIDGateID
+function iGetIDGateID() {
+  var action = "{\"type\":\"getIDGateID\", \"data\":\"{\"sessionId\":\"1234567890000000\"}\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)getIDGateTradeData
+function iGetIDGateTradeData() {
+  var action = "{\"type\":\"getIDGateTradeData\", \"data\":\"{\"sessionId\":\"1234567890000000\"}\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+
+// //! (android)分享
+// function aShare() {
+//   var data = "{\"msg\":\"分享文字\"}";
+//   if(jstoapp){ 
+//     jstoapp.share(data);
+//   }
+// }
+// //! (android)拍照辨識
+// function aCameraOCR() {
+//   if(jstoapp){ 
+//     jstoapp.cameraOCR();
+//   }
+// }
+// //! (android)上一頁
+// function aGoBack() {
+//   if(jstoapp){ 
+//     jstoapp.goBack();
+//   }
+// }
+// //! (android)返回首頁
+// function aGoHome() {
+//   if(jstoapp){ 
+//     jstoapp.goHome();
+//   }
+// }
+// //! (android)更新JWT Token
+// function aUpdateJWTToken() {
+//   var data = "{\"token\":\"1234567890000000\"}";
+//   if(jstoapp){ 
+//     jstoapp.updateJWTToken(data);
+//   }
+// }
+// //! (android)網頁Log記錄
+// function aWebLogRecord() {
+//   var data = "[]";
+//   if(jstoapp){ 
+//     jstoapp.webLogRecord(data);
+//   }
+// }
+// //! (android)pop WebView
+// function aPopupWebView() {
+//   var data = "{\"url\":\"https://sam-change.github.io/JS_Dev/JS_Dev20211111.html\"}";
+//   if(jstoapp){ 
+//     jstoapp.popupWebView(data);
+//   }
+// }  
+
+//! iOS调用JS入口
+function submitQuestionByApp(action) {
+  document.getElementById("returnValue").innerHTML = action;
+}
+</script>
+
+<p>
+<img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/13d81b8bf808477d086c98a04efa74aef8811973/imgTest01.png" width="414" height="120">
+<p>
+<input type='button' value='iOS返回首頁' style = 'font-size: 40px;' onclick='iGoHome()'>
+<input type='button' value='iOS上一頁' style = 'font-size: 40px;' onclick='iGoPreview()'>
+<p><p>
+<input type='button' value='iOS轉跳指定功能' style = 'font-size: 40px;' onclick='iGoFunc()'>
+<input type='button' value='iOSLogin' style = 'font-size: 40px;' onclick='iLogin()'>
+<p><p>
+<input type='button' value='iOS更新token通知' style = 'font-size: 40px;' onclick='iSetAuthdata()'>
+<input type='button' value='iOS交易驗證狀態' style = 'font-size: 40px;' onclick='iCheckCertstatus()'>
+<p><p>
+<input type='button' value='iOS交易驗證' style = 'font-size: 40px;' onclick='iOnVerification()'>
+<input type='button' value='iOSGetIDGateID' style = 'font-size: 40px;' onclick='iGetIDGateID()'>
+<p><p>
+<input type='button' value='iOSGetIDGateTradeData' style = 'font-size: 40px;' onclick='iGetIDGateTradeData()'>
+<p><p>
+<!-- <input type='button' value='Android圖形密碼設定' style = 'font-size: 40px;' onclick='javascript:aGraphicVerify();'>
+<input type='button' value='AndroidBIO辨識設定' style = 'font-size: 40px;' onclick='javascript:aBiometricVerify();'>
+<p><p>
+<input type='button' value='Android分享' style = 'font-size: 40px;' onclick='javascript:aShare();'>
+<input type='button' value='Android拍照辨識' style = 'font-size: 40px;' onclick='javascript:aCameraOCR();'>
+<p><p>
+<input type='button' value='Android上一頁' style = 'font-size: 40px;' onclick='javascript:aGoBack();'>
+<input type='button' value='Android返回首頁' style = 'font-size: 40px;' onclick='javascript:aGoHome();'>
+<p><p>
+<input type='button' value='Android更新JWT Token' style = 'font-size: 40px;' onclick='javascript:aUpdateJWTToken();'>
+<input type='button' value='Android網頁Log記錄' style = 'font-size: 40px;' onclick='javascript:aWebLogRecord();'>
+<p><p>
+<input type='button' value='Androidpop WebView' style = 'font-size: 40px;' onclick='javascript:aPopupWebView();'> -->
+
