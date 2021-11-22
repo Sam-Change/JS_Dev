@@ -1,0 +1,123 @@
+<body>
+  <a>WebView</a>
+</body>
+
+<script>
+//! (iOS)語音
+function iOnCyberonSTT() {
+  var action = "{\"type\":\"onCyberonSTT\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)返回首頁
+function iGoHome() {
+  var action = "{\"type\":\"goHome\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)上一頁
+function iGoPreview() {
+  var action = "{\"type\":\"goPreview\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)轉跳指定功能
+function iGoFunc() {
+  // var action = "{\"type\":\"goFunc\", \"data\":{\"FuncNo\":\"160000\"}}";
+  var action = "{\"type\":\"goFunc\",\"data\":\"\"{\"FuncNo\":\"330400\"}\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)Login
+function iLogin() {
+  var action = "{\"type\":\"login\", \"data\":{\"token\":\"1234567890000000\", \"sessionId\":\"1234567890000000\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)更新token通知
+function iSetAuthdata() {
+  var action = "{\"type\":\"setAuthdata\", \"data\":{\"auth\":\"1234567890000000\", \"sessionId\":\"1234567890000000\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)交易驗證狀態
+function iCheckCertstatus() {
+  var action = "{\"type\":\"checkCertstatus\", \"data\":{\"sessionId\":\"1234567890000000\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)交易驗證
+function iOnVerification() {
+  var action = "{\"type\":\"onVerification\", \"data\":{\"sessionId\":\"1234567890000000\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)getIDGateID
+function iGetIDGateID() {
+  var action = "{\"type\":\"getIDGateID\", \"data\":{\"sessionId\":\"1234567890000000\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)getIDGateTradeData
+function iGetIDGateTradeData() {
+  var action = "{\"type\":\"getIDGateTradeData\", \"data\":{\"sessionId\":\"1234567890000000\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+
+//! (android)語音
+function aOnCyberonSTT() {
+  if(jstoapp){ 
+    jstoapp.onCyberonSTT();
+  }
+}
+//! (android)Login
+function aLogin() {
+  var data = "{\"token\":\"1234567890000000\"}";
+  if(jstoapp){ 
+    jstoapp.login(data);
+  }
+}
+//! (android)返回首頁
+function aGoHome() {
+  if(jstoapp){ 
+    jstoapp.goHome();
+  }
+}
+//! (android)getIDGateID
+function aGetIDGateID() {
+  if(jstoapp){ 
+    jstoapp.getIDGateID();
+  }
+}
+//! (android)getIDGateID
+function aGetIDGateID2() {
+  var data = "{\"sessionId\":\"123456789987654321\"}";
+  if(jstoapp){ 
+    jstoapp.getIDGateID(data);
+  }
+}
+
+//! iOS调用JS入口
+function submitQuestionByApp(action) {
+  document.getElementById("returnValue").innerHTML = action;
+}
+</script>
+
+<p>
+<img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/13d81b8bf808477d086c98a04efa74aef8811973/imgTest01.png" width="414" height="120">
+<p>
+<input type='button' value='iOS語音' style = 'font-size: 40px;' onclick='iOnCyberonSTT()'>
+<input type='button' value='iOS返回首頁' style = 'font-size: 40px;' onclick='iGoHome()'>
+<input type='button' value='iOS上一頁' style = 'font-size: 40px;' onclick='iGoPreview()'>
+<p><p>
+<input type='button' value='iOS轉跳指定功能' style = 'font-size: 40px;' onclick='iGoFunc()'>
+<input type='button' value='iOSLogin' style = 'font-size: 40px;' onclick='iLogin()'>
+<p><p>
+<input type='button' value='iOS更新token通知' style = 'font-size: 40px;' onclick='iSetAuthdata()'>
+<input type='button' value='iOS交易驗證狀態' style = 'font-size: 40px;' onclick='iCheckCertstatus()'>
+<p><p>
+<input type='button' value='iOS交易驗證' style = 'font-size: 40px;' onclick='iOnVerification()'>
+<input type='button' value='iOSGetIDGateID' style = 'font-size: 40px;' onclick='iGetIDGateID()'>
+<p><p>
+<input type='button' value='iOSGetIDGateTradeData' style = 'font-size: 40px;' onclick='iGetIDGateTradeData()'>
+<p><p>
+<input type='button' value='AndroidOnCyberonSTT' style = 'font-size: 40px;' onclick='javascript:aOnCyberonSTT();'>
+<input type='button' value='AndroidLogin' style = 'font-size: 40px;' onclick='javascript:aLogin();'>
+<p><p>
+<input type='button' value='Android返回首頁' style = 'font-size: 40px;' onclick='javascript:aGoHome();'>
+<input type='button' value='AndroidGetIDGateID' style = 'font-size: 40px;' onclick='javascript:aGetIDGateID();'>
+<input type='button' value='AndroidGetIDGateIDSession' style = 'font-size: 40px;' onclick='javascript:aGetIDGateID2();'>
+
+
+
