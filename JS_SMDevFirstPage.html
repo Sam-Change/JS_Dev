@@ -1,0 +1,242 @@
+<body>
+  <a>WebView FirstPage (20211125151515)</a>
+</body>
+
+<script>
+//! (iOS)跳轉至APP首頁
+function iGoHome() {
+  var action = "{\"name\":\"goHome\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)觸發APP返回上一頁功能
+function iGoPreview() {
+  var action = "{\"name\":\"goPreview\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)顯示/關閉LoadingView
+function iOnLoading() {
+  var action = "{\"name\":\"onLoading\", \"data\":{\"open\":\"Y\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}  
+//! (iOS)觸發APP OCR機制
+function iOnOCR() {
+  var action = "{\"name\":\"onOCR\", \"data\":{\"ocrType\":\"1\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)顯示 Popup WebView
+function iOpenPopWebView() {
+  var action = "{\"name\":\"openPopWebView\", \"data\":{\"url\":\"https://sam-change.github.io/JS_Dev/JS_SMDevSecondPage.html\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)分享文字
+function iSetShareText() {
+  var action = "{\"name\":\"setShareText\", \"data\":{\"webtext\":\"分享文字\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)儲存網頁Log記錄
+function iSetWebLogdata() {
+  var action = "{\"name\":\"setWebLogdata\", \"data\":{\"weblog\":\"\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)取得電文EncData
+function iGetEnCrydara() {
+  var action = "{\"name\":\"getEnCrydara\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}  
+//! (iOS)通知更新Authorization(token)
+function iSetAuthdata() {
+  var action = "{\"name\":\"setAuthdata\", \"data\":{\"auth\":\"1234567890000000\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}  
+//! (iOS)取得APP交易認證狀態
+function iCheckCertstatus() {
+  var action = "{\"name\":\"checkCertstatus\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)進行APP交易驗證流程
+function iOnVerification() {
+  var action = "{\"name\":\"onVerification\", \"data\":{\"verifyType\":\"1\", \"webData\":\"1qaz2wsx3edc\"}}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)取得QuserID
+function iGetVerifyID() {
+  var action = "{\"name\":\"getVerifyID\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+//! (iOS)圖形密碼設定
+function iGraphicVerify() {
+  var action = "{\"name\":\"graphicVerify\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}  
+//! (iOS)BIO辨識設定
+function iBiometricVerify() {
+  var action = "{\"name\":\"biometricVerify\", \"data\":\"\"}";
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+
+
+
+
+
+//! (android)跳轉至APP首頁
+function iGoHome() {
+  if(jstoapp){ 
+    jstoapp.goHome();
+  }
+}
+//! (android)觸發APP返回上一頁功能
+function iGoPreview() {
+  if(jstoapp){ 
+    jstoapp.goPreview();
+  }
+}
+//! (android)顯示/關閉LoadingView
+function iOnLoading() {
+  var data = "{\"open\":\"Y\"}";
+  if(jstoapp){ 
+    jstoapp.onLoading(data);
+  }
+}  
+//! (android)觸發APP OCR機制
+function iOnOCR() {
+  var data = "{\"ocrType\":\"1\"}";
+  if(jstoapp){ 
+    jstoapp.onOCR(data);
+  }
+}
+//! (android)顯示 Popup WebView
+function iOpenPopWebView() {
+  var data = "{\"url\":\"https://sam-change.github.io/JS_Dev/JS_SMDevSecondPage.html\"}";
+  if(jstoapp){ 
+    jstoapp.openPopWebView(data);
+  }
+}
+//! (android)分享文字
+function iSetShareText() {
+  var data = "{\"webtext\":\"分享文字\"}";
+  if(jstoapp){ 
+    jstoapp.setShareText(data);
+  }
+}
+//! (android)儲存網頁Log記錄
+function iSetWebLogdata() {
+  var data = "{\"weblog\":\"\"}";
+  if(jstoapp){ 
+    jstoapp.setWebLogdata(data);
+  }
+}
+//! (android)取得電文EncData
+function iGetEnCrydara() {
+  if(jstoapp){ 
+    jstoapp.getEnCrydara();
+  }
+}  
+//! (android)通知更新Authorization(token)
+function iSetAuthdata() {
+  var data = "{\"auth\":\"1234567890000000\"}";
+  if(jstoapp){ 
+    jstoapp.setAuthdata(data);
+  }
+}  
+//! (android)取得APP交易認證狀態
+function iCheckCertstatus() {
+  if(jstoapp){ 
+    jstoapp.checkCertstatus();
+  }
+}
+//! (android)進行APP交易驗證流程
+function iOnVerification() {
+  var data = "{\"verifyType\":\"1\", \"webData\":\"1qaz2wsx3edc\"}";
+  if(jstoapp){ 
+    jstoapp.onVerification(data);
+  }
+}
+//! (android)取得QuserID
+function iGetVerifyID() {
+  if(jstoapp){ 
+    jstoapp.getVerifyID();
+  }
+}
+//! (android)圖形密碼設定
+function iGraphicVerify() {
+  if(jstoapp){ 
+    jstoapp.graphicVerify();
+  }
+}  
+//! (android)BIO辨識設定
+function iBiometricVerify() {
+  if(jstoapp){ 
+    jstoapp.biometricVerify();
+  }
+}
+
+//! iOS调用JS入口
+function submitQuestionByApp(action) {
+  document.getElementById("returnValue").innerHTML = action;
+}
+</script>
+
+<p>
+<img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/13d81b8bf808477d086c98a04efa74aef8811973/imgTest01.png" width="414" height="120">
+<p>
+<input type='button' value='iOS|回首頁' style = 'font-size: 40px;' onclick='iGoHome()'>
+<p>
+<input type='button' value='iOS|上一頁' style = 'font-size: 40px;' onclick='iGoPreview()'>
+<p>
+<input type='button' value='iOS|OCR辨識' style = 'font-size: 40px;' onclick='iOnOCR()'>
+<p>
+<input type='button' value='iOS|Pop WebView' style = 'font-size: 40px;' onclick='iOpenPopWebView()'>
+<p>
+<input type='button' value='iOS|分享文字' style = 'font-size: 40px;' onclick='iSetShareText()'>
+<p>
+<input type='button' value='iOS|更新token' style = 'font-size: 40px;' onclick='iSetAuthdata()'>
+<p>
+<input type='button' value='iOS|圖形鎖驗證' style = 'font-size: 40px;' onclick='iGraphicVerify()'>
+<p>
+<input type='button' value='iOS|生物辨識驗證' style = 'font-size: 40px;' onclick='iBiometricVerify()'>
+<p>
+<input type='button' value='＊iOS|Loading' style = 'font-size: 40px;' onclick='iOnLoading()'>
+<p>
+<input type='button' value='＊iOS|WebLog' style = 'font-size: 40px;' onclick='iSetWebLogdata()'>
+<p>
+<input type='button' value='＊iOS|取得加密資料' style = 'font-size: 40px;' onclick='iGetEnCrydara()'>
+<p>
+<input type='button' value='＊iOS|確認交易認證狀態' style = 'font-size: 40px;' onclick='iCheckCertstatus()'>
+<p>
+<input type='button' value='＊iOS|交易驗證' style = 'font-size: 40px;' onclick='iOnVerification()'>
+<p>
+<input type='button' value='＊iOS|取得QuserID' style = 'font-size: 40px;' onclick='iGetVerifyID()'>
+
+<p>
+<p>
+<p>
+<input type='button' value='Android|回首頁' style = 'font-size: 40px;' onclick='aGoHome()'>
+<p>
+<input type='button' value='Android|上一頁' style = 'font-size: 40px;' onclick='aGoPreview()'>
+<p>
+<input type='button' value='Android|OCR辨識#' style = 'font-size: 40px;' onclick='aOnOCR()'>
+<p>
+<input type='button' value='Android|Pop WebView#' style = 'font-size: 40px;' onclick='aOpenPopWebView()'>
+<p>
+<input type='button' value='Android|分享文字#' style = 'font-size: 40px;' onclick='aSetShareText()'>
+<p>
+<input type='button' value='Android|更新token#' style = 'font-size: 40px;' onclick='aSetAuthdata()'>
+<p>
+<input type='button' value='Android|圖形鎖驗證' style = 'font-size: 40px;' onclick='aGraphicVerify()'>
+<p>
+<input type='button' value='Android|生物辨識驗證' style = 'font-size: 40px;' onclick='aBiometricVerify()'>
+<p>
+<input type='button' value='＊Android|Loading#' style = 'font-size: 40px;' onclick='aOnLoading()'>
+<p>
+<input type='button' value='＊Android|WebLog#' style = 'font-size: 40px;' onclick='aSetWebLogdata()'>
+<p>
+<input type='button' value='＊Android|取得加密資料' style = 'font-size: 40px;' onclick='aGetEnCrydara()'>
+<p>
+<input type='button' value='＊Android|確認交易認證狀態' style = 'font-size: 40px;' onclick='aCheckCertstatus()'>
+<p>
+<input type='button' value='＊Android|交易驗證#' style = 'font-size: 40px;' onclick='aOnVerification()'>
+<p>
+<input type='button' value='＊Android|取得QuserID' style = 'font-size: 40px;' onclick='aGetVerifyID()'>
+
+
+
