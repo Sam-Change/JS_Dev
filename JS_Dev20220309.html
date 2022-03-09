@@ -1,0 +1,101 @@
+<body>
+  <a>WebView</a>
+</body>
+
+<script>
+
+let packet_SessionIDData = {
+  "sessionId":"1234567890000000",
+}
+
+let func_onCyberonSTT = {
+  "type":"onCyberonSTT",
+  "data":JSON.stringify(packet_SessionIDData),
+}
+
+let func_closeCyberonSTT = {
+  "type":"closeCyberonSTT",
+}
+
+let func_goHome = {
+  "type":"goHome",
+}
+
+let func_login = {
+  "type":"login",
+  "data":JSON.stringify(packet_SessionIDData),
+}
+
+function iOnCyberonSTT() {
+  var action = JSON.stringify(func_onCyberonSTT);
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+
+function aOnCyberonSTT() {
+  var data = JSON.stringify(packet_SessionIDData);
+  if(jstoapp){ 
+    jstoapp.onCyberonSTT(data);
+  }
+}
+
+function iCloseCyberonSTT() {
+  var action = JSON.stringify(func_closeCyberonSTT);
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+
+function aCloseCyberonSTT() {
+  if(jstoapp){ 
+    jstoapp.closeCyberonSTT();
+  }
+}
+
+function iGoHome() {
+  var action = JSON.stringify(func_goHome);
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+
+function aGoHome() {
+  if(jstoapp){ 
+    jstoapp.goHome();
+  }
+}
+
+function iLogin() {
+  var action = JSON.stringify(func_login);
+  window.webkit.messageHandlers.jstoapp.postMessage(action);
+}
+
+function aLogin() {
+  var data = JSON.stringify(packet_SessionIDData);
+  if(jstoapp){ 
+    jstoapp.login(data);
+  }
+}
+
+//! iOS调用JS入口
+function submitQuestionByApp(action) {
+  document.getElementById("returnValue").innerHTML = action;
+}
+</script>
+
+<p>
+<img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest04.png" width="414" height="120">
+<p>
+<input type='button' value='(iOS)OnCyberonSTT' style = 'font-size: 20px;' onclick='iOnCyberonSTT()'>
+<br>
+<input type='button' value='(Android)OnCyberonSTT' style = 'font-size: 20px;' onclick='javascript:aOnCyberonSTT();'>
+<br><br>
+<input type='button' value='(iOS)CloseCyberonSTT' style = 'font-size: 20px;' onclick='iCloseCyberonSTT()'>
+<br>
+<input type='button' value='(Android)CloseCyberonSTT' style = 'font-size: 20px;' onclick='javascript:aCloseCyberonSTT();'>
+<br><br>
+<input type='button' value='(iOS)GoHome' style = 'font-size: 20px;' onclick='iGoHome()'>
+<br>
+<input type='button' value='(Android)GoHome' style = 'font-size: 20px;' onclick='aGoHome()'>
+<br><br>
+<input type='button' value='(iOS)Login' style = 'font-size: 20px;' onclick='iLogin()'>
+<br>
+<input type='button' value='(Android)Login' style = 'font-size: 20px;' onclick='aLogin()'>
+<br><br>
+
+
