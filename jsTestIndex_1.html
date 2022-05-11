@@ -178,13 +178,14 @@
     
 
    //在onload執行完前，點擊畫面上button都不會有反應
-    window.onload = init() {
-      onLoadingY();
-      var jwtToken = window.localStorage.getItem('jwtToken');
-      let dataObj = JSON.parse(jwtToken);
-      document.getElementById("JWTToken").innerHTML = dataObj["auth"];
-      onLoadingN();
-    }
+//     window.onload = init() {
+//       onLoadingY();
+//       var jwtToken = window.localStorage.getItem('jwtToken');
+//       let dataObj = JSON.parse(jwtToken);
+//       document.getElementById("JWTToken").innerHTML = dataObj["auth"];
+//       onLoadingN();
+//     }
+    window.onload = onLoadingY()
   </script>
 
   <!--畫面組成-->
