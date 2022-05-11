@@ -8,7 +8,7 @@
 
 <body>
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0511_25</p>
+  <p>SoftMobile TestWebView0511_26</p>
   <div>JWTToken是<span id="JWTToken"></span></div> <!--span id為web端儲存資料欄位名稱，會一直撈此欄位資料，改變欄位值就會更新?-->
   <button class="button_style button_y20" onclick="goHome()">返回首頁</button>
   <button class="button_style button_y30" onclick="onOCR()">OCR辨識</button>
@@ -23,10 +23,13 @@
 //       document.getElementById("JWTToken").innerHTML = dataObj["auth"];
 //       onLoadingN();
 //     }
-//     window.onload = init() {
-//       console.log(Date())
-//       document.getElementById("OCRTest").innerHTML = "未呼叫"
-//     }
+    window.onload = init() {
+      let dt = new Date();
+      console.log(dt.getUTCHours()+8 + ":" + dt.getMinutes() + ":" + dt.getSeconds() + "." + dt.getMilliseconds() + "window.onload")
+      document.getElementById("OCRTest").innerHTML = "未呼叫"
+      let dt2 = new Date();
+      console.log(dt2.getUTCHours()+8 + ":" + dt2.getMinutes() + ":" + dt2.getSeconds() + "." + dt2.getMilliseconds() + "window.onload塞完資料")
+    }
 
      // 剛進網頁呼叫方法
     // 非同步請求範例(jQuery寫法)
