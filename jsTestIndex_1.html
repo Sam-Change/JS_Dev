@@ -19,8 +19,9 @@
   <button class="button_style button_y80" onclick="onOCR()">OCR辨識onOCR(ocrType:)</button>
   
   <script>
-    let jwtToken = window.localStorage.getItem('jwtToken');
-    jwtToken.addEventListener("change", getLSJwtToken);
+    // const tokenFromLocalStorage = window.localStorage.getItem('jwtToken');
+    // let jwtToken = window.localStorage.getItem('jwtToken');
+    // jwtToken.addEventListener("change", getLSJwtToken());
 
     // 在onload執行完前，點擊畫面上button都不會有反應?
     // window.onload = init() {
@@ -203,6 +204,19 @@
     // 收JS
     function setTestPageData(data) {
       document.getElementById("tokenFromJS").innerHTML = data["token"]
+      let jwtToken = window.localStorage.getItem('jwtToken');
+      if jwtToken != null { 
+        if jwtToken.length() > 0 {
+          let dataObj = JSON.parse(jwtToken);
+          document.getElementById("tokenFromLocalStorage").innerHTML = dataObj["auth"]; 
+        }
+        else {
+         document.getElementById("tokenFromLocalStorage").innerHTML = "No Data"; 
+        }
+      }
+      else {
+        document.getElementById("tokenFromLocalStorage").innerHTML = "No Data"; 
+      }
     }
   </script>
 </body>
