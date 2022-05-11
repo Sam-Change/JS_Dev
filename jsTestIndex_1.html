@@ -7,6 +7,13 @@
 </head>
 
 <body>
+  <!--畫面組成-->
+  <p>SoftMobile TestWebView0511_18</p>
+  <div>JWTToken是<span id="JWTToken"></span></div> <!--span id為web端儲存資料欄位名稱，會一直撈此欄位資料，改變欄位值就會更新?-->
+  <button class="button_style button_y20" onclick="goHome()">返回首頁</button>
+  <button class="button_style button_y30" onclick="onOCR()">OCR辨識</button>
+  <div>OCR呼叫狀態<span id="OCRTest"></span></div>
+  
   <script>
    //在onload執行完前，點擊畫面上button都不會有反應
 //     window.onload = init() {
@@ -144,13 +151,6 @@
     //   onLoadingN()
     // }
   </script>
-  
-  <!--畫面組成-->
-  <p>SoftMobile TestWebView0511_17</p>
-  <div>JWTToken是<span id="JWTToken"></span></div> <!--span id為web端儲存資料欄位名稱，會一直撈此欄位資料，改變欄位值就會更新?-->
-  <button class="button_style button_y20" onclick="goHome()">返回首頁</button>
-  <button class="button_style button_y30" onclick="onOCR()">OCR辨識</button>
-  <div>OCR呼叫狀態<span id="OCRTest"></span></div>
 </body>
   
 <style>
