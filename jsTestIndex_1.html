@@ -41,21 +41,6 @@
 
 <body>
   <script>
-    function packet_onLoadingData(str) {
-        let data = {"open": str}
-        return data
-    }
-
-    let packet_onLoadingY = {
-        "name": "onLoading",
-        "data": JSON.stringify(packet_onLoadingData("Y")),
-    }
-
-    let packet_onLoadingN = {
-        "name": "onLoading",
-        "data": JSON.stringify(packet_onLoadingData("N")),
-    }
-
     let packet_goHome = {
         "name": "goHome",
     }
@@ -81,9 +66,19 @@
 
     var ideviceCheck = isiOSDevice()
 
+    function packet_onLoadingData(str) {
+        let data = {"open": str}
+        return data
+    }
+
+    let packet_onLoading(str) = {
+        "name": "onLoading",
+        "data": JSON.stringify(packet_onLoadingData(str)),
+    }
+    
     function onLoadingY() {
         if (ideviceCheck) {
-            var action = JSON.stringify(packet_onLoadingY);
+            var action = JSON.stringify(packet_onLoading("Y"));
             window.webkit.messageHandlers.jstoapp.postMessage(action);
         }
         else {
@@ -95,7 +90,7 @@
 
     function onLoadingN() {
         if (ideviceCheck) {
-            var action = JSON.stringify(packet_onLoadingN);
+            var action = JSON.stringify(packet_onLoading("N"));
             window.webkit.messageHandlers.jstoapp.postMessage(action);
         }
         else {
@@ -190,7 +185,7 @@
   </script>
 
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0511_04</p>
+  <p>SoftMobile TestWebView0511_05</p>
   <div>JWTToken是<span id="JWTToken"></span></div> <!--span id為web端儲存資料欄位名稱，會一直撈此欄位資料，改變欄位值就會更新?-->
   <button class="button_style button_y20" onclick="goHome()">返回首頁</button>
   <button class="button_style button_y30" onclick="onOCR()">OCR辨識</button>
