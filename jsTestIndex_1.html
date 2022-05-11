@@ -71,7 +71,7 @@
         return data
     }
 
-    let packet_onLoading(str) = {
+    function packet_onLoading(str) = {
         "name": "onLoading",
         "data": JSON.stringify(packet_onLoadingData(str)),
     }
@@ -83,7 +83,8 @@
         }
         else {
             if (jstoapp) {
-                jstoapp.onLoadingY();
+                var action = JSON.stringify(packet_onLoading("Y"));
+                jstoapp.onLoadingY(action);
             }
         }
     }
@@ -95,7 +96,8 @@
         }
         else {
             if (jstoapp) {
-                jstoapp.onLoadingN();
+                var action = JSON.stringify(packet_onLoading("N"));
+                jstoapp.onLoadingY(action);
             }
         }
     }
@@ -185,7 +187,7 @@
   </script>
 
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0511_05</p>
+  <p>SoftMobile TestWebView0511_06</p>
   <div>JWTToken是<span id="JWTToken"></span></div> <!--span id為web端儲存資料欄位名稱，會一直撈此欄位資料，改變欄位值就會更新?-->
   <button class="button_style button_y20" onclick="goHome()">返回首頁</button>
   <button class="button_style button_y30" onclick="onOCR()">OCR辨識</button>
