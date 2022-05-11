@@ -10,11 +10,11 @@
   <!--畫面組成-->
   <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
   <p>SoftMobile TestWebView0511_27</p>
-  <div>點擊要呼叫getPageData前:<span id="beforeCall"></span></div>
-  <div>點擊呼叫getPageData後:<span id="afterCall"></span></div>
+  <div>點擊要呼叫getTestPageData前:<span id="beforeCall"></span></div>
+  <div>點擊呼叫getTestPageData後:<span id="afterCall"></span></div>
   <div>PageData資料(tokenFromJS):<span id="tokenFromJS"></span></div> 
   <div>PageData資料(tokenFromLocalStorage):<span id="tokenFromLocalStorage"></span></div>
-  <button class="button_style button_y30" onclick="getPageData()">要資料getPageData()</button>
+  <button class="button_style button_y30" onclick="getTestPageData()">要資料getTestPageData()</button>
   <button class="button_style button_y40" onclick="goHome()">返回首頁goHome()</button>
   <button class="button_style button_y50" onclick="onOCR()">OCR辨識onOCR(ocrType:)</button>
   
@@ -111,29 +111,29 @@
       }
     }
     
-    let packet_getPageData = {
-      "name": "getPageData",
+    let packet_getTestPageData = {
+      "name": "getTestPageData",
     }
 
-    function getPageData() {
+    function getTestPageData() {
       let dt = new Date();
       let strLog = dt.getUTCHours()+8 + ":" + dt.getMinutes() + ":" + dt.getSeconds() + "." + dt.getMilliseconds();
-      console.log(strLog + " 呼叫getPageData前")
+      console.log(strLog + " 呼叫getTestPageData前")
       document.getElementById("beforeCall").innerHTML = strLog
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_getPageData);
+        var action = JSON.stringify(packet_getTestPageData);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
         let dt2 = new Date();
         let strLog2 = dt2.getUTCHours()+8 + ":" + dt2.getMinutes() + ":" + dt2.getSeconds() + "." + dt2.getMilliseconds();
-        console.log(strLog2 + " 呼叫getPageData後")
+        console.log(strLog2 + " 呼叫getTestPageData後")
         document.getElementById("afterCall").innerHTML = strLog2
       }
       else {
         if (jstoapp) {
-          jstoapp.getPageData();
+          jstoapp.getTestPageData();
           let dt2 = new Date();
           let strLog2 = dt2.getUTCHours()+8 + ":" + dt2.getMinutes() + ":" + dt2.getSeconds() + "." + dt2.getMilliseconds();
-          console.log(strLog2 + " 呼叫getPageData後")
+          console.log(strLog2 + " 呼叫getTestPageData後")
           document.getElementById("afterCall").innerHTML = strLog2
         }
       }
