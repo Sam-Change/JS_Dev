@@ -9,7 +9,7 @@
 <body>
   <!--畫面組成-->
   <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
-  <p>SoftMobile TestWebView0511_36</p>
+  <p>SoftMobile TestWebView0511_37</p>
   <div>點擊要呼叫getTestPageData前:<span id="beforeCall"></span></div>
   <div>點擊呼叫getTestPageData後:<span id="afterCall"></span></div>
   <div>PageData資料(tokenFromJS):<span id="tokenFromJS"></span></div> 
@@ -210,12 +210,6 @@
           let dataObj = JSON.parse(jwtToken);
           document.getElementById("tokenFromLocalStorage").innerHTML = dataObj["auth"]; 
         }
-        else {
-         document.getElementById("tokenFromLocalStorage").innerHTML = "No Data"; 
-        }
-      }
-      else {
-        document.getElementById("tokenFromLocalStorage").innerHTML = "No Data"; 
       }
     }
   </script>
