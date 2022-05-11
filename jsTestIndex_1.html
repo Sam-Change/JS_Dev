@@ -1,0 +1,198 @@
+<!-- jsTestIndex -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Index</title>
+  <link rel='stylesheet' type='text/css' href='mycss.css'>
+  <script type="text/javascript" src="myjs.js"></script>
+</head>
+
+<style>
+  .button_style {
+    position: absolute;
+    width: 100%;
+    left: 0%;
+    top: 10%;
+    height: 10%;
+  }
+  .button_y20 {
+    top: 20%;
+  }
+  .button_y30 {
+    top: 30%;
+  }
+  .button_y40 {
+    top: 40%;
+  }
+  .button_y50 {
+    top: 50%;
+  }
+  .button_y60 {
+    top: 60%;
+  }
+  .button_y70 {
+    top: 70%;
+  }
+  .button_y80 {
+    top: 80%;
+  }
+</style>
+
+<body>
+  <script>
+    function packet_onLoadingData(str) {
+        let data = {"open": str}
+        return data
+    }
+
+    let packet_onLoadingY = {
+        "name": "onLoading",
+        "data": JSON.stringify(packet_onLoadingData("Y")),
+    }
+
+    let packet_onLoadingN = {
+        "name": "onLoading",
+        "data": JSON.stringify(packet_onLoadingData("N")),
+    }
+
+    let packet_goHome = {
+        "name": "goHome",
+    }
+
+    let packet_closeFunc = {
+        "name": "closeFunc",
+    }
+
+    let packet_onOCRData = {
+        "ocrType": 1,
+    }
+
+    let packet_onOCR = {
+        "name": "onOCR",
+        "data": JSON.stringify(packet_onOCRData),
+    }
+
+    function isiOSDevice() {
+        const mobileDevice = ['iPhone', 'iPad', 'iPod']
+        let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+        return isMobileDevice
+    }
+
+    var ideviceCheck = isiOSDevice()
+
+    function onLoadingY() {
+        if (ideviceCheck) {
+            var action = JSON.stringify(packet_onLoadingY);
+            window.webkit.messageHandlers.jstoapp.postMessage(action);
+        }
+        else {
+            if (jstoapp) {
+                jstoapp.onLoadingY();
+            }
+        }
+    }
+
+    function onLoadingN() {
+        if (ideviceCheck) {
+            var action = JSON.stringify(packet_onLoadingN);
+            window.webkit.messageHandlers.jstoapp.postMessage(action);
+        }
+        else {
+            if (jstoapp) {
+                jstoapp.onLoadingN();
+            }
+        }
+    }
+
+    function goHome() {
+        if (ideviceCheck) {
+            var action = JSON.stringify(packet_goHome);
+            window.webkit.messageHandlers.jstoapp.postMessage(action);
+        }
+        else {
+            if (jstoapp) {
+                jstoapp.goHome();
+            }
+        }
+    }
+
+    function closeFunc() {
+        if (ideviceCheck) {
+            var action = JSON.stringify(packet_closeFunc);
+            window.webkit.messageHandlers.jstoapp.postMessage(action);
+        }
+        else {
+            if (jstoapp) {
+                jstoapp.closeFunc();
+            }
+        }
+    }
+
+    function onOCR() {
+        if (ideviceCheck) {
+            var action = JSON.stringify(packet_onOCR);
+            window.webkit.messageHandlers.jstoapp.postMessage(action);
+        }
+        else {
+            if (jstoapp) {
+                var action = JSON.stringify(packet_onOCRData);
+                jstoapp.onOCR(action);
+            }
+        }
+    }
+    
+    // APP呼叫此JS來傳資料
+    function setJWTToken(data) {
+      document.getElementById("JWTToken").innerHTML = data["token"]
+      onLoadingN()
+    }
+
+   //  // 剛進網頁呼叫方法
+   //  // 非同步請求範例(jQuery寫法)
+   //  window.onload = function() {
+  	// $ajax({
+  	// 	type: "", // POST或GET
+  	// 	url: "", // 呼叫網址
+  	// 	data: {}, // 傳送的資料
+  	// 	success: function(){
+  	// 		// 成功時的處理
+  	// 	},
+  	// 	error: function(error){
+  	// 		// 錯誤處理(顯示提示訊息等等)
+  	// 	}	
+  	// });
+   //  }
+  
+   //  window.onload = function() {
+  	// var success = a();
+  	// // 呼叫app端方法
+  	// function a(){
+  	// 	let value = "";
+  	// 	return value;
+  	// }
+  	// if(!success){
+  	// 	// 錯誤處理
+  	// }
+   //  }
+    
+
+   //在onload執行完前，點擊畫面上button都不會有反應
+    window.onload = init() {
+      onLoadingY();
+      var jwtToken = window.localStorage.getItem('jwtToken');
+      let dataObj = JSON.parse(jwtToken);
+      document.getElementById("JWTToken").innerHTML = dataObj["auth"]
+      onLoadingN()
+    }
+  </script>
+
+  <!--畫面組成-->
+  <p>SoftMobile TestWebView</p>
+  <div>JWTToken是<span id="JWTToken"></span></div> <!--span id為web端儲存資料欄位名稱，會一直撈此欄位資料，改變欄位值就會更新?-->
+  <button class="button_style button_y20" onclick="goHome()">返回首頁</button>
+  <button class="button_style button_y30" onclick="onOCR()">OCR辨識</button>
+</body>
+
+</html>
+
