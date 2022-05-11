@@ -9,11 +9,12 @@
 <body>
   <!--畫面組成-->
   <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
-  <p>SoftMobile TestWebView0511_30</p>
+  <p>SoftMobile TestWebView0511_31</p>
   <div>點擊要呼叫getTestPageData前:<span id="beforeCall"></span></div>
   <div>點擊呼叫getTestPageData後:<span id="afterCall"></span></div>
   <div>PageData資料(tokenFromJS):<span id="tokenFromJS"></span></div> 
   <div>PageData資料(tokenFromLocalStorage):<span id="tokenFromLocalStorage"></span></div>
+  <div>PageData資料(tokenFromLocalStorage):func getLSJwtToken()</span></div>
   <button class="button_style button_y60" onclick="getTestPageData()">要資料getTestPageData()</button>
   <button class="button_style button_y70" onclick="goHome()">返回首頁goHome()</button>
   <button class="button_style button_y80" onclick="onOCR()">OCR辨識onOCR(ocrType:)</button>
@@ -62,6 +63,22 @@
     //    // 錯誤處理
     //   }
     // }
+
+    function getLSJwtToken() {
+      var jwtToken = window.localStorage.getItem('jwtToken');
+      if jwtToken != null { 
+        if jwtToken.length() > 0 {
+          let dataObj = JSON.parse(jwtToken);
+          document.getElementById("tokenFromLocalStorage").innerHTML = dataObj["auth"]; 
+        }
+        else {
+         document.getElementById("tokenFromLocalStorage").innerHTML = "No Data"; 
+        }
+      }
+      else {
+        document.getElementById("tokenFromLocalStorage").innerHTML = "No Data"; 
+      }
+    }
 
     var ideviceCheck = isiOSDevice()
     function isiOSDevice() {
@@ -180,9 +197,6 @@
     // 收JS
     function setTestPageData(data) {
       document.getElementById("tokenFromJS").innerHTML = data["token"]
-      var jwtToken = window.localStorage.getItem('jwtToken');
-      let dataObj = JSON.parse(jwtToken);
-      document.getElementById("tokenFromLocalStorage").innerHTML = dataObj["auth"];
     }
   </script>
 </body>
