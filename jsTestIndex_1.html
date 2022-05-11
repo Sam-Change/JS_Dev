@@ -134,7 +134,10 @@
     function onOCR() {
         if (ideviceCheck) {
             var action = JSON.stringify(packet_onOCR);
+            console.log("呼叫onOCR")
             window.webkit.messageHandlers.jstoapp.postMessage(action);
+            console.log("呼叫onOCR完" + Date())
+            document.getElementById("OCRTest").innerHTML = "呼叫onOCR完" + Date()
         }
         else {
             if (jstoapp) {
@@ -187,15 +190,18 @@
 //       document.getElementById("JWTToken").innerHTML = dataObj["auth"];
 //       onLoadingN();
 //     }
-    window.onload = onLoadingY()
+    window.onload = {
+      document.getElementById("OCRTest").innerHTML = "未呼叫"
+    }
     
   </script>
 
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0511_08</p>
+  <p>SoftMobile TestWebView0511_10</p>
   <div>JWTToken是<span id="JWTToken"></span></div> <!--span id為web端儲存資料欄位名稱，會一直撈此欄位資料，改變欄位值就會更新?-->
   <button class="button_style button_y20" onclick="goHome()">返回首頁</button>
   <button class="button_style button_y30" onclick="onOCR()">OCR辨識</button>
+  <div>OCR呼叫狀態<span id="OCRTest"></span></div>
 </body>
 
 </html>
