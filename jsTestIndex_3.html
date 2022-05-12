@@ -8,7 +8,7 @@
 
 <body>
   <!--測試-->
-  <button onclick="callJsTest()">呼叫js</button>
+  <button onclick="callJsTest()">iOS14呼叫js</button>
   <table style="width:400px;">
 	  <thead>
 		  <tr>
@@ -39,7 +39,7 @@
   <!--測試結束-->
 	
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0512_06</p>
+  <p>SoftMobile TestWebView0512_07</p>
   <button class="button_style button_y90" onclick="goHome()">返回首頁goHome()</button>
   <script>	
 	// 測試用方法
@@ -92,7 +92,8 @@
       promise.then(
         function(result) {
           console.log(result);
-          appCallJsTest2(result);
+          let dataObj = JSON.parse(result);
+          appCallJsTest2(dataObj["auth"]);
         },
         function(err) {
           console.log(err);
