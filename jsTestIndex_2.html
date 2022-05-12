@@ -37,7 +37,7 @@
   <!--測試結束-->
 	
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0512_05</p>
+  <p>SoftMobile TestWebView0512_06</p>
   <button class="button_style button_y90" onclick="goHome()">返回首頁goHome()</button>
   <script>	
 	// 測試用方法
@@ -116,7 +116,7 @@
   function getTestPageData2() {
     if (ideviceCheck) {
       var action = JSON.stringify(packet_getTestPageData);
-      var promise = window.webkit.messageHandlers.namespaceWithinTheInjectedJSCode.postMessage(action);
+      var promise = window.webkit.messageHandlers.jstoapp.postMessage(action);
       promise.then(
         function(result) {
           console.log(result);
