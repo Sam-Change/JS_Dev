@@ -40,7 +40,7 @@
   <!--測試結束-->
 	
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0512_09</p>
+  <p>SoftMobile TestWebView0512_10</p>
   <button class="button_style button_y90" onclick="goHome()">返回首頁goHome()</button>
   <script>	
 	// 測試用方法
@@ -67,7 +67,7 @@
       document.getElementById("sendJsLocalStorage").innerText = "null";
     }
     // call app
-    getTestPageData2();
+    getTestPageData();
   }
   // 收到app資料
   function appCallJsTest(time){
@@ -96,32 +96,32 @@
   }
 
 	// web call app
-  // function getTestPageData() {
-  //   if (ideviceCheck) {
-  //     var action = JSON.stringify(packet_getTestPageData);
-  //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+  function getTestPageData() {
+    if (ideviceCheck) {
+      var action = JSON.stringify(packet_getTestPageData);
+      window.webkit.messageHandlers.jstoapp.postMessage(action);
 
-  //     let jwtToken = localStorage.getItem('jwtToken');
-  //     let now = new Date();
-  //     let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
-  //     document.getElementById("sendJsTimeSuc").innerText = sendJsTime;
-  //     if(jwtToken === null){
-  //       document.getElementById("sendJsLocalStorageSuc").innerText = "null";
-  //     }
-  //   }
-  //   else {
-  //     if (jstoapp) {
-  //       jstoapp.getTestPageData();
-  //       let jwtToken = localStorage.getItem('jwtToken');
-  //       let now = new Date();
-  //       let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
-  //       document.getElementById("sendJsTimeSuc").innerText = sendJsTime;
-  //       if(jwtToken === null){
-  //         document.getElementById("sendJsLocalStorageSuc").innerText = "null";
-  //       }
-  //     }
-  //   }
-  // }
+      let jwtToken = localStorage.getItem('jwtToken');
+      let now = new Date();
+      let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+      document.getElementById("sendJsTimeSuc").innerText = sendJsTime;
+      if(jwtToken === null){
+        document.getElementById("sendJsLocalStorageSuc").innerText = "null";
+      }
+    }
+    else {
+      if (jstoapp) {
+        jstoapp.getTestPageData();
+        let jwtToken = localStorage.getItem('jwtToken');
+        let now = new Date();
+        let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+        document.getElementById("sendJsTimeSuc").innerText = sendJsTime;
+        if(jwtToken === null){
+          document.getElementById("sendJsLocalStorageSuc").innerText = "null";
+        }
+      }
+    }
+  }
 
   function getTestPageData2() {
     if (ideviceCheck) {
