@@ -62,10 +62,10 @@
   function appCallJsTest(time){
     let now = new Date();
     let receiveJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
-		if(jwtToken === null){
+		// if(jwtToken === null){
 			document.getElementById("receiveJsTime").innerText = receiveJsTime;
       document.getElementById("receiveJsLocalStorage").innerText = time;
-    }	
+    // }	
 	}
     // const tokenFromLocalStorage = window.localStorage.getItem('jwtToken');
     // let jwtToken = window.localStorage.getItem('jwtToken');
