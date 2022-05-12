@@ -13,7 +13,8 @@
 	  <thead>
 		  <tr>
 				<th style="width: 30%;border: 1px solid black;">欄位</th>
-				<th style="width: 35%;border: 1px solid black;">發送js</th>
+				<th style="width: 35%;border: 1px solid black;">發送js前</th>
+        <th style="width: 35%;border: 1px solid black;">發送js後</th>
 				<th style="width: 35%;border: 1px solid black;">收到app資料</th>
 			</tr>
 	  </thead>
@@ -21,11 +22,13 @@
 			<tr>
 				<td style="border: 1px solid black;text-align:center;">時間</td>
 				<td id="sendJsTime" style="border: 1px solid black;text-align:center;"></td>
+        <td id="sendJsTimeSuc" style="border: 1px solid black;text-align:center;"></td>
 				<td id="receiveJsTime" style="border: 1px solid black;text-align:center;"></td>
 			</tr>
 			<tr>
 				<td style="border: 1px solid black;text-align:center;">localStorage</td>
 				<td id="sendJsLocalStorage" style="border: 1px solid black;text-align:center;"></td>
+        <td id="sendJsLocalStorageSuc" style="border: 1px solid black;text-align:center;"></td>
 				<td id="receiveJsLocalStorage" style="border: 1px solid black;text-align:center;"></td>
 			</tr>
 		</tbody>
@@ -33,15 +36,8 @@
   <!--測試結束-->
 	
   <!--畫面組成-->
-  <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
-  <p>SoftMobile TestWebView0512_02</p>
-  <div>點擊要呼叫getTestPageData前:<span id="beforeCall"></span></div>
-  <div>點擊呼叫getTestPageData後:<span id="afterCall"></span></div>
-  <div>PageData資料(tokenFromJS):<span id="tokenFromJS"></span></div> 
-  <div>PageData資料(tokenFromLocalStorage):<span id="tokenFromLocalStorage"></span></div>
-  <button class="button_style button_y60" onclick="getTestPageData()">要資料getTestPageData()</button>
-  <button class="button_style button_y70" onclick="goHome()">返回首頁goHome()</button>
-  <button class="button_style button_y80" onclick="onOCR()">OCR辨識onOCR(ocrType:)</button>
+  <p>SoftMobile TestWebView0512_03</p>
+  <button class="button_style button_y90" onclick="goHome()">返回首頁goHome()</button>
   <script>	
 	// 測試用方法
   window.onload = function(){
@@ -62,211 +58,71 @@
   function appCallJsTest(time){
     let now = new Date();
     let receiveJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
-		// if(jwtToken === null){
-			document.getElementById("receiveJsTime").innerText = receiveJsTime;
-      document.getElementById("receiveJsLocalStorage").innerText = time;
-    // }	
+		document.getElementById("receiveJsTime").innerText = receiveJsTime;
+    document.getElementById("receiveJsLocalStorage").innerText = time;
 	}
-    // const tokenFromLocalStorage = window.localStorage.getItem('jwtToken');
-    // let jwtToken = window.localStorage.getItem('jwtToken');
-    // jwtToken.addEventListener("change", getLSJwtToken());
 
-    // 在onload執行完前，點擊畫面上button都不會有反應?
-    // window.onload = init() {
-//       onLoadingY();
-//       var jwtToken = window.localStorage.getItem('jwtToken');
-//       let dataObj = JSON.parse(jwtToken);
-//       document.getElementById("tokenFromLocalStorage").innerHTML = dataObj["auth"];
-//       onLoadingN();
-    // }
-    // window.onload = init() {
-    //   let dt = new Date();
-    //   console.log(dt.getUTCHours()+8 + ":" + dt.getMinutes() + ":" + dt.getSeconds() + "." + dt.getMilliseconds() + "window.onload")
-    //   document.getElementById("CallStatus").innerHTML = "未呼叫"
-    //   let dt2 = new Date();
-    //   console.log(dt2.getUTCHours()+8 + ":" + dt2.getMinutes() + ":" + dt2.getSeconds() + "." + dt2.getMilliseconds() + "window.onload塞完資料")
-    // }
-
-    // 剛進網頁呼叫方法
-    // 非同步請求範例(jQuery寫法)
-    // window.onload = function() {
-    //   $ajax({
-    //     type: "", // POST或GET
-    //     url: "", // 呼叫網址
-    //     data: {}, // 傳送的資料
-    //     success: function(){
-    //      // 成功時的處理
-    //     },
-    //     error: function(error){
-    //      // 錯誤處理(顯示提示訊息等等)
-    //     } 
-    //   });
-    // } 
-    //
-    // window.onload = function() {
-    //   var success = a();
-    //   // 呼叫app端方法
-    //   function a(){
-    //     let value = "";
-    //     return value;
-    //   }
-    //   if(!success){
-    //    // 錯誤處理
-    //   }
-    // }
-
-    
-
-    
-    //<div>PageData資料(tokenFromLocalStorage):func getLSJwtToken()</span></div>
-    // function getLSJwtToken() {
-    //   let jwtToken = window.localStorage.getItem('jwtToken');
-    //   if jwtToken != null { 
-    //     if jwtToken.length() > 0 {
-    //       let dataObj = JSON.parse(jwtToken);
-    //       document.getElementById("tokenFromLocalStorage").innerHTML = dataObj["auth"]; 
-    //     }
-    //     else {
-    //      document.getElementById("tokenFromLocalStorage").innerHTML = "No Data"; 
-    //     }
-    //   }
-    //   else {
-    //     document.getElementById("tokenFromLocalStorage").innerHTML = "No Data"; 
-    //   }
-    // }
-
-    var ideviceCheck = isiOSDevice()
-    function isiOSDevice() {
-      const mobileDevice = ['iPhone', 'iPad', 'iPod']
-      let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
-      return isMobileDevice
-    }
-    
-    function packet_onLoadingData(str) {
-      let data = {"open": str}
-      return data
-    }
-
-    let packet_onLoadingY = {
-      "name": "onLoading",
-      "data": JSON.stringify(packet_onLoadingData("Y"))
-    }
-    
-    let packet_onLoadingN = {
-      "name": "onLoading", 
-      "data": JSON.stringify(packet_onLoadingData("N"))
-    }
-    
-    function onLoadingY() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_onLoadingY);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_onLoadingData("Y"));
-          jstoapp.onLoadingY(action);
-        }
-      }
-    }
-
-    function onLoadingN() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_onLoadingN);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_onLoadingData("N"));
-          jstoapp.onLoadingN(action);
-        }
-      }
-    }
-    
-    let packet_getTestPageData = {
-      "name": "getTestPageData",
-    }
+  var ideviceCheck = isiOSDevice()
+  function isiOSDevice() {
+    const mobileDevice = ['iPhone', 'iPad', 'iPod']
+    let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+    return isMobileDevice
+  }
+  
+  let packet_getTestPageData = {
+    "name": "getTestPageData",
+  }
 
 	// web call app
-    function getTestPageData() {
-      let dt = new Date();
-      let strLog = dt.getUTCHours()+8 + ":" + dt.getMinutes() + ":" + dt.getSeconds() + "." + dt.getMilliseconds();
-      console.log(strLog + " 呼叫getTestPageData前")
-      document.getElementById("beforeCall").innerHTML = strLog
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_getTestPageData);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-        let dt2 = new Date();
-        let strLog2 = dt2.getUTCHours()+8 + ":" + dt2.getMinutes() + ":" + dt2.getSeconds() + "." + dt2.getMilliseconds();
-        console.log(strLog2 + " 呼叫getTestPageData後")
-        document.getElementById("afterCall").innerHTML = strLog2
+  function getTestPageData() {
+    if (ideviceCheck) {
+      var action = JSON.stringify(packet_getTestPageData);
+      window.webkit.messageHandlers.jstoapp.postMessage(action);
+
+      let jwtToken = localStorage.getItem('jwtToken');
+      let now = new Date();
+      let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+      document.getElementById("sendJsTimeSuc").innerText = sendJsTime;
+      if(jwtToken === null){
+        document.getElementById("sendJsLocalStorageSuc").innerText = "null";
       }
-      else {
-        if (jstoapp) {
-          jstoapp.getTestPageData();
-          let dt2 = new Date();
-          let strLog2 = dt2.getUTCHours()+8 + ":" + dt2.getMinutes() + ":" + dt2.getSeconds() + "." + dt2.getMilliseconds();
-          console.log(strLog2 + " 呼叫getTestPageData後")
-          document.getElementById("afterCall").innerHTML = strLog2
+    }
+    else {
+      if (jstoapp) {
+        jstoapp.getTestPageData();
+        let jwtToken = localStorage.getItem('jwtToken');
+        let now = new Date();
+        let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+        document.getElementById("sendJsTimeSuc").innerText = sendJsTime;
+        if(jwtToken === null){
+          document.getElementById("sendJsLocalStorageSuc").innerText = "null";
         }
       }
     }
+  }
 
-    let packet_goHome = {
-      "name": "goHome",
+  let packet_goHome = {
+    "name": "goHome",
+  }
+
+  function goHome() {
+    if (ideviceCheck) {
+      var action = JSON.stringify(packet_goHome);
+      window.webkit.messageHandlers.jstoapp.postMessage(action);
     }
-
-    function goHome() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_goHome);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          jstoapp.goHome();
-        }
-      }
-    }
-
-    let packet_onOCRData = {
-      "ocrType": 1,
-    }
-
-    let packet_onOCR = {
-      "name": "onOCR",
-      "data": JSON.stringify(packet_onOCRData),
-    }
-
-    function onOCR() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_onOCR);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_onOCRData);
-          jstoapp.onOCR(action);
-        }
+    else {
+      if (jstoapp) {
+        jstoapp.goHome();
       }
     }
+  }
     
-    // 收JS
-    function setTestPageData(data) {
-      document.getElementById("tokenFromJS").innerHTML = data["token"]
-
-      let jwtToken = window.localStorage.getItem('jwtToken');
-      // if jwtToken != null { 
-      //   if jwtToken.length() > 0 {
-          let dt = new Date();
-          let strLog = dt.getUTCHours()+8 + ":" + dt.getMinutes() + ":" + dt.getSeconds() + "." + dt.getMilliseconds();
-          console.log(strLog + " setTestPageData收到資料")
-          let dataObj = JSON.parse(jwtToken);
-          document.getElementById("tokenFromLocalStorage").innerHTML = strLog + " " +dataObj["auth"];
-      //   }
-      // }
-      // 測試
-      appCallJsTest(dataObj["auth"]);
-    }
+  // 收JS
+  function setTestPageData(data) {
+    let jwtToken = window.localStorage.getItem('jwtToken');
+    let dataObj = JSON.parse(jwtToken);
+    appCallJsTest(dataObj["auth"]);
+  }
   </script>
 </body>
   
