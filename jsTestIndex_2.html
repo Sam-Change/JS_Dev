@@ -9,7 +9,7 @@
 <body>
   <!--測試-->
   <!-- <button onclick="callJsTest()">呼叫js</button> -->
-  <button onclick="callJsTest2()">呼叫js有callback(iOS14)</button>
+  <button onclick="callJsTest()">呼叫js有callback(iOS14)</button>
   <table style="width:400px;">
 	  <thead>
 		  <tr>
@@ -40,24 +40,24 @@
   <!--測試結束-->
 	
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0512_10</p>
+  <p>SoftMobile TestWebView0512_11</p>
   <button class="button_style button_y90" onclick="goHome()">返回首頁goHome()</button>
   <script>	
 	// 測試用方法
   window.onload = function(){
     localStorage.removeItem('jwtToken');
   }
-	// function callJsTest(){
- //    let jwtToken = localStorage.getItem('jwtToken');
- //    let now = new Date();
- //    let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
-	// 	document.getElementById("sendJsTime").innerText = sendJsTime;
- //    if(jwtToken === null){
- //      document.getElementById("sendJsLocalStorage").innerText = "null";
- //    }
- //    // call app
- //    getTestPageData();
-	// }
+	function callJsTest(){
+    let jwtToken = localStorage.getItem('jwtToken');
+    let now = new Date();
+    let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+		document.getElementById("sendJsTime").innerText = sendJsTime;
+    if(jwtToken === null){
+      document.getElementById("sendJsLocalStorage").innerText = "null";
+    }
+    // call app
+    getTestPageData();
+	}
   function callJsTest2(){
     let jwtToken = localStorage.getItem('jwtToken');
     let now = new Date();
@@ -67,7 +67,7 @@
       document.getElementById("sendJsLocalStorage").innerText = "null";
     }
     // call app
-    getTestPageData();
+    getTestPageData2();
   }
   // 收到app資料
   function appCallJsTest(time){
