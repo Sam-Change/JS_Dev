@@ -39,7 +39,7 @@
   <!--測試結束-->
 	
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0512_05</p>
+  <p>SoftMobile TestWebView0512_06</p>
   <button class="button_style button_y90" onclick="goHome()">返回首頁goHome()</button>
   <script>	
 	// 測試用方法
@@ -66,6 +66,13 @@
     document.getElementById("receiveJsLocalStorage").innerText = time;
   }
 
+  function appCallJsTest2(time){
+    let now = new Date();
+    let receiveCallbackTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+    document.getElementById("receiveCallbackTime").innerText = receiveCallbackTime;
+    document.getElementById("receiveCallbackLocalStorage").innerText = time;
+  }
+
   var ideviceCheck = isiOSDevice()
   function isiOSDevice() {
     const mobileDevice = ['iPhone', 'iPad', 'iPod']
@@ -85,6 +92,7 @@
       promise.then(
         function(result) {
           console.log(result);
+          appCallJsTest2(result);
         },
         function(err) {
           console.log(err);
