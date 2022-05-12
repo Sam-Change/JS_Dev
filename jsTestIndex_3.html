@@ -39,7 +39,7 @@
   <!--測試結束-->
 	
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0512_04</p>
+  <p>SoftMobile TestWebView0512_05</p>
   <button class="button_style button_y90" onclick="goHome()">返回首頁goHome()</button>
   <script>	
 	// 測試用方法
@@ -61,9 +61,9 @@
   // 收到app資料
   function appCallJsTest(time){
     let now = new Date();
-    let receiveCallbackTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
-    document.getElementById("receiveCallbackTime").innerText = receiveCallbackTime;
-    document.getElementById("receiveCallbackLocalStorage").innerText = time;
+    let receiveJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+    document.getElementById("receiveJsTime").innerText = receiveJsTime;
+    document.getElementById("receiveJsLocalStorage").innerText = time;
   }
 
   var ideviceCheck = isiOSDevice()
@@ -82,14 +82,14 @@
     if (ideviceCheck) {
       var action = JSON.stringify(packet_getTestPageData);
       var promise = window.webkit.messageHandlers.jstoapp.postMessage(action);
-      // promise.then(
-      //   function(result) {
-      //     appCallJsTest(result);
-      //   },
-      //   function(err) {
-      //     console.log(callback err);
-      //   }
-      // );
+      promise.then(
+        function(result) {
+          console.log(result);
+        },
+        function(err) {
+          console.log(err);
+        }
+      );
       let jwtToken = localStorage.getItem('jwtToken');
       let now = new Date();
       let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
