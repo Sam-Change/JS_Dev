@@ -39,7 +39,7 @@
   <!--測試結束-->
 	
   <!--畫面組成-->
-  <p>SoftMobile TestWebView0512_07</p>
+  <p>SoftMobile TestWebView0512_08</p>
   <button class="button_style button_y90" onclick="goHome()">返回首頁goHome()</button>
   <script>	
 	// 測試用方法
@@ -109,7 +109,14 @@
     }
     else {
       if (jstoapp) {
-        jstoapp.getTestPageData();
+        var promise = jstoapp.getTestPageData();
+        promise.then(
+          function(result) {
+            console.log(result);
+            let dataObj = JSON.parse(result);
+            appCallJsTest2(dataObj["auth"]);
+          }
+        );
         let jwtToken = localStorage.getItem('jwtToken');
         let now = new Date();
         let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
