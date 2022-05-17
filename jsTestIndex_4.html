@@ -1,0 +1,191 @@
+<!-- jsTestIndex -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>jsTestIndex</title>
+</head>
+
+<body>
+  <!--測試-->
+  <button onclick="callJsTest()">呼叫js</button>
+  <table style="width:400px;">
+	  <thead>
+		  <tr>
+				<th style="width: 20%;border: 1px solid black;">欄位</th>
+				<th style="width: 20%;border: 1px solid black;">發送js前</th>
+        <th style="width: 20%;border: 1px solid black;">發送js後</th>
+				<th style="width: 20%;border: 1px solid black;">收到app資料</th>
+        <th style="width: 20%;border: 1px solid black;">收到callback 資料</th>
+			</tr>
+	  </thead>
+		<tbody>
+			<tr>
+				<td style="border: 1px solid black;text-align:center;">時間</td>
+				<td id="sendJsTime" style="border: 1px solid black;text-align:center;"></td>
+        <td id="sendJsTimeSuc" style="border: 1px solid black;text-align:center;"></td>
+				<td id="receiveJsTime" style="border: 1px solid black;text-align:center;"></td>
+        <td id="receiveCallbackTime" style="border: 1px solid black;text-align:center;"></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black;text-align:center;">localStorage</td>
+				<td id="sendJsLocalStorage" style="border: 1px solid black;text-align:center;"></td>
+        <td id="sendJsLocalStorageSuc" style="border: 1px solid black;text-align:center;"></td>
+				<td id="receiveJsLocalStorage" style="border: 1px solid black;text-align:center;"></td>
+        <td id="receiveCallbackLocalStorage" style="border: 1px solid black;text-align:center;"></td>
+			</tr>
+		</tbody>
+  </table>
+  <!--測試結束-->
+	
+  <!--畫面組成-->
+  <p>SoftMobile TestWebView0512_16</p>
+  <button class="button_style button_y90" onclick="goHome()">返回首頁goHome()</button>
+  <script>	
+	// 測試用方法
+	window.onload = function(){
+		localStorage.removeItem('jwtToken');
+	}
+  
+	async function callJsTest(){
+		await new Promise((resolve, reject) => {
+			let jwtToken = localStorage.getItem('jwtToken');
+			let now = new Date();
+			let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+				document.getElementById("sendJsTime").innerText = sendJsTime;
+			if(jwtToken === null){
+			  document.getElementById("sendJsLocalStorage").innerText = "null";
+			}
+			// call app
+			getTestPageData();
+		});
+	}
+
+  // 收到app資料
+  function appCallJsTest(time){
+    let now = new Date();
+    let receiveJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+		document.getElementById("receiveJsTime").innerText = receiveJsTime;
+    document.getElementById("receiveJsLocalStorage").innerText = time;
+	}
+
+  function appCallJsTest2(time){
+    let now = new Date();
+    let receiveCallbackTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+    document.getElementById("receiveCallbackTime").innerText = receiveCallbackTime;
+    document.getElementById("receiveCallbackLocalStorage").innerText = time;
+  }
+
+  var ideviceCheck = isiOSDevice()
+  function isiOSDevice() {
+    const mobileDevice = ['iPhone', 'iPad', 'iPod']
+    let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+    return isMobileDevice
+  }
+  
+  let packet_getTestPageData = {
+    "name": "getTestPageData",
+  }
+
+	// web call app
+  function getTestPageData() {
+    if (ideviceCheck) {
+      var action = JSON.stringify(packet_getTestPageData);
+      var promise = window.webkit.messageHandlers.jstoapp.postMessage(action);
+
+      // promise.then(
+      //   function(result) {
+      //     appCallJsTest2(result);
+      //   },
+      //   function(err) {
+      //     console.log(callback err);
+      //   }
+      // );
+
+      let jwtToken = localStorage.getItem('jwtToken');
+      let now = new Date();
+      let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+      document.getElementById("sendJsTimeSuc").innerText = sendJsTime;
+      if(jwtToken === null){
+        document.getElementById("sendJsLocalStorageSuc").innerText = "null";
+      }
+    }
+    else {
+      if (jstoapp) {
+        jstoapp.getTestPageData();
+        let jwtToken = localStorage.getItem('jwtToken');
+        let now = new Date();
+        let sendJsTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+        document.getElementById("sendJsTimeSuc").innerText = sendJsTime;
+        if(jwtToken === null){
+          document.getElementById("sendJsLocalStorageSuc").innerText = "null";
+        }
+      }
+    }
+  }
+
+  let packet_goHome = {
+    "name": "goHome",
+  }
+
+  function goHome() {
+    if (ideviceCheck) {
+      var action = JSON.stringify(packet_goHome);
+      window.webkit.messageHandlers.jstoapp.postMessage(action);
+    }
+    else {
+      if (jstoapp) {
+        jstoapp.goHome();
+      }
+    }
+  }
+    
+  // 收JS
+  async function setTestPageData(data) {
+	await new Promise((resolve, reject) => {
+	    let jwtToken = window.localStorage.getItem('jwtToken');
+		let dataObj = JSON.parse(jwtToken);
+		appCallJsTest(dataObj["auth"]);
+	});
+  }
+  </script>
+</body>
+  
+<style>
+  .button_style {
+    position: absolute;
+    width: 100%;
+    left: 0%;
+    top: 0%;
+    height: 10%;
+  }
+  .button_y10 {
+    top: 10%;
+  }
+  .button_y20 {
+    top: 20%;
+  }
+  .button_y30 {
+    top: 30%;
+  }
+  .button_y40 {
+    top: 40%;
+  }
+  .button_y50 {
+    top: 50%;
+  }
+  .button_y60 {
+    top: 60%;
+  }
+  .button_y70 {
+    top: 70%;
+  }
+  .button_y80 {
+    top: 80%;
+  }
+  .button_y90 {
+    top: 90%;
+  }
+</style>
+  
+</html>
