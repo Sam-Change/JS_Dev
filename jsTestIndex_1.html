@@ -10,8 +10,8 @@
   <!--畫面組成-->
   <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
   <p>SoftMobile TestWebView</p>
-  <button class="button_style button_y70" onclick="goHome()">返回首頁goHome()</button>
-  <button class="button_style button_y80" onclick="onOCR()">OCR辨識onOCR</button>
+  <button class="button_style button_y10" onclick="goHome()">返回首頁goHome()</button>
+  <button class="button_style button_y20" onclick="onOCR()">OCR辨識onOCR</button>
   
   <script>
     var ideviceCheck = isiOSDevice()
@@ -61,34 +61,6 @@
         }
       }
     }
-    
-    let packet_getTestPageData = {
-      "name": "getTestPageData",
-    }
-
-    function getTestPageData() {
-      let dt = new Date();
-      let strLog = dt.getUTCHours()+8 + ":" + dt.getMinutes() + ":" + dt.getSeconds() + "." + dt.getMilliseconds();
-      console.log(strLog + " 呼叫getTestPageData前")
-      document.getElementById("beforeCall").innerHTML = strLog
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_getTestPageData);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-        let dt2 = new Date();
-        let strLog2 = dt2.getUTCHours()+8 + ":" + dt2.getMinutes() + ":" + dt2.getSeconds() + "." + dt2.getMilliseconds();
-        console.log(strLog2 + " 呼叫getTestPageData後")
-        document.getElementById("afterCall").innerHTML = strLog2
-      }
-      else {
-        if (jstoapp) {
-          jstoapp.getTestPageData();
-          let dt2 = new Date();
-          let strLog2 = dt2.getUTCHours()+8 + ":" + dt2.getMinutes() + ":" + dt2.getSeconds() + "." + dt2.getMilliseconds();
-          console.log(strLog2 + " 呼叫getTestPageData後")
-          document.getElementById("afterCall").innerHTML = strLog2
-        }
-      }
-    }
 
     let packet_goHome = {
       "name": "goHome",
@@ -126,22 +98,6 @@
           jstoapp.onOCR(action);
         }
       }
-    }
-    
-    // 收JS
-    function setTestPageData(data) {
-      document.getElementById("tokenFromJS").innerHTML = data["token"]
-
-      let jwtToken = window.localStorage.getItem('jwtToken');
-      // if jwtToken != null { 
-      //   if jwtToken.length() > 0 {
-          let dt = new Date();
-          let strLog = dt.getUTCHours()+8 + ":" + dt.getMinutes() + ":" + dt.getSeconds() + "." + dt.getMilliseconds();
-          console.log(strLog + " setTestPageData收到資料")
-          let dataObj = JSON.parse(jwtToken);
-          document.getElementById("tokenFromLocalStorage").innerHTML = dataObj["auth"];
-      //   }
-      // }
     }
   </script>
 </body>
