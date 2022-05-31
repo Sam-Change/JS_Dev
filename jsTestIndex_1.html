@@ -13,6 +13,7 @@
   <button class="button_style button_y10" onclick="goHome()">返回首頁</button>
   <button class="button_style button_y20" onclick="closeFunc()">返回上一頁</button>
   <button class="button_style button_y30" onclick="onOCR()">OCR辨識</button>
+  <button class="button_style button_y40" onclick="openPopWebView()">開啟PopWebView</button>
   
   <script>
     var ideviceCheck = isiOSDevice()
@@ -21,7 +22,7 @@
       let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
       return isMobileDevice
     }
-    
+
     function packet_onLoadingData(str) {
       let data = {"open": str}
       return data
@@ -59,6 +60,29 @@
         if (jstoapp) {
           var action = JSON.stringify(packet_onLoadingData("N"));
           jstoapp.onLoadingN(action);
+        }
+      }
+    }
+
+    function packet_openPopWebView() {
+      let data = {"url": "https://sam-change.github.io/JS_Dev/popweb.html"}
+      return data
+    }
+
+    let packet_openPopWebView = {
+      "name": "openPopWebView", 
+      "data": JSON.stringify(packet_openPopWebView())
+    }
+    
+    function openPopWebView() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_openPopWebView);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_openPopWebView());
+          jstoapp.openPopWebView(action);
         }
       }
     }
