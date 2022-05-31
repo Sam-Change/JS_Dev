@@ -11,6 +11,7 @@
   <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
   <p>SoftMobile TestWebView</p>
   <button class="button_style button_y10" onclick="goHome()">返回首頁</button>
+  <button class="button_style button_y10" onclick="closeFunc()">返回上一頁</button>
   <button class="button_style button_y20" onclick="onOCR()">OCR辨識</button>
   
   <script>
@@ -74,6 +75,22 @@
       else {
         if (jstoapp) {
           jstoapp.goHome();
+        }
+      }
+    }
+
+    let packet_closeFunc = {
+      "name": "closeFunc",
+    }
+
+    function closeFunc() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_closeFunc);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          jstoapp.closeFunc();
         }
       }
     }
