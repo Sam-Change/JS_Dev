@@ -64,13 +64,13 @@
       }
     }
 
-    let packet_openPopWebView = {
+    let packet_openPopWebViewData = {
       "url": "https://sam-change.github.io/JS_Dev/popweb.html",
     }
 
     let packet_openPopWebView = {
       "name": "openPopWebView",
-      "data": JSON.stringify(packet_openPopWebView),
+      "data": JSON.stringify(packet_openPopWebViewData),
     }
 
     function openPopWebView() {
@@ -80,7 +80,7 @@
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_openPopWebView);
+          var action = JSON.stringify(packet_openPopWebViewData);
           jstoapp.openPopWebView(action);
         }
       }
