@@ -9,81 +9,31 @@
 <body>
   <!--畫面組成-->
   <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
-  <p>SoftMobile TestWebView</p>
-  <button class="button_style button_y10" onclick="goHome()">返回首頁</button>
-  <button class="button_style button_y20" onclick="closeFunc()">返回上一頁</button>
-  <button class="button_style button_y30" onclick="onOCR()">OCR辨識</button>
-  <button class="button_style button_y40" onclick="openPopWebView()">開啟PopWebView</button>
+  <p>SoftMobile TestWebView0001</p>
+  <td id="receiveVerify" style="border: 1px solid black;text-align:center;"></td>
+  <td id="receiveOCR" style="border: 1px solid black;text-align:center;"></td>
+  <td id="resPGData" style="border: 1px solid black;text-align:center;"></td>
+  <td id="resEncData" style="border: 1px solid black;text-align:center;"></td>    
+  <button class="button_style button_y10" onclick="goHome()">返回首頁goHome</button>
+  <button class="button_style button_y10 button_x50" onclick="closeFunc()">返回上一頁closeFunc</button>
+  <button class="button_style button_y20 button_w100" onclick="onVerification()">啟動認證畫面流程onVerification</button>
+  <button class="button_style button_y30 button_w100" onclick="onOCR()">開啟OCR辨識onOCR</button>
+  <button class="button_style button_y40" onclick="startFuncD00200()">進入QRCode轉帳startFunc</button>
+  <button class="button_style button_y40 button_x50" onclick="startFuncT00100()">進入個人化設定startFunc</button>
+  <button class="button_style button_y50" onclick="openPopWebView()">開啟PopWebView</button>
+  <button class="button_style button_y50 button_x50" onclick="setShareText()">啟動分享功能流程setShareText</button>
+  <button class="button_style button_y60" onclick="getPagedata()">取得功能初始參數getPagedata</button>
+  <button class="button_style button_y60 button_x50" onclick="getEnCrydata()">取得安全參數資料getEnCrydata</button>
+<!--   <button class="button_style button_y70" onclick="setAuthdata()">網頁更新APP個人識別碼setAuthdata</button>
+  <button class="button_style button_y70 button_x50" onclick="getAPPAuthdata()">網頁取得APP個人識別碼getAPPAuthdata</button> -->
   
   <script>
     var ideviceCheck = isiOSDevice()
+
     function isiOSDevice() {
       const mobileDevice = ['iPhone', 'iPad', 'iPod']
       let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
       return isMobileDevice
-    }
-
-    function packet_onLoadingData(str) {
-      let data = {"open": str}
-      return data
-    }
-
-    let packet_onLoadingY = {
-      "name": "onLoading",
-      "data": JSON.stringify(packet_onLoadingData("Y"))
-    }
-    
-    let packet_onLoadingN = {
-      "name": "onLoading", 
-      "data": JSON.stringify(packet_onLoadingData("N"))
-    }
-    
-    function onLoadingY() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_onLoadingY);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_onLoadingData("Y"));
-          jstoapp.onLoadingY(action);
-        }
-      }
-    }
-
-    function onLoadingN() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_onLoadingN);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_onLoadingData("N"));
-          jstoapp.onLoadingN(action);
-        }
-      }
-    }
-
-    let packet_openPopWebViewData = {
-      "url": "https://sam-change.github.io/JS_Dev/popweb.html",
-    }
-
-    let packet_openPopWebView = {
-      "name": "openPopWebView",
-      "data": JSON.stringify(packet_openPopWebViewData),
-    }
-
-    function openPopWebView() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_openPopWebView);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_openPopWebViewData);
-          jstoapp.openPopWebView(action);
-        }
-      }
     }
 
     let packet_goHome = {
@@ -118,8 +68,33 @@
       }
     }
 
+    let packet_onVerificationData = {
+      "type": "1",
+      "callback":"receiveVerify",
+      "otpType":"2",
+    }
+
+    let packet_onVerification = {
+      "name": "onVerification",
+      "data": JSON.stringify(packet_onVerificationData),
+    }
+
+    function onVerification() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_onVerification);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_onVerificationData);
+          jstoapp.onVerification(action);
+        }
+      }
+    }
+
     let packet_onOCRData = {
-      "ocrType": 1,
+      "ocrType": "1",
+      "callback":"receiveOCR",
     }
 
     let packet_onOCR = {
@@ -139,13 +114,168 @@
         }
       }
     }
+
+    let packet_startFuncD00200Data = {
+      "funcID": "D00200",
+      "funcParams": "vbwy9g809-i403kgrwhbivuhew0j9gv",
+      "keepData": "83579809g35iuhruibndoivmr",
+    }
+
+    let packet_startFuncD00200 = {
+      "name": "startFunc",
+      "data": JSON.stringify(packet_startFuncD00200Data),
+    }
+
+    function startFuncD00200() { 
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_startFuncD00200);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_startFuncD00200Data);
+          jstoapp.startFunc(action);
+        }
+      }
+    }
+
+    let packet_startFuncT00100Data = {
+      "funcID": "T00100",
+      "funcParams": "vbwy9g809-i403kgrwhbivuhew0j9gv",
+      "keepData": "83579809g35iuhruibndoivmr",
+    }
+
+    let packet_startFuncT00100 = {
+      "name": "startFunc",
+      "data": JSON.stringify(packet_startFuncT00100Data),
+    }
+
+    function startFuncT00100() { 
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_startFuncT00100);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_startFuncT00100Data);
+          jstoapp.startFunc(action);
+        }
+      }
+    }
+
+    let packet_openPopWebViewData = {
+      "url": "https://sam-change.github.io/JS_Dev/popweb.html",
+    }
+
+    let packet_openPopWebView = {
+      "name": "openPopWebView",
+      "data": JSON.stringify(packet_openPopWebViewData),
+    }
+
+    function openPopWebView() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_openPopWebView);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_openPopWebViewData);
+          jstoapp.openPopWebView(action);
+        }
+      }
+    }
+
+    let packet_setShareTextData = {
+      "url": "https://sam-change.github.io/JS_Dev/popweb.html",
+    }
+
+    let packet_setShareText = {
+      "name": "setShareText",
+      "data": JSON.stringify(packet_setShareTextData),
+    }
+
+    function setShareText() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setShareText);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setShareTextData);
+          jstoapp.setShareText(action);
+        }
+      }
+    }
+
+    let packet_getPagedataData = {
+      "callback": "resPGData",
+    }
+
+    let packet_getPagedata = {
+      "name": "getPagedata",
+      "data": JSON.stringify(packet_getPagedataData),
+    }
+
+    function getPagedata() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getPagedata);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_getPagedataData);
+          jstoapp.getPagedata(action);
+        }
+      }
+    }
+    
+    let packet_getEnCrydataData = {
+      "callback": "resEncData",
+    }
+
+    let packet_getEnCrydata = {
+      "name": "getEnCrydata",
+      "data": JSON.stringify(packet_getEnCrydataData),
+    }
+
+    function getEnCrydata() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getEnCrydata);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_getEnCrydataData);
+          jstoapp.getEnCrydata(action);
+        }
+      }
+    }
+
+
+
+    // 收JS
+    function receiveVerify(data) {
+      document.getElementById("receiveVerify").innerText = "收到:" + data;
+    }
+
+    function receiveOCR(data) {
+      document.getElementById("receiveOCR").innerText = "收到:" + data;
+    }
+
+    function resPGData(data) {
+      document.getElementById("resPGData").innerText = "收到:" + data;
+    }
+
+    function resEncData(data) {
+      document.getElementById("resEncData").innerText = "收到:" + data;
+    }
   </script>
 </body>
   
 <style>
   .button_style {
     position: absolute;
-    width: 100%;
+    width: 50%;
     left: 0%;
     top: 0%;
     height: 10%;
@@ -176,6 +306,12 @@
   }
   .button_y90 {
     top: 90%;
+  }
+  .button_x50 {
+    left: 50%;
+  }
+  .button_w100 {
+    width: 100%;
   }
 </style>
   
