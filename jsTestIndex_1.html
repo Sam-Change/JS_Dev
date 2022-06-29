@@ -9,21 +9,53 @@
 <body>
   <!--畫面組成-->
   <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
-  <p>SoftMobile TestWebView0629</p>
-  <td id="receiveVerify" style="border: 1px solid black;text-align:center;"></td>
-  <td id="receiveOCR" style="border: 1px solid black;text-align:center;"></td>
-  <td id="resPGData" style="border: 1px solid black;text-align:center;"></td>
-  <label id="resEncData" class="button_style button_y10"></label>    
-  <button class="button_style button_y20" onclick="goHome()">返回首頁goHome</button>
-  <button class="button_style button_y30 button_x50" onclick="closeFunc()">返回上一頁closeFunc</button>
-  <button class="button_style button_y40 button_w100" onclick="onVerification()">啟動認證畫面流程onVerification</button>
-  <button class="button_style button_y50 button_w100" onclick="onOCR()">開啟OCR辨識onOCR</button>
-  <button class="button_style button_y60" onclick="startFuncD00200()">進入QRCode轉帳startFunc</button>
-  <button class="button_style button_y60 button_x50" onclick="startFuncT00100()">進入個人化設定startFunc</button>
-  <button class="button_style button_y70" onclick="openPopWebView()">開啟PopWebView</button>
-  <button class="button_style button_y70 button_x50" onclick="setShareText()">啟動分享功能流程setShareText</button>
-  <button class="button_style button_y80" onclick="getPagedata()">取得功能初始參數getPagedata</button>
-  <button class="button_style button_y80 button_x50" onclick="getEnCrydata()">取得安全參數資料getEnCrydata</button>
+  <table style="border: 1px solid #333;width: 100%;">
+    <thead>
+        <tr>
+            <th colspan="2">SoftMobile TestWebView0629</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #333;width: 20%;">resEncData</td>
+            <td style="border: 1px solid #333;width: 80%;" id="resEncData"></td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #333;width: 20%;">resPGData</td>
+            <td style="border: 1px solid #333;width: 80%;" id="resPGData"></td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #333;width: 20%;">receiveOCR</td>
+            <td style="border: 1px solid #333;width: 80%;" id="receiveOCR"></td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #333;width: 20%;">receiveVerify</td>
+            <td style="border: 1px solid #333;width: 80%;" id="receiveVerify"></td>
+        </tr>
+        <tr>
+            <td><button style="width: 50%;" onclick="goHome()">goHome</button><td>
+            <td><button style="width: 50%;" onclick="closeFunc()">closeFunc</button><td>
+        </tr>
+        <tr>
+            <td><button style="width: 50%;" onclick="onVerification()">onVerification</button><td>
+            <td><button style="width: 50%;" onclick="onOCR()">onOCR</button><td>
+        </tr>
+        <tr>
+            <td><button style="width: 50%;" onclick="startFuncToB00600()">startFunc更多</button><td>
+            <td><button style="width: 50%;" onclick="startFuncToT00100()">startFunc個人化設定</button><td>
+        </tr>
+        <tr>
+            <td><button style="width: 50%;" onclick="openPopWebView()">openPopWebView</button><td>
+            <td><button style="width: 50%;" onclick="setShareText()">setShareText</button><td>
+        </tr>
+        <tr>
+            <td><button style="width: 50%;" onclick="getPagedata()">getPagedata</button><td>
+            <td><button style="width: 50%;" onclick="getEnCrydata()">getEnCrydata</button><td>
+        </tr>
+    </tbody>
+  </table>
+
+
 <!--   <button class="button_style button_y70" onclick="setAuthdata()">網頁更新APP個人識別碼setAuthdata</button>
   <button class="button_style button_y70 button_x50" onclick="getAPPAuthdata()">網頁取得APP個人識別碼getAPPAuthdata</button> -->
   
@@ -267,7 +299,7 @@
     }
 
     function resEncData(data) {
-      document.getElementById("resEncData").innerText = "收到Enivec:" + data["Enivec"] + ", 收到Crydata:" + data["Crydata"];
+      document.getElementById("resEncData").innerText = "收到Enivec:" + data["Enivec"] + ", Crydata:" + data["Crydata"];
     }
 
   </script>
@@ -313,6 +345,13 @@
   }
   .button_w100 {
     width: 100%;
+  }
+
+  .width100 {
+    width: 100%;
+  }
+  .width50 {
+    width: 50%;
   }
 </style>
   
