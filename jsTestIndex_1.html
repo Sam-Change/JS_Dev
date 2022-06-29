@@ -9,7 +9,7 @@
 <body>
   <!--畫面組成-->
   <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
-  <p>SoftMobile TestWebView0002</p>
+  <p>SoftMobile TestWebView0629</p>
   <td id="receiveVerify" style="border: 1px solid black;text-align:center;"></td>
   <td id="receiveOCR" style="border: 1px solid black;text-align:center;"></td>
   <td id="resPGData" style="border: 1px solid black;text-align:center;"></td>
@@ -186,7 +186,7 @@
     }
 
     let packet_setShareTextData = {
-      "url": "https://sam-change.github.io/JS_Dev/popweb.html",
+      "webtext": "https://sam-change.github.io/JS_Dev/popweb.html",
     }
 
     let packet_setShareText = {
@@ -267,8 +267,9 @@
     }
 
     function resEncData(data) {
-      document.getElementById("resEncData").innerText = "收到:" + data;
+      document.getElementById("resEncData").innerText = "收到Enivec:" + data["Enivec"] + ", 收到Crydata:" + data["Crydata"];
     }
+
   </script>
 </body>
   
