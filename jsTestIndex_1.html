@@ -9,7 +9,7 @@
 <body>
   <!--畫面組成-->
   <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
-  <table style="border: 1px solid #333;">
+  <table class="screenWidth border">
     <thead>
         <tr>
             <th colspan="2">SoftMobile TestWebView0629</th>
@@ -61,6 +61,8 @@
   <button class="button_style button_y70 button_x50" onclick="getAPPAuthdata()">網頁取得APP個人識別碼getAPPAuthdata</button> -->
   
   <script>
+
+
     var ideviceCheck = isiOSDevice()
 
     function isiOSDevice() {
@@ -348,12 +350,18 @@
     width: 100%;
   }
 
-  .width100 {
-    width: 100%;
+  .screenWidth {
+    width: screen.width;
   }
-  .width50 {
-    width: 50%;
+  
+  .screenWidth50% {
+    width: screen.width*50%;
   }
+
+  .border {
+    border: 1px solid #333;
+  }
+
 </style>
   
 </html>
