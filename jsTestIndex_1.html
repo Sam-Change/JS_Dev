@@ -8,7 +8,6 @@
 
 <body>
   <!--畫面組成-->
-  <!--span id(document.getElementById)為web端儲存資料欄位名稱，會一直撈此欄位資料當欄位值改變就會更新?-->
   <table class="screenWidth border">
     <thead>
         <tr>
@@ -256,54 +255,49 @@
       }
     }
 
-
-
-
-    
-
-    let packet_startFuncD00200Data = {
-      "funcID": "D00200",
+    let packet_startFuncToB00600Data = {
+      "funcID": "B00600",
       "funcParams": "vbwy9g809-i403kgrwhbivuhew0j9gv",
       "keepData": "83579809g35iuhruibndoivmr",
     }
 
-    let packet_startFuncD00200 = {
+    let packet_startFuncToB00600 = {
       "name": "startFunc",
-      "data": JSON.stringify(packet_startFuncD00200Data),
+      "data": JSON.stringify(packet_startFuncToB00600Data),
     }
 
-    function startFuncD00200() { 
+    function startFuncToB00600() { 
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_startFuncD00200);
+        var action = JSON.stringify(packet_startFuncToB00600);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_startFuncD00200Data);
+          var action = JSON.stringify(packet_startFuncToB00600Data);
           jstoapp.startFunc(action);
         }
       }
     }
 
-    let packet_startFuncT00100Data = {
+    let packet_startFuncToT00100Data = {
       "funcID": "T00100",
       "funcParams": "vbwy9g809-i403kgrwhbivuhew0j9gv",
       "keepData": "83579809g35iuhruibndoivmr",
     }
 
-    let packet_startFuncT00100 = {
+    let packet_startFuncToT00100 = {
       "name": "startFunc",
-      "data": JSON.stringify(packet_startFuncT00100Data),
+      "data": JSON.stringify(packet_startFuncToT00100Data),
     }
 
-    function startFuncT00100() { 
+    function startFuncToT00100() { 
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_startFuncT00100);
+        var action = JSON.stringify(packet_startFuncToT00100);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_startFuncT00100Data);
+          var action = JSON.stringify(packet_startFuncToT00100Data);
           jstoapp.startFunc(action);
         }
       }
