@@ -11,10 +11,18 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁 0629 12:15</th>
+            <th colspan="2">快登設定頁 0629 15:22</th>
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td class="screenWidth20% border textFormat">生物辨識</td>
+            <td><button onclick="bioClick()" id="bioResult"></button><td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">圖形辨識</td>
+            <td><button onclick="patternClick()" id="patternResult"></button><td>
+        </tr>
         <tr>
             <td class="screenWidth20% border textFormat">resGetLGType</td>
             <td class="screenWidth80% border textFormat" id="resGetLGType"></td>
@@ -30,9 +38,6 @@
         <tr>
             <td class="screenWidth20% border textFormat">resDelQL</td>
             <td class="screenWidth80% border textFormat" id="resDelQL"></td>
-        </tr>
-        <tr>
-            <td><button onclick="goHome()">goHome</button><td>
         </tr>
         <tr>
             <td><button onclick="closeFunc()">closeFunc</button><td>
@@ -67,19 +72,119 @@
       return isMobileDevice
     }
 
-    let packet_goHome = {
-      "name": "goHome",
+    let packet_regQL0Data = {
+      "callback": "resRegQL",
+      "QLtype": "0",
     }
 
-    function goHome() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_goHome);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
+    let packet_regQL0 = {
+      "name": "regQL",
+      "data": JSON.stringify(packet_regQL0Data),
+    }
+
+    let packet_regQL1Data = {
+      "callback": "resRegQL",
+      "QLtype": "1",
+    }
+
+    let packet_regQL1 = {
+      "name": "regQL",
+      "data": JSON.stringify(packet_regQL1Data),
+    }
+
+    function bioClick() {
+      if (document.getElementById("QLStatusResult").innerText == "true") {
+        if (document.getElementById("QLStatus").innerText == "0") {
+          //reg
+          if (ideviceCheck) {
+            var action = JSON.stringify(packet_regQL0);
+            window.webkit.messageHandlers.jstoapp.postMessage(action);
+          }
+          else {
+            if (jstoapp) {
+              var action = JSON.stringify(packet_regQL0Data);
+              jstoapp.regQL(action);
+            }
+          }
+        }
+        else if (document.getElementById("QLStatus").innerText == "1") {
+          if (document.getElementById("QLType").innerText == "0") {
+            //del
+            delQLByKey()
+          }
+        }
+        else if (document.getElementById("QLStatus").innerText == "2") {
+          //reg
+          if (ideviceCheck) {
+            var action = JSON.stringify(packet_regQL0);
+            window.webkit.messageHandlers.jstoapp.postMessage(action);
+          }
+          else {
+            if (jstoapp) {
+              var action = JSON.stringify(packet_regQL0Data);
+              jstoapp.regQL(action);
+            }
+          }
+        }
+        else if (document.getElementById("QLStatus").innerText == "3") {
+          // 1107
+          delQLByID()
+        }
+        else if (document.getElementById("QLStatus").innerText == "4") {
+          // 1106
+          delQLByKey()
+        }
       }
       else {
-        if (jstoapp) {
-          jstoapp.goHome();
+        document.getElementById("QLStatusResult").innerText = "請先取得狀態"
+      }
+    }
+
+    function patternClick() {
+      if (document.getElementById("QLStatusResult").innerText == "true") {
+        if (document.getElementById("QLStatus").innerText == "0") {
+          //reg
+          if (ideviceCheck) {
+            var action = JSON.stringify(packet_regQL1);
+            window.webkit.messageHandlers.jstoapp.postMessage(action);
+          }
+          else {
+            if (jstoapp) {
+              var action = JSON.stringify(packet_regQL1Data);
+              jstoapp.regQL(action);
+            }
+          }
         }
+        else if (document.getElementById("QLStatus").innerText == "1") {
+          if (document.getElementById("QLType").innerText == "1") {
+            //del
+            delQLByKey()
+          }
+        }
+        else if (document.getElementById("QLStatus").innerText == "2") {
+          //reg
+          if (ideviceCheck) {
+            var action = JSON.stringify(packet_regQL1);
+            window.webkit.messageHandlers.jstoapp.postMessage(action);
+          }
+          else {
+            if (jstoapp) {
+              var action = JSON.stringify(packet_regQL1Data);
+              jstoapp.regQL(action);
+            }
+          }
+        }
+        else if (document.getElementById("QLStatus").innerText == "3") {
+          // 1107
+          delQLByID()
+        }
+        else if (document.getElementById("QLStatus").innerText == "4") {
+          // 1106
+          delQLByKey()
+        }
+      }
+      else {
+        document.getElementById("QLStatusResult").innerText = "請先取得狀態"
       }
     }
 
@@ -255,14 +360,60 @@
 
     function resGetQLStatus(data) {
       document.getElementById("resGetQLStatus").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", QLStatus:" + data["QLStatus"] + ", QLType:" + data["QLType"];
+      let result = data["result"]
+      let QLStatus = data["QLStatus"]
+      let QLType = data["QLType"]
+      document.getElementById("QLStatusResult").innerText = result
+      document.getElementById("QLStatus").innerText = QLStatus
+      document.getElementById("QLType").innerText = QLType
+      if (result == "true") {
+        if (QLStatus == "0") {
+          document.getElementById("bioResult").innerText = "off"
+          document.getElementById("patternResult").innerText = "off"
+        }
+        else if (QLStatus == "1") {
+          if (QLType == "0") {
+            document.getElementById("bioResult").innerText = "on"
+            document.getElementById("patternResult").innerText = "off"
+          }
+          else if (QLType == "1") {
+            document.getElementById("bioResult").innerText = "off"
+            document.getElementById("patternResult").innerText = "on"
+          }
+        }
+        else if (QLStatus == "2") {
+          document.getElementById("bioResult").innerText = "off"
+          document.getElementById("patternResult").innerText = "off"
+        }
+        else if (QLStatus == "3") {
+          document.getElementById("bioResult").innerText = "off"
+          document.getElementById("patternResult").innerText = "off"
+        }
+        else if (QLStatus == "4") {
+          document.getElementById("bioResult").innerText = "off"
+          document.getElementById("patternResult").innerText = "off"
+        }
+      }
     }
 
     function resRegQL(data) {
       document.getElementById("resRegQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+      if (data["result"] == "true") {
+        document.getElementById("QLStatus").innerText = "1"
+        document.getElementById("QLType").innerText = "1"
+        document.getElementById("bioResult").innerText = "off"
+        document.getElementById("patternResult").innerText = "on"
+      }
     }
 
     function resDelQL(data) {
       document.getElementById("resDelQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+      if (data["result"] == "true") {
+        document.getElementById("QLStatus").innerText = "0"
+        document.getElementById("QLType").innerText = ""
+        document.getElementById("bioResult").innerText = "off"
+        document.getElementById("patternResult").innerText = "off"
+      }
     }
   </script>
 </body>
