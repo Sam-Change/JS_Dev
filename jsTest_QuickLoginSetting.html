@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁 0629 15:22</th>
+            <th colspan="2">快登設定頁 0629 15:28</th>
         </tr>
     </thead>
     <tbody>
@@ -368,30 +368,30 @@
       document.getElementById("QLType").innerText = QLType
       if (result == "true") {
         if (QLStatus == "0") {
-          document.getElementById("bioResult").innerText = "off"
-          document.getElementById("patternResult").innerText = "off"
+          document.getElementById("bioResult").innerHTML = "off"
+          document.getElementById("patternResult").innerHTML = "off"
         }
         else if (QLStatus == "1") {
           if (QLType == "0") {
-            document.getElementById("bioResult").innerText = "on"
-            document.getElementById("patternResult").innerText = "off"
+            document.getElementById("bioResult").innerHTML = "on"
+            document.getElementById("patternResult").innerHTML = "off"
           }
           else if (QLType == "1") {
-            document.getElementById("bioResult").innerText = "off"
-            document.getElementById("patternResult").innerText = "on"
+            document.getElementById("bioResult").innerHTML = "off"
+            document.getElementById("patternResult").innerHTML = "on"
           }
         }
         else if (QLStatus == "2") {
-          document.getElementById("bioResult").innerText = "off"
-          document.getElementById("patternResult").innerText = "off"
+          document.getElementById("bioResult").innerHTML = "off"
+          document.getElementById("patternResult").innerHTML = "off"
         }
         else if (QLStatus == "3") {
-          document.getElementById("bioResult").innerText = "off"
-          document.getElementById("patternResult").innerText = "off"
+          document.getElementById("bioResult").innerHTML = "off"
+          document.getElementById("patternResult").innerHTML = "off"
         }
         else if (QLStatus == "4") {
-          document.getElementById("bioResult").innerText = "off"
-          document.getElementById("patternResult").innerText = "off"
+          document.getElementById("bioResult").innerHTML = "off"
+          document.getElementById("patternResult").innerHTML = "off"
         }
       }
     }
@@ -401,8 +401,8 @@
       if (data["result"] == "true") {
         document.getElementById("QLStatus").innerText = "1"
         document.getElementById("QLType").innerText = "1"
-        document.getElementById("bioResult").innerText = "off"
-        document.getElementById("patternResult").innerText = "on"
+        document.getElementById("bioResult").innerHTML = "off"
+        document.getElementById("patternResult").innerHTML = "on"
       }
     }
 
@@ -411,8 +411,8 @@
       if (data["result"] == "true") {
         document.getElementById("QLStatus").innerText = "0"
         document.getElementById("QLType").innerText = ""
-        document.getElementById("bioResult").innerText = "off"
-        document.getElementById("patternResult").innerText = "off"
+        document.getElementById("bioResult").innerHTML = "off"
+        document.getElementById("patternResult").innerHTML = "off"
       }
     }
   </script>
