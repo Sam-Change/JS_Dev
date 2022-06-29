@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁 0629 12:12</th>
+            <th colspan="2">快登設定頁 0629 12:15</th>
         </tr>
     </thead>
     <tbody>
@@ -238,18 +238,18 @@
     // 收JS
     function resGetLGType(data) {
       var statusName = ""
-      // if data["LGType"] == "0" {
-      //   statusName = "未登入"
-      // }
-      // else if data["LGType"] == "1" {
-      //   statusName = "訪客登入"
-      // }
-      // else if data["LGType"] == "2" {
-      //   statusName = "快速登入"
-      // }
-      // else if data["LGType"] == "3" {
-      //   statusName = "帳號登入"
-      // }
+      if (data["LGType"] == "0") {
+        statusName = "未登入"
+      }
+      else if (data["LGType"] == "1") {
+        statusName = "訪客登入"
+      }
+      else if (data["LGType"] == "2") {
+        statusName = "快速登入"
+      }
+      else if (data["LGType"] == "3") {
+        statusName = "帳號登入"
+      }
       document.getElementById("resGetLGType").innerText = "收到LGType:" + data["LGType"] + ", " + statusName;
     }
 
