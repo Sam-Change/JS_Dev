@@ -17,54 +17,70 @@
     </thead>
     <tbody>
         <tr>
-            <td style="border: 1px solid #333;width: 20%;">resEncData</td>
-            <td style="border: 1px solid #333;width: 80%;" id="resEncData"></td>
+            <td class="screenWidth20% border">resEncData</td>
+            <td class="screenWidth80% border" id="resEncData"></td>
         </tr>
         <tr>
-            <td style="border: 1px solid #333;width: 20%;">resPGData</td>
-            <td style="border: 1px solid #333;width: 80%;" id="resPGData"></td>
+            <td class="screenWidth20% border">resPGData</td>
+            <td class="screenWidth80% border" id="resPGData"></td>
         </tr>
         <tr>
-            <td style="border: 1px solid #333;width: 20%;">receiveOCR</td>
-            <td style="border: 1px solid #333;width: 80%;" id="receiveOCR"></td>
+            <td class="screenWidth20% border">receiveOCR</td>
+            <td class="screenWidth80% border" id="receiveOCR"></td>
         </tr>
         <tr>
-            <td style="border: 1px solid #333;width: 20%;">receiveVerify</td>
-            <td style="border: 1px solid #333;width: 80%;" id="receiveVerify"></td>
+            <td class="screenWidth20% border">receiveVerify</td>
+            <td class="screenWidth80% border" id="receiveVerify"></td>
         </tr>
         <tr>
-            <td><button class="screenWidth50%" onclick="goHome()">goHome</button><td>
+            <td class="screenWidth20% border">receiveTransactionAuth</td>
+            <td class="screenWidth80% border" id="receiveTransactionAuth"></td>
         </tr>
         <tr>
-            <td><button class="screenWidth" onclick="closeFunc()">closeFunc</button><td>
+            <td class="screenWidth20% border">receiveGetAPPAuthdata</td>
+            <td class="screenWidth80% border" id="receiveGetAPPAuthdata"></td>
         </tr>
         <tr>
-            <td><button style="width: 50%;" onclick="onVerification()">onVerification</button><td>
-            <td><button style="width: 50%;" onclick="onOCR()">onOCR</button><td>
+            <td><button onclick="goHome()">goHome</button><td>
         </tr>
         <tr>
-            <td><button style="width: 50%;" onclick="startFuncToB00600()">startFunc更多</button><td>
-            <td><button style="width: 50%;" onclick="startFuncToT00100()">startFunc個人化設定</button><td>
+            <td><button onclick="closeFunc()">closeFunc</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="getEnCrydata()">getEnCrydata</button><td>
         </tr>
         <tr>
-            <td><button style="width: 50%;" onclick="openPopWebView()">openPopWebView</button><td>
-            <td><button style="width: 50%;" onclick="setShareText()">setShareText</button><td>
+            <td><button onclick="getPagedata()">getPagedata</button><td>
         </tr>
         <tr>
-            <td><button style="width: 50%;" onclick="getPagedata()">getPagedata</button><td>
-            <td><button style="width: 50%;" onclick="getEnCrydata()">getEnCrydata</button><td>
-            <td><input type="button" value="test" class="btn"/></td>
+            <td><button onclick="onOCR()">onOCR</button><td>
         </tr>
+        <tr>
+            <td><button onclick="onVerification()">onVerification</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="transactionAuth()">transactionAuth</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="getAPPAuthdata()">getAPPAuthdata</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="startFuncToB00600()">startFunc更多</button><td>
+        </tr>
+        <tr>    
+            <td><button onclick="startFuncToT00100()">startFunc個人化設定</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="openPopWebView()">openPopWebView</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="setShareText()">setShareText</button><td>
+        </tr>
+        
     </tbody>
   </table>
-
-
-<!--   <button class="button_style button_y70" onclick="setAuthdata()">網頁更新APP個人識別碼setAuthdata</button>
-  <button class="button_style button_y70 button_x50" onclick="getAPPAuthdata()">網頁取得APP個人識別碼getAPPAuthdata</button> -->
   
   <script>
-
-
     var ideviceCheck = isiOSDevice()
 
     function isiOSDevice() {
@@ -105,26 +121,46 @@
       }
     }
 
-    let packet_onVerificationData = {
-      "type": "1",
-      "callback":"receiveVerify",
-      "otpType":"2",
+    let packet_getEnCrydataData = {
+      "callback": "resEncData",
     }
 
-    let packet_onVerification = {
-      "name": "onVerification",
-      "data": JSON.stringify(packet_onVerificationData),
+    let packet_getEnCrydata = {
+      "name": "getEnCrydata",
+      "data": JSON.stringify(packet_getEnCrydataData),
     }
 
-    function onVerification() {
+    function getEnCrydata() {
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_onVerification);
+        var action = JSON.stringify(packet_getEnCrydata);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_onVerificationData);
-          jstoapp.onVerification(action);
+          var action = JSON.stringify(packet_getEnCrydataData);
+          jstoapp.getEnCrydata(action);
+        }
+      }
+    }
+
+    let packet_getPagedataData = {
+      "callback": "resPGData",
+    }
+
+    let packet_getPagedata = {
+      "name": "getPagedata",
+      "data": JSON.stringify(packet_getPagedataData),
+    }
+
+    function getPagedata() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getPagedata);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_getPagedataData);
+          jstoapp.getPagedata(action);
         }
       }
     }
@@ -151,6 +187,79 @@
         }
       }
     }
+
+    let packet_onVerificationData = {
+      "type": "1",
+      "callback":"receiveVerify",
+      "otpType":"2",
+    }
+
+    let packet_onVerification = {
+      "name": "onVerification",
+      "data": JSON.stringify(packet_onVerificationData),
+    }
+
+    function onVerification() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_onVerification);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_onVerificationData);
+          jstoapp.onVerification(action);
+        }
+      }
+    }
+
+    let packet_transactionAuthData = {
+      "callback":"receiveTransactionAuth",
+    }
+
+    let packet_transactionAuth = {
+      "name": "transactionAuth",
+      "data": JSON.stringify(packet_transactionAuthData),
+    }
+
+    function transactionAuth() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_transactionAuth);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_transactionAuthData);
+          jstoapp.transactionAuth(action);
+        }
+      }
+    }
+
+    let packet_getAPPAuthdataData = {
+      "callback":"receiveGetAPPAuthdata",
+    }
+
+    let packet_getAPPAuthdata = {
+      "name": "getAPPAuthdata",
+      "data": JSON.stringify(packet_getAPPAuthdataData),
+    }
+
+    function getAPPAuthdata() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getAPPAuthdata);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_getAPPAuthdataData);
+          jstoapp.getAPPAuthdata(action);
+        }
+      }
+    }
+
+
+
+
+    
 
     let packet_startFuncD00200Data = {
       "funcID": "D00200",
@@ -223,7 +332,7 @@
     }
 
     let packet_setShareTextData = {
-      "webtext": "https://sam-change.github.io/JS_Dev/popweb.html",
+      "webtext": "大谷翔平　3試合ぶり17号ソロ！3回に右腕クエトから中越えアーチ、トラウトと今季4度目のアベック弾",
     }
 
     let packet_setShareText = {
@@ -244,69 +353,30 @@
       }
     }
 
-    let packet_getPagedataData = {
-      "callback": "resPGData",
-    }
-
-    let packet_getPagedata = {
-      "name": "getPagedata",
-      "data": JSON.stringify(packet_getPagedataData),
-    }
-
-    function getPagedata() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_getPagedata);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_getPagedataData);
-          jstoapp.getPagedata(action);
-        }
-      }
-    }
-    
-    let packet_getEnCrydataData = {
-      "callback": "resEncData",
-    }
-
-    let packet_getEnCrydata = {
-      "name": "getEnCrydata",
-      "data": JSON.stringify(packet_getEnCrydataData),
-    }
-
-    function getEnCrydata() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_getEnCrydata);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_getEnCrydataData);
-          jstoapp.getEnCrydata(action);
-        }
-      }
-    }
-
-
-
     // 收JS
-    function receiveVerify(data) {
-      document.getElementById("receiveVerify").innerText = "收到:" + data;
-    }
-
-    function receiveOCR(data) {
-      document.getElementById("receiveOCR").innerText = "收到:" + data;
+    function resEncData(data) {
+      document.getElementById("resEncData").innerText = "收到Crydata:" + data["Crydata"] + ", Enivec:" + data["Enivec"];
     }
 
     function resPGData(data) {
-      document.getElementById("resPGData").innerText = "收到:" + data;
+      document.getElementById("resPGData").innerText = "收到funcParams:" + JSON.stringify(data["funcParams"]) + ", keepData:" + JSON.stringify(data["keepData"]);
     }
 
-    function resEncData(data) {
-      document.getElementById("resEncData").innerText = "收到Enivec:" + data["Enivec"] + ", Crydata:" + data["Crydata"];
+    function receiveOCR(data) {
+      document.getElementById("receiveOCR").innerText = "收到rtcode:" + data["rtcode"] + ", rtmsg:" + data["rtmsg"] + ", data:" + JSON.stringify(data["data"]);
     }
 
+    function receiveVerify(data) {
+      document.getElementById("receiveVerify").innerText = "收到Type:" + data["Type"] + ", signature:" + data["signature"] + ", Mima:" + data["Mima"] + ", otpType:" + data["otpType"] + ", rtcode:" + data["rtcode"] + ", rtmsg:" + data["rtmsg"];
+    }
+
+    function receiveTransactionAuth(data) {
+      document.getElementById("receiveTransactionAuth").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+    }
+
+    function receiveGetAPPAuthdata(data) {
+      document.getElementById("receiveGetAPPAuthdata").innerText = "收到auth:" + data["auth"];
+    }
   </script>
 </body>
   
@@ -315,8 +385,16 @@
     width: screen.width;
   }
   
+  .screenWidth20% {
+    width: screen.width*20%;
+  }
+
   .screenWidth50% {
     width: screen.width*50%;
+  }
+
+  .screenWidth80% {
+    width: screen.width*80%;
   }
 
   .border {
