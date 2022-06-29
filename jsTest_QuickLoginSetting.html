@@ -1,0 +1,293 @@
+<!-- jsTestIndex -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>jsTestIndex</title>
+</head>
+
+<body>
+  <!--畫面組成-->
+  <table class="screenWidth border">
+    <thead>
+        <tr>
+            <th colspan="2">快登設定頁 0629 11:50</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="screenWidth20% border textFormat">resGetLGType</td>
+            <td class="screenWidth80% border textFormat" id="resGetLGType"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resGetQLStatus</td>
+            <td class="screenWidth80% border textFormat" id="resGetQLStatus"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resRegQL</td>
+            <td class="screenWidth80% border textFormat" id="resRegQL"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resDelQL</td>
+            <td class="screenWidth80% border textFormat" id="resDelQL"></td>
+        </tr>
+        <tr>
+            <td><button onclick="goHome()">goHome</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="closeFunc()">closeFunc</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="getLGType()">getLGType</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="getQLStatus()">getQLStatus</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="regQLBio()">regQL生物</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="regQLPattern()">regQL圖形</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="delQLByKey()">delQL本裝置</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="delQLByID()">delQL同帳號</button><td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <script>
+    var ideviceCheck = isiOSDevice()
+
+    function isiOSDevice() {
+      const mobileDevice = ['iPhone', 'iPad', 'iPod']
+      let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+      return isMobileDevice
+    }
+
+    let packet_goHome = {
+      "name": "goHome",
+    }
+
+    function goHome() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goHome);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          jstoapp.goHome();
+        }
+      }
+    }
+
+    let packet_closeFunc = {
+      "name": "closeFunc",
+    }
+
+    function closeFunc() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_closeFunc);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          jstoapp.closeFunc();
+        }
+      }
+    }
+
+    let packet_getLGTypeData = {
+      "callback": "resGetLGType",
+    }
+
+    let packet_getLGType = {
+      "name": "getLGType",
+      "data": JSON.stringify(packet_getLGTypeData),
+    }
+
+    function getLGType() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getLGType);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_getLGTypeData);
+          jstoapp.getLGType(action);
+        }
+      }
+    }
+
+    let packet_getQLStatusData = {
+      "callback": "resGetQLStatus",
+    }
+
+    let packet_getQLStatus = {
+      "name": "getQLStatus",
+      "data": JSON.stringify(packet_getQLStatusData),
+    }
+
+    function getQLStatus() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getQLStatus);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_getQLStatusData);
+          jstoapp.getQLStatus(action);
+        }
+      }
+    }
+
+    let packet_regQLBioData = {
+      "callback": "resRegQL",
+      "QLtype": "0",
+    }
+
+    let packet_regQLBio = {
+      "name": "regQL",
+      "data": JSON.stringify(packet_regQLBioData),
+    }
+
+    function regQLBio() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_regQLBio);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_regQLBioData);
+          jstoapp.regQL(action);
+        }
+      }
+    }
+
+    let packet_regQLPatternData = {
+      "callback": "resRegQL",
+      "QLtype": "0",
+    }
+
+    let packet_regQLPattern = {
+      "name": "regQL",
+      "data": JSON.stringify(packet_regQLPatternData),
+    }
+
+    function regQLPattern() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_regQLPattern);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_regQLPatternData);
+          jstoapp.regQL(action);
+        }
+      }
+    }
+
+    let packet_delQLByKeyData = {
+      "callback": "resDelQL",
+      "delType": "deviceBindingKey",
+    }
+
+    let packet_delQLByKey = {
+      "name": "delQL",
+      "data": JSON.stringify(packet_delQLByKeyData),
+    }
+
+    function delQLByKey() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_delQLByKey);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_delQLByKeyData);
+          jstoapp.delQL(action);
+        }
+      }
+    }
+
+    let packet_delQLByIDData = {
+      "callback": "resDelQL",
+      "delType": "deviceBindingKey",
+    }
+
+    let packet_delQLByID = {
+      "name": "delQL",
+      "data": JSON.stringify(packet_delQLByIDData),
+    }
+
+    function delQLByID() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_delQLByID);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_delQLByIDData);
+          jstoapp.delQL(action);
+        }
+      }
+    }
+
+    // 收JS
+    function resGetLGType(data) {
+      var statusName = ""
+      if data["LGType"] == "0" {
+        statusName = "未登入"
+      }
+      else if data["LGType"] == "1" {
+        statusName = "訪客登入"
+      }
+      else if data["LGType"] == "2" {
+        statusName = "快速登入"
+      }
+      else if data["LGType"] == "3" {
+        statusName = "帳號登入"
+      }
+      document.getElementById("resGetLGType").innerText = "收到LGType:" + data["LGType"] + ", " + statusName;
+    }
+
+    function resGetQLStatus(data) {
+      document.getElementById("resGetQLStatus").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", QLStatus:" + data["QLStatus"] + ", QLType:" + data["QLType"];
+    }
+
+    function resRegQL(data) {
+      document.getElementById("resRegQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+    }
+
+    function resDelQL(data) {
+      document.getElementById("resDelQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+    }
+  </script>
+</body>
+  
+<style>
+  .textFormat {
+    font-size: 14;
+  }
+
+  .screenWidth {
+    width: screen.width;
+  }
+  
+  .screenWidth20% {
+    width: screen.width*20%;
+  }
+
+  .screenWidth80% {
+    width: screen.width*80%;
+  }
+
+  .border {
+    border: 1px solid #333;
+  }
+
+</style>
+  
+</html>
