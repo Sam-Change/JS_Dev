@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁 0629 17:46</th>
+            <th colspan="2">快登設定頁 0701 11:55</th>
         </tr>
     </thead>
     <tbody>
@@ -96,6 +96,7 @@
       if (localStorage.getItem('QLStatusResult') == "true") {
         if (localStorage.getItem('QLStatus') == "0") {
           //reg
+          localStorage.setItem('bioClickType',"0");
           if (ideviceCheck) {
             var action = JSON.stringify(packet_regQL0);
             window.webkit.messageHandlers.jstoapp.postMessage(action);
@@ -115,6 +116,7 @@
         }
         else if (localStorage.getItem('QLStatus') == "2") {
           //reg
+          localStorage.setItem('bioClickType',"0");
           if (ideviceCheck) {
             var action = JSON.stringify(packet_regQL0);
             window.webkit.messageHandlers.jstoapp.postMessage(action);
@@ -144,6 +146,7 @@
       if (localStorage.getItem('QLStatusResult') == "true") {
         if (localStorage.getItem('QLStatus') == "0") {
           //reg
+          localStorage.setItem('bioClickType',"1");
           if (ideviceCheck) {
             var action = JSON.stringify(packet_regQL1);
             window.webkit.messageHandlers.jstoapp.postMessage(action);
@@ -163,6 +166,7 @@
         }
         else if (localStorage.getItem('QLStatus') == "2") {
           //reg
+          localStorage.setItem('bioClickType',"1");
           if (ideviceCheck) {
             var action = JSON.stringify(packet_regQL1);
             window.webkit.messageHandlers.jstoapp.postMessage(action);
@@ -399,10 +403,20 @@
     function resRegQL(data) {
       document.getElementById("resRegQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
       if (data["result"] == "true") {
-        localStorage.setItem('QLStatus', '1')
-        localStorage.setItem('QLType', '0');
-        document.getElementById("bioResult").innerHTML = "on"
-        document.getElementById("patternResult").innerHTML = "off"
+        let bioClickType = localStorage.getItem('bioClickType');
+        if (bioClickType == "0") {
+          localStorage.setItem('QLStatus', '1')
+          localStorage.setItem('QLType', bioClickType);
+          document.getElementById("bioResult").innerHTML = "on"
+          document.getElementById("patternResult").innerHTML = "off"
+        }
+        else if (bioClickType == "1") {
+          localStorage.setItem('QLStatus', '1')
+          localStorage.setItem('QLType', bioClickType);
+          document.getElementById("bioResult").innerHTML = "off"
+          document.getElementById("patternResult").innerHTML = "on"
+        }
+        localStorage.setItem('bioClickType', '')
       }
     }
 
