@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁 0701 11:55</th>
+            <th colspan="2">快登設定頁 0705 16:40</th>
         </tr>
     </thead>
     <tbody>
@@ -93,102 +93,92 @@
     }
 
     function bioClick() {
-      if (localStorage.getItem('QLStatusResult') == "true") {
-        if (localStorage.getItem('QLStatus') == "0") {
-          //reg
-          localStorage.setItem('bioClickType',"0");
-          if (ideviceCheck) {
-            var action = JSON.stringify(packet_regQL0);
-            window.webkit.messageHandlers.jstoapp.postMessage(action);
-          }
-          else {
-            if (jstoapp) {
-              var action = JSON.stringify(packet_regQL0Data);
-              jstoapp.regQL(action);
-            }
+      if (localStorage.getItem('QLStatus') == "0") {
+        //reg
+        localStorage.setItem('bioClickType',"0");
+        if (ideviceCheck) {
+          var action = JSON.stringify(packet_regQL0);
+          window.webkit.messageHandlers.jstoapp.postMessage(action);
+        }
+        else {
+          if (jstoapp) {
+            var action = JSON.stringify(packet_regQL0Data);
+            jstoapp.regQL(action);
           }
         }
-        else if (localStorage.getItem('QLStatus') == "1") {
-          if (localStorage.getItem('QLType') == "0") {
-            //del
-            delQLByKey()
-          }
-        }
-        else if (localStorage.getItem('QLStatus') == "2") {
-          //reg
-          localStorage.setItem('bioClickType',"0");
-          if (ideviceCheck) {
-            var action = JSON.stringify(packet_regQL0);
-            window.webkit.messageHandlers.jstoapp.postMessage(action);
-          }
-          else {
-            if (jstoapp) {
-              var action = JSON.stringify(packet_regQL0Data);
-              jstoapp.regQL(action);
-            }
-          }
-        }
-        else if (localStorage.getItem('QLStatus') == "3") {
-          // 1107
-          delQLByID()
-        }
-        else if (localStorage.getItem('QLStatus') == "4") {
-          // 1106
+      }
+      else if (localStorage.getItem('QLStatus') == "1") {
+        if (localStorage.getItem('QLType') == "0") {
+          //del
           delQLByKey()
         }
       }
-      else {
-        document.getElementById("bioResult").innerText = "請先取得狀態"
+      else if (localStorage.getItem('QLStatus') == "2") {
+        //reg
+        localStorage.setItem('bioClickType',"0");
+        if (ideviceCheck) {
+          var action = JSON.stringify(packet_regQL0);
+          window.webkit.messageHandlers.jstoapp.postMessage(action);
+        }
+        else {
+          if (jstoapp) {
+            var action = JSON.stringify(packet_regQL0Data);
+            jstoapp.regQL(action);
+          }
+        }
+      }
+      else if (localStorage.getItem('QLStatus') == "3") {
+        // 1107
+        delQLByID()
+      }
+      else if (localStorage.getItem('QLStatus') == "4") {
+        // 1106
+        delQLByKey()
       }
     }
 
     function patternClick() {
-      if (localStorage.getItem('QLStatusResult') == "true") {
-        if (localStorage.getItem('QLStatus') == "0") {
-          //reg
-          localStorage.setItem('bioClickType',"1");
-          if (ideviceCheck) {
-            var action = JSON.stringify(packet_regQL1);
-            window.webkit.messageHandlers.jstoapp.postMessage(action);
-          }
-          else {
-            if (jstoapp) {
-              var action = JSON.stringify(packet_regQL1Data);
-              jstoapp.regQL(action);
-            }
+      if (localStorage.getItem('QLStatus') == "0") {
+        //reg
+        localStorage.setItem('bioClickType',"1");
+        if (ideviceCheck) {
+          var action = JSON.stringify(packet_regQL1);
+          window.webkit.messageHandlers.jstoapp.postMessage(action);
+        }
+        else {
+          if (jstoapp) {
+            var action = JSON.stringify(packet_regQL1Data);
+            jstoapp.regQL(action);
           }
         }
-        else if (localStorage.getItem('QLStatus') == "1") {
-          if (localStorage.getItem('QLType') == "1") {
-            //del
-            delQLByKey()
-          }
-        }
-        else if (localStorage.getItem('QLStatus') == "2") {
-          //reg
-          localStorage.setItem('bioClickType',"1");
-          if (ideviceCheck) {
-            var action = JSON.stringify(packet_regQL1);
-            window.webkit.messageHandlers.jstoapp.postMessage(action);
-          }
-          else {
-            if (jstoapp) {
-              var action = JSON.stringify(packet_regQL1Data);
-              jstoapp.regQL(action);
-            }
-          }
-        }
-        else if (localStorage.getItem('QLStatus') == "3") {
-          // 1107
-          delQLByID()
-        }
-        else if (localStorage.getItem('QLStatus') == "4") {
-          // 1106
+      }
+      else if (localStorage.getItem('QLStatus') == "1") {
+        if (localStorage.getItem('QLType') == "1") {
+          //del
           delQLByKey()
         }
       }
-      else {
-        document.getElementById("patternResult").innerText = "請先取得狀態"
+      else if (localStorage.getItem('QLStatus') == "2") {
+        //reg
+        localStorage.setItem('bioClickType',"1");
+        if (ideviceCheck) {
+          var action = JSON.stringify(packet_regQL1);
+          window.webkit.messageHandlers.jstoapp.postMessage(action);
+        }
+        else {
+          if (jstoapp) {
+            var action = JSON.stringify(packet_regQL1Data);
+            jstoapp.regQL(action);
+          }
+        }
+      }
+      else if (localStorage.getItem('QLStatus') == "3") {
+        // 1107
+        delQLByID()
+      }
+      else if (localStorage.getItem('QLStatus') == "4") {
+        // 1106
+        delQLByKey()
       }
     }
 
