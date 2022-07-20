@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 0720 16:45</th>
+            <th colspan="2">快登設定頁二階段 0720 17:00</th>
         </tr>
     </thead>
     <tbody>
@@ -81,18 +81,11 @@
   
   <script>
     var ideviceCheck = isiOSDevice()
-    var updateTime = getTime()
 
     function isiOSDevice() {
       const mobileDevice = ['iPhone', 'iPad', 'iPod']
       let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
       return isMobileDevice
-    }
-
-    function getTime() {
-      let now = new Date();
-      let time = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
-      return time
     }
 
     let packet_closeFunc = {
@@ -367,6 +360,9 @@
       let QLStatus = data["QLStatus"]
       let QLType = data["QLType"]
 
+      let now = new Date();
+      let updateTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+
       if (result == "true") {
         if (QLStatus == "0") {
           document.getElementById("webQLStatus").innerText = '未綁定' + '(' + updateTime + ')';
@@ -391,6 +387,10 @@
 
     function resRegQLfeature(data) {
       document.getElementById("resRegQLfeature").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", predeviceBindingKey:" + data["predeviceBindingKey"];
+
+      let now = new Date();
+      let updateTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+
       if (data["result"] == "true") {
         localStorage.setItem('predeviceBindingKey',data['predeviceBindingKey']);
         document.getElementById("webQLStatus").innerText = '註冊第一階段成功' + '(' + updateTime + ')';
@@ -402,6 +402,10 @@
 
     function resRegQL(data) {
       document.getElementById("resRegQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+
+      let now = new Date();
+      let updateTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+
       if (data["result"] == "true") {
         document.getElementById("webQLStatus").innerText = '已綁定' + '(' + updateTime + ')';
       }
@@ -412,6 +416,10 @@
 
     function resDelQL(data) {
       document.getElementById("resDelQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+
+      let now = new Date();
+      let updateTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+
       if (data["result"] == "true") {
         document.getElementById("webQLStatus").innerText = '解綁成功' + '(' + updateTime + ')';
       }
@@ -422,6 +430,10 @@
 
     function resChkQLfeature(data) {
       document.getElementById("resChkQLfeature").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+
+      let now = new Date();
+      let updateTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+
       if (data["result"] == "true") {
         document.getElementById("webQLStatus").innerText = '驗證成功' + '(' + updateTime + ')';
       }
