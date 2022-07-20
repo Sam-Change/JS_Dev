@@ -1,0 +1,458 @@
+<!-- jsTestIndex -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>jsTestIndex</title>
+</head>
+
+<body>
+  <!--畫面組成-->
+  <table class="screenWidth border">
+    <thead>
+        <tr>
+            <th colspan="2">快登設定頁二階段 0720 16:00</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="screenWidth20% border textFormat">目前狀態</td>
+            <td class="screenWidth80% border textFormat" id="webQLStatus"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resGetLGType</td>
+            <td class="screenWidth80% border textFormat" id="resGetLGType"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resGetQLStatus</td>
+            <td class="screenWidth80% border textFormat" id="resGetQLStatus"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resRegQLfeature</td>
+            <td class="screenWidth80% border textFormat" id="resRegQLfeature"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resRegQL</td>
+            <td class="screenWidth80% border textFormat" id="resRegQL"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resDelQL</td>
+            <td class="screenWidth80% border textFormat" id="resDelQL"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resChkQLfeature</td>
+            <td class="screenWidth80% border textFormat" id="resChkQLfeature"></td>
+        </tr>
+        <tr>
+            <td><button onclick="closeFunc()">closeFunc</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="getLGType()">getLGType</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="getQLStatus()">getQLStatus</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="regQLfeatureBio()">regQLfeature生物 Step1</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="regQLfeaturePattern()">regQLfeature圖形 Step1</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="regQLBio()">regQL完成生物註冊 Step2</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="regQLPattern()">regQL完成圖形註冊 Step2</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="delQLByKey()">delQL本裝置</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="delQLByID()">delQL同帳號</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="chkQLfeatureBio()">chkQLfeature生物驗證</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="chkQLfeaturePattern()">chkQLfeature圖形驗證</button><td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <script>
+    var ideviceCheck = isiOSDevice()
+    var updateTime = getTime()
+
+    function isiOSDevice() {
+      const mobileDevice = ['iPhone', 'iPad', 'iPod']
+      let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+      return isMobileDevice
+    }
+
+    function getTime() {
+      let now = new Date();
+      let time = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+      return time
+    }
+
+    let packet_closeFunc = {
+      "name": "closeFunc",
+    }
+
+    function closeFunc() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_closeFunc);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          jstoapp.closeFunc();
+        }
+      }
+    }
+
+    let packet_getLGTypeData = {
+      "callback": "resGetLGType",
+    }
+
+    let packet_getLGType = {
+      "name": "getLGType",
+      "data": JSON.stringify(packet_getLGTypeData),
+    }
+
+    function getLGType() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getLGType);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_getLGTypeData);
+          jstoapp.getLGType(action);
+        }
+      }
+    }
+
+    let packet_getQLStatusData = {
+      "callback": "resGetQLStatus",
+    }
+
+    let packet_getQLStatus = {
+      "name": "getQLStatus",
+      "data": JSON.stringify(packet_getQLStatusData),
+    }
+
+    function getQLStatus() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getQLStatus);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_getQLStatusData);
+          jstoapp.getQLStatus(action);
+        }
+      }
+    }
+
+    let packet_regQLfeatureBioData = {
+      "callback": "resRegQLfeature",
+      "QLtype": "0",
+    }
+
+    let packet_regQLfeatureBio = {
+      "name": "regQLfeature",
+      "data": JSON.stringify(packet_regQLfeatureBioData),
+    }
+
+    function regQLfeatureBio() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_regQLfeatureBio);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_regQLfeatureBioData);
+          jstoapp.regQL(action);
+        }
+      }
+    }
+
+    let packet_regQLfeaturePatternData = {
+      "callback": "resRegQLfeature",
+      "QLtype": "1",
+    }
+
+    let packet_regQLfeaturePattern = {
+      "name": "regQLfeature",
+      "data": JSON.stringify(packet_regQLfeaturePatternData),
+    }
+
+    function regQLfeaturePattern() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_regQLfeaturePattern);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_regQLfeaturePatternData);
+          jstoapp.regQL(action);
+        }
+      }
+    }
+
+    let packet_regQLBioData = {
+      "callback": "resRegQL",
+      "QLtype": "0",
+      "predeviceBindingKey": localStorage.getItem('predeviceBindingKey'),
+      "phoneNum": "0912345678",
+    }
+
+    let packet_regQLBio = {
+      "name": "regQL",
+      "data": JSON.stringify(packet_regQLBioData),
+    }
+
+    function regQLBio() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_regQLBio);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_regQLBioData);
+          jstoapp.regQL(action);
+        }
+      }
+    }
+
+    let packet_regQLPatternData = {
+      "callback": "resRegQL",
+      "QLtype": "1",
+      "predeviceBindingKey": localStorage.getItem('predeviceBindingKey'),
+      "phoneNum": "0912345678",
+    }
+
+    let packet_regQLPattern = {
+      "name": "regQL",
+      "data": JSON.stringify(packet_regQLPatternData),
+    }
+
+    function regQLPattern() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_regQLPattern);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_regQLPatternData);
+          jstoapp.regQL(action);
+        }
+      }
+    }
+
+    let packet_delQLByKeyData = {
+      "callback": "resDelQL",
+      "delType": "deviceBindingKey",
+    }
+
+    let packet_delQLByKey = {
+      "name": "delQL",
+      "data": JSON.stringify(packet_delQLByKeyData),
+    }
+
+    function delQLByKey() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_delQLByKey);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_delQLByKeyData);
+          jstoapp.delQL(action);
+        }
+      }
+    }
+
+    let packet_delQLByIDData = {
+      "callback": "resDelQL",
+      "delType": "custID",
+    }
+
+    let packet_delQLByID = {
+      "name": "delQL",
+      "data": JSON.stringify(packet_delQLByIDData),
+    }
+
+    function delQLByID() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_delQLByID);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_delQLByIDData);
+          jstoapp.delQL(action);
+        }
+      }
+    }
+
+    let packet_chkQLfeatureBioData = {
+      "callback": "resChkQLfeature",
+      "QLtype": "0",
+    }
+
+    let packet_chkQLfeatureBio = {
+      "name": "chkQLfeature",
+      "data": JSON.stringify(packet_chkQLfeatureBioData),
+    }
+
+    function chkQLfeatureBio() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_chkQLfeatureBio);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_chkQLfeatureBioData);
+          jstoapp.regQL(action);
+        }
+      }
+    }
+
+    let packet_chkQLfeaturePatternData = {
+      "callback": "resChkQLfeature",
+      "QLtype": "0",
+    }
+
+    let packet_chkQLfeaturePattern = {
+      "name": "chkQLfeature",
+      "data": JSON.stringify(packet_chkQLfeaturePatternData),
+    }
+
+    function chkQLfeaturePattern() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_chkQLfeaturePattern);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_chkQLfeaturePatternData);
+          jstoapp.regQL(action);
+        }
+      }
+    }
+
+    // 收JS
+    function resGetLGType(data) {
+      var statusName = ""
+      if (data["LGType"] == "0") {
+        statusName = "未登入"
+      }
+      else if (data["LGType"] == "1") {
+        statusName = "訪客登入"
+      }
+      else if (data["LGType"] == "2") {
+        statusName = "快速登入"
+      }
+      else if (data["LGType"] == "3") {
+        statusName = "帳號登入"
+      }
+      document.getElementById("resGetLGType").innerText = "收到LGType:" + data["LGType"] + ", " + statusName;
+    }
+
+    function resGetQLStatus(data) {
+      document.getElementById("resGetQLStatus").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", QLStatus:" + data["QLStatus"] + ", QLType:" + data["QLType"];
+      let result = data["result"]
+      let QLStatus = data["QLStatus"]
+      let QLType = data["QLType"]
+
+      if (result == "true") {
+        if (QLStatus == "0") {
+          localStorage.setItem('webQLStatus','未綁定' + '(' + updateTime + ')');
+        }
+        else if (QLStatus == "1") {
+          localStorage.setItem('webQLStatus','已綁定' + '(' + updateTime + ')');
+        }
+        else if (QLStatus == "2") {
+          localStorage.setItem('webQLStatus','已鎖定' + '(' + updateTime + ')');
+        }
+        else if (QLStatus == "3") {
+          localStorage.setItem('webQLStatus','綁他裝置1107' + '(' + updateTime + ')');
+        }
+        else if (QLStatus == "4") {
+          localStorage.setItem('webQLStatus','綁他帳號1106' + '(' + updateTime + ')');
+        }
+      }
+      else {
+        localStorage.setItem('webQLStatus','未知狀態' + '(' + updateTime + ')');
+      }
+    }
+
+    function resRegQLfeature(data) {
+      document.getElementById("resRegQLfeature").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", predeviceBindingKey:" + data["predeviceBindingKey"];
+      if (data["result"] == "true") {
+        localStorage.setItem('predeviceBindingKey',data['predeviceBindingKey']);
+        localStorage.setItem('webQLStatus','註冊第一階段成功' + '(' + updateTime + ')');
+      }
+      else {
+        localStorage.setItem('webQLStatus','註冊第一階段失敗' + '(' + updateTime + ')');
+      }
+    }
+
+    function resRegQL(data) {
+      document.getElementById("resRegQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+      if (data["result"] == "true") {
+        localStorage.setItem('webQLStatus','已綁定' + '(' + updateTime + ')');
+      }
+      else {
+        localStorage.setItem('webQLStatus','註冊第二階段失敗' + '(' + updateTime + ')');
+      }
+    }
+
+    function resDelQL(data) {
+      document.getElementById("resDelQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+      if (data["result"] == "true") {
+        localStorage.setItem('webQLStatus','解綁成功' + '(' + updateTime + ')');
+      }
+      else {
+        localStorage.setItem('webQLStatus','解綁失敗' + '(' + updateTime + ')');
+      }
+    }
+
+    function resChkQLfeature(data) {
+      document.getElementById("resChkQLfeature").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+      if (data["result"] == "true") {
+        localStorage.setItem('webQLStatus','驗證成功' + '(' + updateTime + ')');
+      }
+      else {
+        localStorage.setItem('webQLStatus','驗證失敗' + '(' + updateTime + ')');
+      }
+    }
+  </script>
+</body>
+  
+<style>
+  .textFormat {
+    font-size: 14;
+  }
+
+  .screenWidth {
+    width: screen.width;
+  }
+  
+  .screenWidth20% {
+    width: screen.width*20%;
+  }
+
+  .screenWidth80% {
+    width: screen.width*80%;
+  }
+
+  .border {
+    border: 1px solid #333;
+  }
+
+</style>
+  
+</html>
