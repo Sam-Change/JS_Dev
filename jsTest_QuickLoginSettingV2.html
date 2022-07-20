@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 0720 16:40</th>
+            <th colspan="2">快登設定頁二階段 0720 16:45</th>
         </tr>
     </thead>
     <tbody>
@@ -204,7 +204,7 @@
     let packet_regQLBioData = {
       "callback": "resRegQL",
       "QLtype": "0",
-      "predeviceBindingKey": document.getElementById("predeviceBindingKey").innerText,
+      "predeviceBindingKey": localStorage.getItem('predeviceBindingKey'),
       "phoneNum": "0912345678",
     }
 
@@ -229,7 +229,7 @@
     let packet_regQLPatternData = {
       "callback": "resRegQL",
       "QLtype": "1",
-      "predeviceBindingKey": document.getElementById("predeviceBindingKey").innerText,
+      "predeviceBindingKey": localStorage.getItem('predeviceBindingKey'),
       "phoneNum": "0912345678",
     }
 
@@ -392,8 +392,7 @@
     function resRegQLfeature(data) {
       document.getElementById("resRegQLfeature").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", predeviceBindingKey:" + data["predeviceBindingKey"];
       if (data["result"] == "true") {
-        document.getElementById("predeviceBindingKey").innerText = data['predeviceBindingKey']
-        // localStorage.setItem('predeviceBindingKey',data['predeviceBindingKey']);
+        localStorage.setItem('predeviceBindingKey',data['predeviceBindingKey']);
         document.getElementById("webQLStatus").innerText = '註冊第一階段成功' + '(' + updateTime + ')';
       }
       else {
