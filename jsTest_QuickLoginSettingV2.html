@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 0720 16:00</th>
+            <th colspan="2">快登設定頁二階段 0720 16:15</th>
         </tr>
     </thead>
     <tbody>
@@ -369,23 +369,23 @@
 
       if (result == "true") {
         if (QLStatus == "0") {
-          localStorage.setItem('webQLStatus','未綁定' + '(' + updateTime + ')');
+          document.getElementById("webQLStatus").innerText = '未綁定' + '(' + updateTime + ')';
         }
         else if (QLStatus == "1") {
-          localStorage.setItem('webQLStatus','已綁定' + '(' + updateTime + ')');
+          document.getElementById("webQLStatus").innerText = '已綁定' + '(' + updateTime + ')';
         }
         else if (QLStatus == "2") {
-          localStorage.setItem('webQLStatus','已鎖定' + '(' + updateTime + ')');
+          document.getElementById("webQLStatus").innerText = '已鎖定' + '(' + updateTime + ')';
         }
         else if (QLStatus == "3") {
-          localStorage.setItem('webQLStatus','綁他裝置1107' + '(' + updateTime + ')');
+          document.getElementById("webQLStatus").innerText = '綁他裝置1107' + '(' + updateTime + ')';
         }
         else if (QLStatus == "4") {
-          localStorage.setItem('webQLStatus','綁他帳號1106' + '(' + updateTime + ')');
+          document.getElementById("webQLStatus").innerText = '綁他帳號1106' + '(' + updateTime + ')';
         }
       }
       else {
-        localStorage.setItem('webQLStatus','未知狀態' + '(' + updateTime + ')');
+        document.getElementById("webQLStatus").innerText = '未知狀態' + '(' + updateTime + ')';
       }
     }
 
@@ -393,40 +393,40 @@
       document.getElementById("resRegQLfeature").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", predeviceBindingKey:" + data["predeviceBindingKey"];
       if (data["result"] == "true") {
         localStorage.setItem('predeviceBindingKey',data['predeviceBindingKey']);
-        localStorage.setItem('webQLStatus','註冊第一階段成功' + '(' + updateTime + ')');
+        document.getElementById("webQLStatus").innerText = '註冊第一階段成功' + '(' + updateTime + ')';
       }
       else {
-        localStorage.setItem('webQLStatus','註冊第一階段失敗' + '(' + updateTime + ')');
+        document.getElementById("webQLStatus").innerText = '註冊第一階段失敗' + '(' + updateTime + ')';
       }
     }
 
     function resRegQL(data) {
       document.getElementById("resRegQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
       if (data["result"] == "true") {
-        localStorage.setItem('webQLStatus','已綁定' + '(' + updateTime + ')');
+        document.getElementById("webQLStatus").innerText = '已綁定' + '(' + updateTime + ')';
       }
       else {
-        localStorage.setItem('webQLStatus','註冊第二階段失敗' + '(' + updateTime + ')');
+        document.getElementById("webQLStatus").innerText = '註冊第二階段失敗' + '(' + updateTime + ')';
       }
     }
 
     function resDelQL(data) {
       document.getElementById("resDelQL").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
       if (data["result"] == "true") {
-        localStorage.setItem('webQLStatus','解綁成功' + '(' + updateTime + ')');
+        document.getElementById("webQLStatus").innerText = '解綁成功' + '(' + updateTime + ')';
       }
       else {
-        localStorage.setItem('webQLStatus','解綁失敗' + '(' + updateTime + ')');
+        document.getElementById("webQLStatus").innerText = '解綁失敗' + '(' + updateTime + ')';
       }
     }
 
     function resChkQLfeature(data) {
       document.getElementById("resChkQLfeature").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
       if (data["result"] == "true") {
-        localStorage.setItem('webQLStatus','驗證成功' + '(' + updateTime + ')');
+        document.getElementById("webQLStatus").innerText = '驗證成功' + '(' + updateTime + ')';
       }
       else {
-        localStorage.setItem('webQLStatus','驗證失敗' + '(' + updateTime + ')');
+        document.getElementById("webQLStatus").innerText = '驗證失敗' + '(' + updateTime + ')';
       }
     }
   </script>
