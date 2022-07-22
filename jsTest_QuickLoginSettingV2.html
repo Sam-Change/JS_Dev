@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 0722 11:00</th>
+            <th colspan="2">快登設定頁二階段 0722 17:00</th>
         </tr>
     </thead>
     <tbody>
@@ -198,6 +198,8 @@
       "callback": "resRegQL",
       "QLtype": "1",
       "predeviceBindingKey": localStorage.getItem('predeviceBindingKey'),
+      "quickLoginToken": localStorage.getItem('quickLoginToken'),
+      "quickLoginExpireTime": localStorage.getItem('quickLoginExpireTime'),
       "phoneNum": "0912345678",
       "pwdE2ee": "Y1NZcjdGUGZtVmNQN1p3cytYMCs2RkVEWStDa3Q0cEZGTXRxK1g3U2FQUFhDTGRsOFBzSUd6aTRtWk9HMDR0TFlkMVNpWjNFYlZEZWl0ZllJNHdiSjg4RnBPYnVpUi8xYTh4dnJpYVh3b3JxUkV0QnFmTEFRVnk3ODlhKy90SHhwaXQvL2R1bENuUGNXZUhoc3E3ZUFMUDg3djFhc0dCdS9BWHJ1OG9qekNZaEFjTXVmQnVKa0U3emF4WEJSZUVvc1I3NjEwdEk0c3RidWxDQUNwSUc5M2lrT0VRVSt2bEpsV3JxTnpRL3lMcy9YcUpsbjJyc1ZmK3NDUGZGenJlVkJBUXN6OU9wc0x4WlFwbHk0M29aM1p5c0FDSXZqTjRFS21DLzNoamh2U1pQSCt6S2duSkMwVnFvK2FIR3crTkVJTnk2bVZ3RnFnT2hIdzR5MzlrNmZnSzl0QmpCOXVydHNSM1lodUVzcGNTNjhDQU9rdmtQTXZLQ2FQdy9QakNmRC80c3RJQ0o2ZDJteDkvVU51M0YzQ0cvcGFDbEJkOEJHY05oSWU1Tkc4WmNVZ1I4QzhHMEZHejB3K0tWU2dIUFVGRTR2eDNDUC9rVEJOSCtWb2w4dDJCOFFnUDBJb2JBU1FFYVNOU2I1cXY2bDlSaTN0bnF3VExxd2g4OWNtMnNOa3BkOTJzem1WSm1MRG9yMWJLNUM4ME4yVkNwL2M1Vm1ubC9XUjFZKzFFRVYxQjQxc3E4d0srS2h0YTN3ZmVsUWJTQVNrQWk4QU9Gc0FCZU5qTUdLelZXSlN0aXVkV256NFh2bXFIbklEM0ZpUmpSdE4wZkFiaTl2Y1N5T0JDbWJ3ZlovNnJBcDlqQm16SXZDTTNHVitxUWpBVVZsUTY0Z0ZBZk5JaGJzL3JENWlVOTZnWFYxdz09",
     }
@@ -224,6 +226,8 @@
       "callback": "resRegQL",
       "QLtype": "2",
       "predeviceBindingKey": localStorage.getItem('predeviceBindingKey'),
+      "quickLoginToken": localStorage.getItem('quickLoginToken'),
+      "quickLoginExpireTime": localStorage.getItem('quickLoginExpireTime'),
       "phoneNum": "0912345678",
       "pwdE2ee": "Y1NZcjdGUGZtVmNQN1p3cytYMCs2RkVEWStDa3Q0cEZGTXRxK1g3U2FQUFhDTGRsOFBzSUd6aTRtWk9HMDR0TFlkMVNpWjNFYlZEZWl0ZllJNHdiSjg4RnBPYnVpUi8xYTh4dnJpYVh3b3JxUkV0QnFmTEFRVnk3ODlhKy90SHhwaXQvL2R1bENuUGNXZUhoc3E3ZUFMUDg3djFhc0dCdS9BWHJ1OG9qekNZaEFjTXVmQnVKa0U3emF4WEJSZUVvc1I3NjEwdEk0c3RidWxDQUNwSUc5M2lrT0VRVSt2bEpsV3JxTnpRL3lMcy9YcUpsbjJyc1ZmK3NDUGZGenJlVkJBUXN6OU9wc0x4WlFwbHk0M29aM1p5c0FDSXZqTjRFS21DLzNoamh2U1pQSCt6S2duSkMwVnFvK2FIR3crTkVJTnk2bVZ3RnFnT2hIdzR5MzlrNmZnSzl0QmpCOXVydHNSM1lodUVzcGNTNjhDQU9rdmtQTXZLQ2FQdy9QakNmRC80c3RJQ0o2ZDJteDkvVU51M0YzQ0cvcGFDbEJkOEJHY05oSWU1Tkc4WmNVZ1I4QzhHMEZHejB3K0tWU2dIUFVGRTR2eDNDUC9rVEJOSCtWb2w4dDJCOFFnUDBJb2JBU1FFYVNOU2I1cXY2bDlSaTN0bnF3VExxd2g4OWNtMnNOa3BkOTJzem1WSm1MRG9yMWJLNUM4ME4yVkNwL2M1Vm1ubC9XUjFZKzFFRVYxQjQxc3E4d0srS2h0YTN3ZmVsUWJTQVNrQWk4QU9Gc0FCZU5qTUdLelZXSlN0aXVkV256NFh2bXFIbklEM0ZpUmpSdE4wZkFiaTl2Y1N5T0JDbWJ3ZlovNnJBcDlqQm16SXZDTTNHVitxUWpBVVZsUTY0Z0ZBZk5JaGJzL3JENWlVOTZnWFYxdz09",
     }
@@ -388,13 +392,15 @@
     }
 
     function resRegQLfeature(data) {
-      document.getElementById("resRegQLfeature").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", predeviceBindingKey:" + data["predeviceBindingKey"];
+      document.getElementById("resRegQLfeature").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", predeviceBindingKey:" + data["predeviceBindingKey"] + ", quickLoginToken:" + data["quickLoginToken"] + ", quickLoginExpireTime:" + data["quickLoginExpireTime"];
 
       let now = new Date();
       let updateTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
 
       if (data["result"] == "true") {
         localStorage.setItem('predeviceBindingKey',data['predeviceBindingKey']);
+        localStorage.setItem('quickLoginToken',data['quickLoginToken']);
+        localStorage.setItem('quickLoginExpireTime',data['quickLoginExpireTime']);
         document.getElementById("webQLStatus").innerText = '註冊第一階段成功' + '(' + updateTime + ')';
       }
       else {
