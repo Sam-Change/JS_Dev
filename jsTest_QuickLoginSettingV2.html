@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 0727 11:25</th>
+            <th colspan="2">快登設定頁二階段 0727 12:20</th>
         </tr>
     </thead>
     <tbody>
@@ -220,9 +220,9 @@
           jstoapp.regQL(action);
         }
       }
-      console.log("predeviceBindingKey:"+localStorage.getItem('predeviceBindingKey'));
-      console.log("quickLoginToken:"+localStorage.getItem('quickLoginToken'));
-      console.log("quickLoginExpireTime:"+localStorage.getItem('quickLoginExpireTime'));
+      console.log("regQLBio predeviceBindingKey:"+localStorage.getItem('predeviceBindingKey'));
+      console.log("regQLBio quickLoginToken:"+localStorage.getItem('quickLoginToken'));
+      console.log("regQLBio quickLoginExpireTime:"+localStorage.getItem('quickLoginExpireTime'));
     }
 
     let packet_regQLPatternData = {
@@ -251,6 +251,10 @@
           jstoapp.regQL(action);
         }
       }
+
+      console.log("regQLPattern predeviceBindingKey:"+localStorage.getItem('predeviceBindingKey'));
+      console.log("regQLPattern quickLoginToken:"+localStorage.getItem('quickLoginToken'));
+      console.log("regQLPattern quickLoginExpireTime:"+localStorage.getItem('quickLoginExpireTime'));
     }
 
     let packet_delQLByKeyData = {
@@ -409,6 +413,9 @@
       else {
         document.getElementById("webQLStatus").innerText = '註冊第一階段失敗' + '(' + updateTime + ')';
       }
+      console.log("resRegQLfeature predeviceBindingKey:"+localStorage.getItem('predeviceBindingKey'));
+      console.log("resRegQLfeature quickLoginToken:"+localStorage.getItem('quickLoginToken'));
+      console.log("resRegQLfeature quickLoginExpireTime:"+localStorage.getItem('quickLoginExpireTime'));
     }
 
     function resRegQL(data) {
