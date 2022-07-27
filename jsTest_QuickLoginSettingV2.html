@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 0722 17:00</th>
+            <th colspan="2">快登設定頁二階段 0727 10:40</th>
         </tr>
     </thead>
     <tbody>
@@ -220,6 +220,9 @@
           jstoapp.regQL(action);
         }
       }
+      console.log("predeviceBindingKey:"+localStorage.getItem('predeviceBindingKey'));
+      console.log("quickLoginToken:"+localStorage.getItem('quickLoginToken'));
+      console.log("quickLoginExpireTime:"+localStorage.getItem('quickLoginExpireTime'));
     }
 
     let packet_regQLPatternData = {
