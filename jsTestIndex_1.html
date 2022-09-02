@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">SoftMobile TestWebView 0718 17:15</th>
+            <th colspan="2">SoftMobile TestWebView 0902 14:40</th>
         </tr>
     </thead>
     <tbody>
@@ -38,6 +38,9 @@
         <tr>
             <td class="screenWidth20% border textFormat">receiveGetAPPAuthdata</td>
             <td class="screenWidth80% border textFormat" id="receiveGetAPPAuthdata"></td>
+        </tr>
+        <tr>
+            <td><button onclick="logout()">logout</button><td>
         </tr>
         <tr>
             <td><button onclick="goHome()">goHome</button><td>
@@ -88,6 +91,22 @@
       return isMobileDevice
     }
 
+    let packet_logout = {
+      "name": "logout",
+    }
+
+    function logout() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_logout);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          jstoapp.logout();
+        }
+      }
+    }
+    
     let packet_goHome = {
       "name": "goHome",
     }
