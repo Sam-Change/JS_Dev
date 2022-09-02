@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">SoftMobile TestWebView 0902 14:40</th>
+            <th colspan="2">SoftMobile TestWebView 0902 18:10</th>
         </tr>
     </thead>
     <tbody>
@@ -91,8 +91,13 @@
       return isMobileDevice
     }
 
+    let packet_logoutData = {
+      "callback": "", 
+    }
+
     let packet_logout = {
       "name": "logout",
+      "data": JSON.stringify(packet_logoutData),
     }
 
     function logout() {
@@ -102,13 +107,19 @@
       }
       else {
         if (jstoapp) {
-          jstoapp.logout();
+          var action = JSON.stringify(packet_logoutData);
+          jstoapp.logout(action);
         }
       }
     }
     
+    let packet_goHomeData = {
+      "callback": "", 
+    }
+
     let packet_goHome = {
       "name": "goHome",
+      "data": JSON.stringify(packet_goHomeData),
     }
 
     function goHome() {
@@ -118,7 +129,8 @@
       }
       else {
         if (jstoapp) {
-          jstoapp.goHome();
+          var action = JSON.stringify(packet_goHomeData);
+          jstoapp.goHome(action);
         }
       }
     }
