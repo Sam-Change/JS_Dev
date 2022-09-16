@@ -2,8 +2,13 @@ let packet_goHome = {
     "name": "goHome",
 }
 
+let packet_closeFuncData = {
+    "callback": "",
+}
+
 let packet_closeFunc = {
     "name": "closeFunc",
+    "data": JSON.stringify(packet_closeFuncData),
 }
 
 let packet_onLoadingData = {
