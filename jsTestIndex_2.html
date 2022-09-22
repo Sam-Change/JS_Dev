@@ -55,10 +55,10 @@
   window.onload = function(){
     localStorage.removeItem('jwtToken');
   }
-  function setTestData() {
+  function setTestData(){
     localStorage.setItem('testData', 'test123');
   }
-  function getTestData() {
+  function getTestData(){
     let testData = localStorage.getItem('testData');
     document.getElementById("testData").innerText = testData;
   }
