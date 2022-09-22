@@ -8,6 +8,8 @@
 
 <body>
   <!--測試-->
+  <button onclick="setTestData()">setTestData</button>
+  <button onclick="getTestData()">getTestData</button>
   <button onclick="callJsTest()">呼叫js</button>
   <table style="width:400px;">
 	  <thead>
@@ -34,6 +36,12 @@
 				<td id="receiveJsLocalStorage" style="border: 1px solid black;text-align:center;"></td>
         <td id="receiveCallbackLocalStorage" style="border: 1px solid black;text-align:center;"></td>
 			</tr>
+      <tr>
+        <td style="border: 1px solid black;text-align:center;">testData</td>
+        <td id="testData" style="border: 1px solid black;text-align:center;"></td>
+        <td style="border: 1px solid black;text-align:center;"></td>
+        <td style="border: 1px solid black;text-align:center;"></td>
+      </tr>
 		</tbody>
   </table>
   <!--測試結束-->
@@ -45,6 +53,13 @@
 	// 測試用方法
   window.onload = function(){
     localStorage.removeItem('jwtToken');
+  }
+  function setTestData() {
+    localStorage.setItem('testData', 'test123');
+  }
+  function getTestData() {
+    let testData = localStorage.getItem('testData');
+    document.getElementById("testData").innerText = testData;
   }
 	function callJsTest(){
     let jwtToken = localStorage.getItem('jwtToken');
