@@ -7,6 +7,163 @@
 </head>
 
 <body>
+  <!--畫面組成-->
+  <table class="screenWidth border">
+    <thead>
+        <tr>
+            <th colspan="2">SoftMobile TestWebView2 09221010</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="screenWidth20% border textFormat">testData</td>
+            <td class="screenWidth80% border textFormat" id="testData"></td>
+        </tr>
+        <tr>
+            <td><button onclick="setTestData()">setTestData</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="getTestData()">getTestData</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="goHome()">goHome</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="closeFunc()">closeFunc</button><td>
+        </tr>
+        
+    </tbody>
+  </table>
+  
+  <script>
+    var ideviceCheck = isiOSDevice()
+
+    function isiOSDevice() {
+      const mobileDevice = ['iPhone', 'iPad', 'iPod']
+      let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+      return isMobileDevice
+    }
+
+    
+    let packet_goHomeData = {
+      "callback": "", 
+    }
+
+    let packet_goHome = {
+      "name": "goHome",
+      "data": JSON.stringify(packet_goHomeData),
+    }
+
+    function goHome() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goHome);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_goHomeData);
+          jstoapp.goHome(action);
+        }
+      }
+    }
+
+    let packet_closeFuncData = {
+      "callback": "", 
+    }
+
+    let packet_closeFunc = {
+      "name": "closeFunc",
+      "data": JSON.stringify(packet_closeFuncData),
+    }
+
+    function closeFunc() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_closeFunc);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_closeFuncData);
+          jstoapp.goHome(action);
+        }
+      }
+    }
+
+    function setTestData(){
+      localStorage.setItem('testData', 'test123');
+    }
+
+    function getTestData() {
+      let testData = localStorage.getItem('testData');
+      document.getElementById("testData").innerText = testData;
+    }
+
+    // 收JS
+    function resEncData(data) {
+      document.getElementById("resEncData").innerText = "收到Crydata:" + data["Crydata"] + ", Enivec:" + data["Enivec"];
+    }
+
+    function resPGData(data) {
+      document.getElementById("resPGData").innerText = "收到funcParams:" + JSON.stringify(data["funcParams"]) + ", keepData:" + JSON.stringify(data["keepData"]);
+    }
+
+    function receiveOCR(data) {
+      document.getElementById("receiveOCR").innerText = "收到rtcode:" + data["rtcode"] + ", rtmsg:" + data["rtmsg"] + ", data:" + JSON.stringify(data["data"]);
+    }
+
+    function receiveVerify(data) {
+      document.getElementById("receiveVerify").innerText = "收到Type:" + data["Type"] + ", signature:" + data["signature"] + ", Mima:" + data["Mima"] + ", otpType:" + data["otpType"] + ", rtcode:" + data["rtcode"] + ", rtmsg:" + data["rtmsg"];
+    }
+
+    function receiveTransactionAuth(data) {
+      document.getElementById("receiveTransactionAuth").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+    }
+
+    function receiveGetAPPAuthdata(data) {
+      document.getElementById("receiveGetAPPAuthdata").innerText = "收到auth:" + data["auth"];
+    }
+  </script>
+</body>
+  
+<style>
+  .textFormat {
+    font-size: 14;
+  }
+
+  .screenWidth {
+    width: screen.width;
+  }
+  
+  .screenWidth20% {
+    width: screen.width*20%;
+  }
+
+  .screenWidth50% {
+    width: screen.width*50%;
+  }
+
+  .screenWidth80% {
+    width: screen.width*80%;
+  }
+
+  .border {
+    border: 1px solid #333;
+  }
+
+</style>
+  
+</html>
+
+<!--
+<!-- jsTestIndex -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>jsTestIndex</title>
+</head>
+
+<body>
   <!--測試-->
   <p>SoftMobile TestWebView09221000</p>
   <button onclick="callJsTest()">呼叫js</button>
@@ -229,3 +386,4 @@
 </style>
   
 </html>
+-->
