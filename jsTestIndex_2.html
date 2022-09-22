@@ -8,6 +8,7 @@
 
 <body>
   <!--測試-->
+  <button onclick="closeFunc()">closeFunc</button>
   <button onclick="setTestData()">setTestData</button>
   <button onclick="getTestData()">getTestData</button>
   <button onclick="callJsTest()">呼叫js</button>
@@ -47,7 +48,7 @@
   <!--測試結束-->
 	
   <!--畫面組成-->
-  <p>SoftMobile TestWebView09220924</p>
+  <p>SoftMobile TestWebView09220945</p>
   <button class="button_style button_y90" onclick="goHome()">返回首頁goHome()</button>
   <script>	
 	// 測試用方法
@@ -132,6 +133,22 @@
         if(jwtToken === null){
           document.getElementById("sendJsLocalStorageSuc").innerText = "null";
         }
+      }
+    }
+  }
+
+  let packet_closeFunc = {
+    "name": "closeFunc",
+  }
+
+  function closeFunc() {
+    if (ideviceCheck) {
+      var action = JSON.stringify(packet_closeFunc);
+      window.webkit.messageHandlers.jstoapp.postMessage(action);
+    }
+    else {
+      if (jstoapp) {
+        jstoapp.closeFunc();
       }
     }
   }
