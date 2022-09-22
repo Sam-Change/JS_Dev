@@ -84,7 +84,7 @@
       else {
         if (jstoapp) {
           var action = JSON.stringify(packet_closeFuncData);
-          jstoapp.goHome(action);
+          jstoapp.closeFunc(action);
         }
       }
     }
@@ -155,7 +155,7 @@
 </html>
 
 <!--
-<!-- jsTestIndex --
+<!-- jsTestIndex -->
 <html>
 
 <head>
@@ -164,7 +164,7 @@
 </head>
 
 <body>
-  <!--測試--
+  <!--測試-->
   <p>SoftMobile TestWebView09221000</p>
   <button onclick="callJsTest()">呼叫js</button>
   <table style="width:400px;">
@@ -204,9 +204,9 @@
   <button onclick="setTestData()">setTestData</button>
   <button onclick="getTestData()">getTestData</button>
   <button onclick="goHome()">goHome</button>
-  <!--測試結束--
+  <!--測試結束-->
 	
-  <!--畫面組成--
+  <!--畫面組成-->
   
   <script>	
 	// 測試用方法
