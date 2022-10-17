@@ -1,0 +1,89 @@
+<!-- jsTestIndex -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>jsTestIndex</title>
+</head>
+
+<body>
+  <!--畫面組成-->
+  <table class="screenWidth border">
+    <thead>
+        <tr>
+            <th colspan="2">SoftMobile TestWebView 10171550</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest04.png" width="414" height="120">
+        </tr>
+        <tr>
+            <td><button onclick="showDialog()">showDialog</button><td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <script>
+    var ideviceCheck = isiOSDevice()
+
+    function isiOSDevice() {
+      const mobileDevice = ['iPhone', 'iPad', 'iPod']
+      let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+      return isMobileDevice
+    }
+    
+    let packet_showDialogData = {
+      "type": "1", 
+      "title": "404", 
+      "url": "https://sam-change.github.io/JS_Dev/JS_Dev20220319.html", 
+    }
+
+    let packet_showDialog = {
+      "name": "showDialog",
+      "data": JSON.stringify(packet_goHomeData),
+    }
+
+    function showDialog() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_showDialog);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_showDialogData);
+          jstoapp.showDialog(action);
+        }
+      }
+    }
+  </script>
+</body>
+  
+<style>
+  .textFormat {
+    font-size: 14;
+  }
+
+  .screenWidth {
+    width: screen.width;
+  }
+  
+  .screenWidth20% {
+    width: screen.width*20%;
+  }
+
+  .screenWidth50% {
+    width: screen.width*50%;
+  }
+
+  .screenWidth80% {
+    width: screen.width*80%;
+  }
+
+  .border {
+    border: 1px solid #333;
+  }
+
+</style>
+  
+</html>
