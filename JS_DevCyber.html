@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">SoftMobile TestWebView 10171600</th>
+            <th colspan="2">SoftMobile TestWebView 10171550</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +20,9 @@
         </tr>
         <tr>
             <td><button onclick="showDialog()">showDialog</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="goHome()">goHome</button><td>
         </tr>
     </tbody>
   </table>
@@ -53,6 +56,23 @@
         if (jstoapp) {
           var action = JSON.stringify(packet_showDialogData);
           jstoapp.showDialog(action);
+        }
+      }
+    }
+
+    let packet_goHome = {
+      "name": "goHome",
+    }
+
+    function goHome() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goHome);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify();
+          jstoapp.goHome(action);
         }
       }
     }
