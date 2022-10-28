@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 0802 11:15</th>
+            <th colspan="2">快登設定頁二階段 1028 11:30</th>
         </tr>
     </thead>
     <tbody>
@@ -71,10 +71,7 @@
             <td><button onclick="delQLByID()">delQL同帳號</button><td>
         </tr>
         <tr>
-            <td><button onclick="chkQLfeatureBio()">chkQLfeature生物驗證</button><td>
-        </tr>
-        <tr>
-            <td><button onclick="chkQLfeaturePattern()">chkQLfeature圖形驗證</button><td>
+            <td><button onclick="chkQLfeature()">chkQLfeature驗證</button><td>
         </tr>
     </tbody>
   </table>
@@ -286,47 +283,24 @@
       }
     }
 
-    let packet_chkQLfeatureBioData = {
+    let packet_chkQLfeatureData = {
       "callback": "resChkQLfeature",
-      "QLtype": "1",
+      "AuthKey": "1234567890",
     }
 
-    let packet_chkQLfeatureBio = {
+    let packet_chkQLfeature = {
       "name": "chkQLfeature",
-      "data": JSON.stringify(packet_chkQLfeatureBioData),
+      "data": JSON.stringify(packet_chkQLfeatureBData),
     }
 
-    function chkQLfeatureBio() {
+    function chkQLfeature() {
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_chkQLfeatureBio);
+        var action = JSON.stringify(packet_chkQLfeature);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_chkQLfeatureBioData);
-          jstoapp.chkQLfeature(action);
-        }
-      }
-    }
-
-    let packet_chkQLfeaturePatternData = {
-      "callback": "resChkQLfeature",
-      "QLtype": "2",
-    }
-
-    let packet_chkQLfeaturePattern = {
-      "name": "chkQLfeature",
-      "data": JSON.stringify(packet_chkQLfeaturePatternData),
-    }
-
-    function chkQLfeaturePattern() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_chkQLfeaturePattern);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_chkQLfeaturePatternData);
+          var action = JSON.stringify(packet_chkQLfeatureData);
           jstoapp.chkQLfeature(action);
         }
       }
