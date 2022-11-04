@@ -11,12 +11,19 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">SoftMobile TestWebView 10171605</th>
+            <th colspan="2">TestWebView 11040940</th>
         </tr>
     </thead>
     <tbody>
         <tr>
           <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest04.png" width="414" height="120">
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">QRCode資料</td>
+            <td class="screenWidth80% border textFormat" id="qrcodeResult"></td>
+        </tr>
+        <tr> 
+            <td><button onclick="showScanCode()">showScanCode</button><td>
         </tr>
         <tr>
             <td><button onclick="showDialog()">showDialog</button><td>
@@ -36,6 +43,28 @@
       return isMobileDevice
     }
     
+    let packet_showScanCodeData = {
+      "type": "02",
+    }
+
+    let packet_showScanCode = {
+      "type": "showScanCode",
+      "data": JSON.stringify(packet_showScanCodeData),
+    }
+
+    function showScanCode() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_showScanCode);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_showScanCodeData);
+          jstoapp.showScanCode(action);
+        }
+      }
+    }
+
     let packet_showDialogData = {
       "type": "1", 
       "title": "404", 
@@ -75,6 +104,11 @@
           jstoapp.goHome(action);
         }
       }
+    }
+
+    // 收JS
+    function rtCodeResult(data) {
+      document.getElementById("qrcodeResult").innerText = "收到type:" + data["type"] + ", result:" + data["result"] + ", decodeUrl:" + data["decodeUrl"];
     }
   </script>
 </body>
