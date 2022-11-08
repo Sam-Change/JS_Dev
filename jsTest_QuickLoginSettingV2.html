@@ -11,7 +11,10 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 1028 11:40</th>
+            <th colspan="2">快登設定頁二階段 1108 13:50</th>
+        </tr>
+        <tr>
+            <td><button onclick="logout()">logout</button><td>
         </tr>
     </thead>
     <tbody>
@@ -85,8 +88,35 @@
       return isMobileDevice
     }
 
+    let packet_logoutData = {
+      "callback": "",
+    }
+
+    let packet_logout = {
+      "name": "logout",
+      "data": JSON.stringify(packet_logoutData),
+    }
+
+    function logout() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_logout);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_logoutData);
+          jstoapp.logout(action);
+        }
+      }
+    }
+
+    let packet_closeFuncData = {
+      "callback": "",
+    }
+
     let packet_closeFunc = {
       "name": "closeFunc",
+      "data": JSON.stringify(packet_closeFuncData),
     }
 
     function closeFunc() {
@@ -96,7 +126,8 @@
       }
       else {
         if (jstoapp) {
-          jstoapp.closeFunc();
+          var action = JSON.stringify(packet_closeFuncData);
+          jstoapp.closeFunc(action);
         }
       }
     }
