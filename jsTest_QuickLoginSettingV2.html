@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 1108 13:50</th>
+            <th colspan="2">快登設定頁二階段 1202 14:10</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -47,6 +47,10 @@
             <td class="screenWidth80% border textFormat" id="resChkQLfeature"></td>
         </tr>
         <tr>
+            <td class="screenWidth20% border textFormat">resChangePattern</td>
+            <td class="screenWidth80% border textFormat" id="resChangePattern"></td>
+        </tr>
+        <tr>
             <td><button onclick="closeFunc()">closeFunc</button><td>
         </tr>
         <tr> 
@@ -75,6 +79,9 @@
         </tr>
         <tr>
             <td><button onclick="chkQLfeature()">chkQLfeature驗證</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="changePattern()">changePattern改圖形鎖</button><td>
         </tr>
     </tbody>
   </table>
@@ -337,6 +344,28 @@
       }
     }
 
+    let packet_changePatternData = {
+      "callback": "resChangePattern",
+    }
+
+    let packet_changePattern = {
+      "name": "changePattern",
+      "data": JSON.stringify(packet_changePatternData),
+    }
+
+    function changePattern() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_changePattern);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_changePatternData);
+          jstoapp.changePattern(action);
+        }
+      }
+    }
+
     // 收JS
     function resGetLGType(data) {
       var statusName = ""
@@ -430,6 +459,20 @@
 
     function resChkQLfeature(data) {
       document.getElementById("resChkQLfeature").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+
+      let now = new Date();
+      let updateTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
+
+      if (data["result"] == "true") {
+        document.getElementById("webQLStatus").innerText = '驗證成功' + '(' + updateTime + ')';
+      }
+      else {
+        document.getElementById("webQLStatus").innerText = '驗證失敗' + '(' + updateTime + ')';
+      }
+    }
+
+    function resChangePattern(data) {
+      document.getElementById("resChangePattern").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
 
       let now = new Date();
       let updateTime = now.getUTCHours()+8 + ":" + now.getMinutes() + ":" + now.getSeconds() + "." + now.getMilliseconds();
