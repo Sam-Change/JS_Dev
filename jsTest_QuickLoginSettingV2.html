@@ -11,11 +11,10 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 1222 18:00</th>
+            <th colspan="2">快登設定頁二階段 0105 17:00</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
-            <td><button onclick="showLogout()">showLogout</button><td>
         </tr>
     </thead>
     <tbody>
@@ -114,28 +113,6 @@
         if (jstoapp) {
           var action = JSON.stringify(packet_logoutData);
           jstoapp.logout(action);
-        }
-      }
-    }
-
-    let packet_showLogoutData = {
-      "callback": "",
-    }
-
-    let packet_showLogout = {
-      "name": "showLogout",
-      "data": JSON.stringify(packet_showLogoutData),
-    }
-
-    function showLogout() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_showLogout);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_showLogoutData);
-          jstoapp.showLogout(action);
         }
       }
     }
