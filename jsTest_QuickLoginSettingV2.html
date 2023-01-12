@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 0112 1000</th>
+            <th colspan="2">快登設定頁二階段 0112 0930</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -491,10 +491,18 @@
       }
     }
 
+    let packet_setStorageDataBDataValue = {
+      "A": "123",
+      "B": 456,
+      "C": null,
+      "D": true,
+      "E": 3.14169,
+    }
+
     let packet_setStorageDataBData = {
       "callback": "resSetStorageData",
       "key": "B",
-      "value": "efgy29480vkmwehiovnjrwuj",
+      "value": JSON.stringify(packet_setStorageDataBDataValue),
     }
 
     let packet_setStorageDataB = {
