@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 0105 17:00</th>
+            <th colspan="2">快登設定頁二階段 0112 1000</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -51,6 +51,14 @@
             <td class="screenWidth80% border textFormat" id="resChangePattern"></td>
         </tr>
         <tr>
+            <td class="screenWidth20% border textFormat">resSetStorageData</td>
+            <td class="screenWidth80% border textFormat" id="resSetStorageData"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resGetStorageData</td>
+            <td class="screenWidth80% border textFormat" id="resGetStorageData"></td>
+        </tr>
+        <tr>
             <td><button onclick="closeFunc()">closeFunc</button><td>
         </tr>
         <tr> 
@@ -82,6 +90,27 @@
         </tr>
         <tr>
             <td><button onclick="changePattern()">changePattern改圖形鎖</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="setStorageDataA1()">setStorageData key=A 塞資料1</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="setStorageDataA2()">setStorageData key=A 塞資料2</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="setStorageDataA3()">setStorageData key=A 塞資料3 空值</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="setStorageDataA4()">setStorageData key=A 塞資料4 null</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="setStorageDataB()">setStorageData key=B 塞資料</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="getStorageDataA()">getStorageData 取key=A資料</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="getStorageDataB()">getStorageData 取key=B資料</button><td>
         </tr>
     </tbody>
   </table>
@@ -366,6 +395,172 @@
       }
     }
 
+    let packet_setStorageDataA1Data = {
+      "callback": "resSetStorageData",
+      "key": "A",
+      "value": "A123456789",
+    }
+
+    let packet_setStorageDataA1 = {
+      "name": "setStorageData",
+      "data": JSON.stringify(packet_setStorageDataA1Data),
+    }
+
+    function setStorageDataA1() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setStorageDataA1);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setStorageDataA1Data);
+          jstoapp.setStorageData(action);
+        }
+      }
+    }
+
+    let packet_setStorageDataA2Data = {
+      "callback": "resSetStorageData",
+      "key": "A",
+      "value": 123456789,
+    }
+
+    let packet_setStorageDataA2 = {
+      "name": "setStorageData",
+      "data": JSON.stringify(packet_setStorageDataA2Data),
+    }
+
+    function setStorageDataA2() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setStorageDataA2);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setStorageDataA2Data);
+          jstoapp.setStorageData(action);
+        }
+      }
+    }
+
+    let packet_setStorageDataA3Data = {
+      "callback": "resSetStorageData",
+      "key": "A",
+      "value": "",
+    }
+
+    let packet_setStorageDataA3 = {
+      "name": "setStorageData",
+      "data": JSON.stringify(packet_setStorageDataA3Data),
+    }
+
+    function setStorageDataA3() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setStorageDataA3);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setStorageDataA3Data);
+          jstoapp.setStorageData(action);
+        }
+      }
+    }
+
+    let packet_setStorageDataA4Data = {
+      "callback": "resSetStorageData",
+      "key": "A",
+      "value": null,
+    }
+
+    let packet_setStorageDataA4 = {
+      "name": "setStorageData",
+      "data": JSON.stringify(packet_setStorageDataA4Data),
+    }
+
+    function setStorageDataA4() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setStorageDataA4);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setStorageDataA4Data);
+          jstoapp.setStorageData(action);
+        }
+      }
+    }
+
+    let packet_setStorageDataBData = {
+      "callback": "resSetStorageData",
+      "key": "B",
+      "value": "efgy29480vkmwehiovnjrwuj",
+    }
+
+    let packet_setStorageDataB = {
+      "name": "setStorageData",
+      "data": JSON.stringify(packet_setStorageDataBData),
+    }
+
+    function setStorageDataB() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setStorageDataB);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setStorageDataBData);
+          jstoapp.setStorageData(action);
+        }
+      }
+    }
+
+    let packet_getStorageDataAData = {
+      "callback": "resGetStorageData",
+      "key": "A",
+    }
+
+    let packet_getStorageDataA = {
+      "name": "getStorageData",
+      "data": JSON.stringify(packet_getStorageDataAData),
+    }
+
+    function getStorageDataA() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getStorageDataA);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_getStorageDataAData);
+          jstoapp.getStorageData(action);
+        }
+      }
+    }
+
+    let packet_getStorageDataBData = {
+      "callback": "resGetStorageData",
+      "key": "B",
+    }
+
+    let packet_getStorageDataB = {
+      "name": "getStorageData",
+      "data": JSON.stringify(packet_getStorageDataBData),
+    }
+
+    function getStorageDataB() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getStorageDataB);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_getStorageDataBData);
+          jstoapp.getStorageData(action);
+        }
+      }
+    }
+
     // 收JS
     function resGetLGType(data) {
       var statusName = ""
@@ -483,6 +678,14 @@
       else {
         document.getElementById("webQLStatus").innerText = '驗證失敗' + '(' + updateTime + ')';
       }
+    }
+
+    function resSetStorageData(data) {
+      document.getElementById("resSetStorageData").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+    }
+
+    function resGetStorageData(data) {
+      document.getElementById("resGetStorageData").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", value:" + data["value"];
     }
   </script>
 </body>
