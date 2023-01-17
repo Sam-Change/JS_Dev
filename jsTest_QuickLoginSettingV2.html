@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 01171455</th>
+            <th colspan="2">快登設定頁二階段 01171505</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -750,8 +750,7 @@
 
     function resGetStorageData(data) {
       let value = data["value"]
-      document.getElementById("resGetStorageData").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", value:" + data["value"] + ", 型別:" +  typeOf(data["value"]);
-      //typeof.value
+      document.getElementById("resGetStorageData").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", value:" + data["value"] + ", 型別:" +  data["value"].getClass().getName();
     }
   </script>
 </body>
