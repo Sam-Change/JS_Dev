@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 01171520</th>
+            <th colspan="2">快登設定頁二階段 01171521</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -57,6 +57,10 @@
         <tr>
             <td class="screenWidth20% border textFormat">resGetStorageData</td>
             <td class="screenWidth80% border textFormat" id="resGetStorageData"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resGetStorageData資料型別</td>
+            <td class="screenWidth80% border textFormat" id="resGetStorageDataType"></td>
         </tr>
         <tr>
             <td><button onclick="closeFunc()">closeFunc</button><td>
@@ -749,8 +753,10 @@
     }
 
     function resGetStorageData(data) {
+      document.getElementById("resGetStorageData").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", value:" + data["value"];
+
       let value = data["value"]
-      document.getElementById("resGetStorageData").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", value:" + data["value"] + ", 型別:" +  value.getClass();
+      document.getElementById("resGetStorageDataType").innerText = value;
     }
   </script>
 </body>
