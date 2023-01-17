@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 01171521</th>
+            <th colspan="2">快登設定頁二階段 01171550</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -756,7 +756,24 @@
       document.getElementById("resGetStorageData").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", value:" + data["value"];
 
       let value = data["value"]
-      document.getElementById("resGetStorageDataType").innerText = value;
+      if (value instanceof String) {
+        document.getElementById("resGetStorageDataType").innerText = "String";
+      }
+      else if (value instanceof Integer) {
+        document.getElementById("resGetStorageDataType").innerText = "Integer";
+      }
+      else if (value instanceof Float) {
+        document.getElementById("resGetStorageDataType").innerText = "Float";
+      }
+      else if (value instanceof Boolean) {
+        document.getElementById("resGetStorageDataType").innerText = "Boolean";
+      }
+      else if (value instanceof Array) {
+        document.getElementById("resGetStorageDataType").innerText = "Array";
+      }
+      else if (value instanceof Object) {
+        document.getElementById("resGetStorageDataType").innerText = "Object";
+      }
     }
   </script>
 </body>
