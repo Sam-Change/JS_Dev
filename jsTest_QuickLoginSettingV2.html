@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 01171640</th>
+            <th colspan="2">快登設定頁二階段 01171700</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -755,30 +755,30 @@
     function resGetStorageData(data) {
       document.getElementById("resGetStorageData").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", value:" + data["value"];
 
-      let value = data["value"]
-      if (value instanceof String) {
-        console.log("是String")
-        document.getElementById("resGetStorageDataType").innerText = "String";
-      }
-      else if (value instanceof Number) {
-        console.log("是Number")
-        document.getElementById("resGetStorageDataType").innerText = "Number";
-      }
-      else if (value instanceof Boolean) {
-        console.log("是Boolean")
-        document.getElementById("resGetStorageDataType").innerText = "Boolean";
-      }
-      else if (value instanceof Array) {
-        console.log("是Array")
-        document.getElementById("resGetStorageDataType").innerText = "Array";
-      }
-      else if (value instanceof Object) {
-        console.log("是Object")
-        document.getElementById("resGetStorageDataType").innerText = "Object";
-      }
-      else {
-        console.log("都不是")
-      }
+      // let value = data["value"]
+      // if (value instanceof String) {
+      //   console.log("是String")
+      //   document.getElementById("resGetStorageDataType").innerText = "String";
+      // }
+      // else if (value instanceof Number) {
+      //   console.log("是Number")
+      //   document.getElementById("resGetStorageDataType").innerText = "Number";
+      // }
+      // else if (value instanceof Boolean) {
+      //   console.log("是Boolean")
+      //   document.getElementById("resGetStorageDataType").innerText = "Boolean";
+      // }
+      // else if (value instanceof Array) {
+      //   console.log("是Array")
+      //   document.getElementById("resGetStorageDataType").innerText = "Array";
+      // }
+      // else if (value instanceof Object) {
+      //   console.log("是Object")
+      //   document.getElementById("resGetStorageDataType").innerText = "Object";
+      // }
+      // else {
+      //   console.log("都不是")
+      // }
     }
   </script>
 </body>
