@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 01161040</th>
+            <th colspan="2">快登設定頁二階段 01171430</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -92,25 +92,31 @@
             <td><button onclick="changePattern()">changePattern改圖形鎖</button><td>
         </tr>
         <tr>
-            <td><button onclick="setStorageDataA1()">setStorageData key=A 塞資料1</button><td>
+            <td><button onclick="setStorageDataA1()">setStorageData key=A 塞資料1 string</button><td>
         </tr>
         <tr>
-            <td><button onclick="setStorageDataA2()">setStorageData key=A 塞資料2</button><td>
+            <td><button onclick="setStorageDataA2()">setStorageData key=A 塞資料2 int</button><td>
         </tr>
         <tr>
-            <td><button onclick="setStorageDataA3()">setStorageData key=A 塞資料3 空值</button><td>
+            <td><button onclick="setStorageDataA3()">setStorageData key=A 塞資料3 float</button><td>
         </tr>
         <tr>
-            <td><button onclick="setStorageDataA4()">setStorageData key=A 塞資料4 null</button><td>
+            <td><button onclick="setStorageDataA4()">setStorageData key=A 塞資料4 Bool</button><td>
         </tr>
         <tr>
-            <td><button onclick="setStorageDataB()">setStorageData key=B 塞資料</button><td>
+            <td><button onclick="setStorageDataA5()">setStorageData key=A 塞資料3 空值</button><td>
         </tr>
         <tr>
-            <td><button onclick="getStorageDataA()">getStorageData 取key=A資料</button><td>
+            <td><button onclick="setStorageDataA6()">setStorageData key=A 塞資料4 null</button><td>
         </tr>
         <tr>
-            <td><button onclick="getStorageDataB()">getStorageData 取key=B資料</button><td>
+            <td><button onclick="setStorageDataB()">setStorageData key=B 塞資料 object</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="getStorageDataA()">getStorageData 取key=A資料，格式錯誤當不清除</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="getStorageDataB()">getStorageData 取key=B資料，取完清除資料</button><td>
         </tr>
     </tbody>
   </table>
@@ -446,7 +452,7 @@
     let packet_setStorageDataA3Data = {
       "callback": "resSetStorageData",
       "key": "A",
-      "value": "",
+      "value": 3.14159,
     }
 
     let packet_setStorageDataA3 = {
@@ -470,7 +476,7 @@
     let packet_setStorageDataA4Data = {
       "callback": "resSetStorageData",
       "key": "A",
-      "value": null,
+      "value": true,
     }
 
     let packet_setStorageDataA4 = {
@@ -486,6 +492,54 @@
       else {
         if (jstoapp) {
           var action = JSON.stringify(packet_setStorageDataA4Data);
+          jstoapp.setStorageData(action);
+        }
+      }
+    }
+
+    let packet_setStorageDataA5Data = {
+      "callback": "resSetStorageData",
+      "key": "A",
+      "value": "",
+    }
+
+    let packet_setStorageDataA = {
+      "name": "setStorageData",
+      "data": JSON.stringify(packet_setStorageDataA5Data),
+    }
+
+    function setStorageDataA5() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setStorageDataA5);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setStorageDataA5Data);
+          jstoapp.setStorageData(action);
+        }
+      }
+    }
+
+    let packet_setStorageDataA6Data = {
+      "callback": "resSetStorageData",
+      "key": "A",
+      "value": null,
+    }
+
+    let packet_setStorageDataA6 = {
+      "name": "setStorageData",
+      "data": JSON.stringify(packet_setStorageDataA6Data),
+    }
+
+    function setStorageDataA6() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setStorageDataA6);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setStorageDataA6ata);
           jstoapp.setStorageData(action);
         }
       }
@@ -695,7 +749,9 @@
     }
 
     function resGetStorageData(data) {
-      document.getElementById("resGetStorageData").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", value:" + data["value"];
+      let value = data["value"]
+      document.getElementById("resGetStorageData").innerText = "收到result:" + data["result"] + ", message:" + data["message"] + ", value:" + data["value"] + ", 型別:" + type(value);
+      //typeof.value
     }
   </script>
 </body>
