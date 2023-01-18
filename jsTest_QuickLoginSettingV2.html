@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 01181140</th>
+            <th colspan="2">快登設定頁二階段 01181415</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -58,9 +58,13 @@
             <td class="screenWidth20% border textFormat">resGetStorageData</td>
             <td class="screenWidth80% border textFormat" id="resGetStorageData"></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="screenWidth20% border textFormat">resGetStorageData資料型別</td>
             <td class="screenWidth80% border textFormat" id="resGetStorageDataType"></td>
+        </tr> -->
+        <tr>
+            <td class="screenWidth20% border textFormat">resWebScreenShot</td>
+            <td class="screenWidth80% border textFormat" id="resWebScreenShot"></td>
         </tr>
         <tr>
             <td><button onclick="closeFunc()">closeFunc</button><td>
@@ -123,7 +127,7 @@
             <td><button onclick="getStorageDataB()">getStorageData 取key=B資料，取完清除資料</button><td>
         </tr>
         <tr>
-            <td><button onclick="testS()">testS 截圖</button><td>
+            <td><button onclick="webScreenShot()">webScreenShot 截圖</button><td>
         </tr>
     </tbody>
   </table>
@@ -632,24 +636,24 @@
       }
     }
 
-    let packet_testSData = {
-      "callback": "resTestS"
+    let packet_webScreenShotData = {
+      "callback": "resWebScreenShot"
     }
 
-    let packet_testS = {
-      "name": "testS",
-      "data": JSON.stringify(packet_testSData),
+    let packet_webScreenShot = {
+      "name": "webScreenShot",
+      "data": JSON.stringify(packet_webScreenShotData),
     }
 
-    function testS() {
+    function webScreenShot() {
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_testS);
+        var action = JSON.stringify(packet_webScreenShot);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_testSData);
-          jstoapp.testS(action);
+          var action = JSON.stringify(packet_webScreenShotData);
+          jstoapp.webScreenShot(action);
         }
       }
     }
@@ -804,6 +808,10 @@
       // else {
       //   console.log("都不是")
       // }
+    }
+
+    function resWebScreenShot(data) {
+      document.getElementById("resWebScreenShot").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
     }
   </script>
 </body>
