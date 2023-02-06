@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 01181415</th>
+            <th colspan="2">快登設定頁二階段 02061140</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -65,6 +65,10 @@
         <tr>
             <td class="screenWidth20% border textFormat">resWebScreenShot</td>
             <td class="screenWidth80% border textFormat" id="resWebScreenShot"></td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">resReloadHeadshot</td>
+            <td class="screenWidth80% border textFormat" id="resReloadHeadshot"></td>
         </tr>
         <tr>
             <td><button onclick="closeFunc()">closeFunc</button><td>
@@ -128,6 +132,9 @@
         </tr>
         <tr>
             <td><button onclick="webScreenShot()">webScreenShot 截圖</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="reloadHeadshot()">reloadHeadshot 通知更新大頭貼</button><td>
         </tr>
     </tbody>
   </table>
@@ -658,6 +665,28 @@
       }
     }
 
+    let packet_reloadHeadshotData = {
+      "callback": "resReloadHeadshot"
+    }
+
+    let packet_reloadHeadshot = {
+      "name": "reloadHeadshot",
+      "data": JSON.stringify(packet_reloadHeadshotData),
+    }
+
+    function reloadHeadshot() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_reloadHeadshot);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_reloadHeadshotData);
+          jstoapp.reloadHeadshot(action);
+        }
+      }
+    }
+
     // 收JS
     function resGetLGType(data) {
       var statusName = ""
@@ -813,6 +842,11 @@
     function resWebScreenShot(data) {
       document.getElementById("resWebScreenShot").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
     }
+
+    function resReloadHeadshot(data) {
+      document.getElementById("resReloadHeadshot").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
+    }
+    
   </script>
 </body>
   
