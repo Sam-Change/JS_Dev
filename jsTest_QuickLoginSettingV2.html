@@ -4,6 +4,11 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>jsTestIndex</title>
+  <script>
+    function changefunctionWeb(url) {
+      window.location.href = url
+    }
+  </script>
 </head>
 
 <body>
@@ -11,7 +16,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">快登設定頁二階段 02061140</th>
+            <th colspan="2">TEST 02181450</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -135,6 +140,12 @@
         </tr>
         <tr>
             <td><button onclick="reloadHeadshot()">reloadHeadshot 通知更新大頭貼</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="startFuncToB006()">startFunc更多B006</button><td>
+        </tr>
+        <tr>    
+            <td><button onclick="startFuncToT001()">startFunc個人化設定T001</button><td>
         </tr>
     </tbody>
   </table>
@@ -687,6 +698,56 @@
       }
     }
 
+    let packet_startFuncToB006Data = {
+      "funcID": "B006",
+      "funcParams": "vbwy9g809-i403kgrwhbivuhew0j9gv",
+      "keepData": "83579809g35iuhruibndoivmr",
+      "callback": "",
+    }
+
+    let packet_startFuncToB006 = {
+      "name": "startFunc",
+      "data": JSON.stringify(packet_startFuncToB006Data),
+    }
+
+    function startFuncToB006() { 
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_startFuncToB006);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_startFuncToB006Data);
+          jstoapp.startFunc(action);
+        }
+      }
+    }
+
+    let packet_startFuncToT001Data = {
+      "funcID": "T001",
+      "funcParams": "vbwy9g809-i403kgrwhbivuhew0j9gv",
+      "keepData": "83579809g35iuhruibndoivmr",
+      "callback": "",
+    }
+
+    let packet_startFuncToT001 = {
+      "name": "startFunc",
+      "data": JSON.stringify(packet_startFuncToT001Data),
+    }
+
+    function startFuncToT001() { 
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_startFuncToT001);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_startFuncToT001Data);
+          jstoapp.startFunc(action);
+        }
+      }
+    }
+
     // 收JS
     function resGetLGType(data) {
       var statusName = ""
@@ -847,6 +908,13 @@
       document.getElementById("resReloadHeadshot").innerText = "收到result:" + data["result"] + ", message:" + data["message"];
     }
     
+    function showFunc(data) {
+      document.getElementById("showFunc_url").innerText = data["url"]
+      document.getElementById("showFunc_funcParams").innerText = data["funcParams"]
+      document.getElementById("showFunc_keepData").innerText = data["keepData"]
+      changefunctionWeb(data["url"])
+    }
+
   </script>
 </body>
   
