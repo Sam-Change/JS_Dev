@@ -4,11 +4,6 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>jsTestIndex</title>
-  <script>
-    function changefunctionWeb(url) {
-      window.location.replace(url)
-    }
-  </script>
 </head>
 
 <body>
@@ -16,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">TEST 02181515</th>
+            <th colspan="2">TEST 02181540</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -909,7 +904,7 @@
     }
     
     function showFunc(data) {
-      changefunctionWeb(data["url"])
+      window.location.assign(data["url"])
     }
 
   </script>
