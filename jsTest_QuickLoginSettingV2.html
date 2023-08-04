@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">TEST 08050018</th>
+            <th colspan="2">TEST 08050020</th>
         </tr>
         <tr>
             <td><button onclick="logout()">logout</button><td>
@@ -945,6 +945,7 @@
 
     function setCacheData() {
 //      return JSON.stringify(packet_setCacheDataData)
+      console.log(JSON.stringify(packet_setCacheDataData).replace('"{', '{').replace('}"', '}'))
       return JSON.stringify(packet_setCacheDataData).replace('"{', '{').replace('}"', '}')
     }
 
