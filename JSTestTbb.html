@@ -1,35 +1,29 @@
-<!-- jsTestIndex -->
 <html>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>jsTestIndex</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8; width=device-width; initial-scale=1.0">
+  <title>jsSample</title>
 </head>
 
 <body>
-  <!--畫面組成-->
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">TestWebView 0516</th>
+            <th colspan="2">jsSample 240415</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-          <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest04.png" width="414" height="120">
-        </tr>
-        <tr>
-            <td class="screenWidth20% border textFormat">QRCode資料</td>
-            <td class="screenWidth80% border textFormat" id="qrcodeResult"></td>
         </tr>
         <tr> 
-            <td><button onclick="showScanCode()">showScanCode中信01</button><td>
+            <td><button onclick="setData()">setData</button><td>
         </tr>
         <tr>
-            <td><button onclick="showDialog()">showDialog</button><td>
+            <td><button onclick="getData()">getData</button><td>
         </tr>
         <tr>
-            <td><button onclick="goHome()">goHome</button><td>
+            <td>結果</td>
+            <td id="result"></td>
         </tr>
     </tbody>
   </table>
@@ -43,74 +37,50 @@
       return isMobileDevice
     }
     
-    let packet_showScanCodeData = {
-      "type": "01",
-      "title":"",
-      "msg":"",
+    let packet_setDataData = {
+      "data": "012345678900000"
     }
 
-    let packet_showScanCode = {
-      "type": "showScanCode",
-      "data": JSON.stringify(packet_showScanCodeData),
+    let packet_setData = {
+      "type": "setData",
+      "data": JSON.stringify(packet_setDataData),
     }
 
-    function showScanCode() {
+    function setData() {
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_showScanCode);
+        var action = JSON.stringify(packet_setData);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_showScanCodeData);
-          jstoapp.showScanCode(action);
+          var action = JSON.stringify(packet_setDataData);
+          jstoapp.setData(action);
         }
       }
     }
 
-    let packet_showDialogData = {
-      "type": "1", 
-      "title": "404", 
-      "url": "https://172.22.11.245/", 
+    
+
+    let packet_getData = {
+      "type": "getData"
     }
 
-    let packet_showDialog = {
-      "type": "showDialog",
-      "data": JSON.stringify(packet_showDialogData),
-    }
-
-    function showDialog() {
+    function getData() {
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_showDialog);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_showDialogData);
-          jstoapp.showDialog(action);
-        }
-      }
-    }
-
-    let packet_goHome = {
-      "type": "goHome",
-    }
-
-    function goHome() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_goHome);
+        var action = JSON.stringify(packet_getData);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
           var action = JSON.stringify();
-          jstoapp.goHome(action);
+          jstoapp.getData(action);
         }
       }
     }
 
     // 收JS
-    function rtCodeResult(data) {
-      document.getElementById("qrcodeResult").innerText = "收到type:" + data["type"] + ", result:" + data["result"] + ", decodeUrl:" + data["decodeUrl"];
+    function rtData(data) {
+      document.getElementById("result").innerText = data["data"];
     }
   </script>
 </body>
