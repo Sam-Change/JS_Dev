@@ -38,7 +38,7 @@
     }
     
     let packet_setDataData = {
-      "data": "01"
+      "data": "0123456789"
     }
 
     let packet_setData = {
@@ -80,7 +80,7 @@
 
     // 收JS
     function rtData(data) {
-      document.getElementById("result").innerText = "結果:" + data["data"];
+      document.getElementById("result").innerText = data["data"];
     }
   </script>
 </body>
