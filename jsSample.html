@@ -22,8 +22,8 @@
             <td><button onclick="getData()">getData</button><td>
         </tr>
         <tr>
-            <td>resDelQL</td>
-            <td id="resDelQL"></td>
+            <td>結果</td>
+            <td id="result"></td>
         </tr>
     </tbody>
   </table>
@@ -80,7 +80,7 @@
 
     // 收JS
     function rtData(data) {
-      document.getElementById("rtData").innerText = "結果:" + data["data"];
+      document.getElementById("result").innerText = "結果:" + data["data"];
     }
   </script>
 </body>
