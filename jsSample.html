@@ -9,14 +9,17 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsSample 2404151400</th>
+            <th colspan="2">jsSample 2404261130</th>
         </tr>
     </thead>
     <tbody>
         <tr>
         </tr>
         <tr> 
-            <td><button onclick="setData()">setData</button><td>
+            <td><button onclick="setData()">setData-"123"</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="setDataJson()">setData-jsonString</button><td>
         </tr>
         <tr>
             <td><button onclick="getData()">getData</button><td>
@@ -59,7 +62,27 @@
       }
     }
 
-    
+    let packet_setDataJsonData = {
+      "data": "{\"resbody\":{\"userDefined\":[{\"NO\":\"01\",\"name\":\"美金\",\"ccd\":\"USD\"},{\"NO\":\"15\",\"name\":\"日圓\",\"ccd\":\"JPY\"},{\"NO\":\"25\",\"name\":\"人民幣\",\"ccd\":\"CNY\"}],\"time\":\"2024\/04\/26 11:06:15\",\"exchangeRates\":[{\"THE_DAY_BEFORE_SELL\":\"4.1870\",\"CUR_NAME\":\"港幣\",\"BUY\":\"4.1370\",\"HIGHEST_IN_7day\":\"4.1410\",\"SELL\":\"4.1870\",\"THE_DAY_BEFORE_BUY\":\"4.1370\",\"CUR\":\"HKD\",\"LOWEST_IN_7day\":\"4.1790\",\"LOWEST_IN_30day\":\"4.1090\",\"HIGHEST_IN_30day\":\"4.1410\"},{\"THE_DAY_BEFORE_SELL\":\"35.8000\",\"CUR_NAME\":\"瑞士法郎\",\"BUY\":\"35.5600\",\"HIGHEST_IN_7day\":\"35.7800\",\"SELL\":\"35.7600\",\"THE_DAY_BEFORE_BUY\":\"35.6000\",\"CUR\":\"CHF\",\"LOWEST_IN_7day\":\"35.6800\",\"LOWEST_IN_30day\":\"35.3800\",\"HIGHEST_IN_30day\":\"35.7800\"},{\"THE_DAY_BEFORE_SELL\":\"35.1500\",\"CUR_NAME\":\"歐洲通貨-歐元\",\"BUY\":\"34.7300\",\"HIGHEST_IN_7day\":\"34.7500\",\"SELL\":\"35.1300\",\"THE_DAY_BEFORE_BUY\":\"34.7500\",\"CUR\":\"EUR\",\"LOWEST_IN_7day\":\"34.8300\",\"LOWEST_IN_30day\":\"34.6600\",\"HIGHEST_IN_30day\":\"34.7500\"},{\"THE_DAY_BEFORE_SELL\":\"32.6350\",\"CUR_NAME\":\"美金\",\"BUY\":\"32.5100\",\"HIGHEST_IN_7day\":\"32.5950\",\"SELL\":\"32.6100\",\"THE_DAY_BEFORE_BUY\":\"32.5350\",\"CUR\":\"USD\",\"LOWEST_IN_7day\":\"32.5750\",\"LOWEST_IN_30day\":\"32.0350\",\"HIGHEST_IN_30day\":\"32.5950\"},{\"THE_DAY_BEFORE_SELL\":\"23.9100\",\"CUR_NAME\":\"加拿大幣\",\"BUY\":\"23.7400\",\"HIGHEST_IN_7day\":\"23.7100\",\"SELL\":\"23.9400\",\"THE_DAY_BEFORE_BUY\":\"23.7100\",\"CUR\":\"CAD\",\"LOWEST_IN_7day\":\"23.7500\",\"LOWEST_IN_30day\":\"23.6200\",\"HIGHEST_IN_30day\":\"23.7100\"},{\"THE_DAY_BEFORE_SELL\":\"1.7600\",\"CUR_NAME\":\"南非幣\",\"BUY\":\"1.6600\",\"HIGHEST_IN_7day\":\"1.6600\",\"SELL\":\"1.7600\",\"THE_DAY_BEFORE_BUY\":\"1.6600\",\"CUR\":\"ZAR\",\"LOWEST_IN_7day\":\"1.7400\",\"LOWEST_IN_30day\":\"1.7300\",\"HIGHEST_IN_30day\":\"1.6800\"},{\"THE_DAY_BEFORE_SELL\":\"0.8985\",\"CUR_NAME\":\"泰幣\",\"BUY\":\"0.8613\",\"HIGHEST_IN_7day\":\"0.8645\",\"SELL\":\"0.8973\",\"THE_DAY_BEFORE_BUY\":\"0.8625\",\"CUR\":\"THB\",\"LOWEST_IN_7day\":\"0.8978\",\"LOWEST_IN_30day\":\"0.8918\",\"HIGHEST_IN_30day\":\"0.8689\"},{\"THE_DAY_BEFORE_SELL\":\"4.5070\",\"CUR_NAME\":\"人民幣\",\"BUY\":\"4.4610\",\"HIGHEST_IN_7day\":\"4.4790\",\"SELL\":\"4.5070\",\"THE_DAY_BEFORE_BUY\":\"4.4610\",\"CUR\":\"CNY\",\"LOWEST_IN_7day\":\"4.5030\",\"LOWEST_IN_30day\":\"4.4320\",\"HIGHEST_IN_30day\":\"4.4790\"},{\"THE_DAY_BEFORE_SELL\":\"21.3700\",\"CUR_NAME\":\"澳幣\",\"BUY\":\"21.1400\",\"HIGHEST_IN_7day\":\"21.1700\",\"SELL\":\"21.3400\",\"THE_DAY_BEFORE_BUY\":\"21.1700\",\"CUR\":\"AUD\",\"LOWEST_IN_7day\":\"20.9700\",\"LOWEST_IN_30day\":\"20.8900\",\"HIGHEST_IN_30day\":\"21.1700\"},{\"THE_DAY_BEFORE_SELL\":\"24.0400\",\"CUR_NAME\":\"新加坡幣\",\"BUY\":\"23.8400\",\"HIGHEST_IN_7day\":\"23.8800\",\"SELL\":\"24.0200\",\"THE_DAY_BEFORE_BUY\":\"23.8600\",\"CUR\":\"SGD\",\"LOWEST_IN_7day\":\"23.9700\",\"LOWEST_IN_30day\":\"23.7900\",\"HIGHEST_IN_30day\":\"23.8800\"},{\"THE_DAY_BEFORE_SELL\":\"0.2114\",\"CUR_NAME\":\"日圓\",\"BUY\":\"0.2073\",\"HIGHEST_IN_7day\":\"0.2092\",\"SELL\":\"0.2113\",\"THE_DAY_BEFORE_BUY\":\"0.2074\",\"CUR\":\"JPY\",\"LOWEST_IN_7day\":\"0.2114\",\"LOWEST_IN_30day\":\"0.2114\",\"HIGHEST_IN_30day\":\"0.2096\"},{\"THE_DAY_BEFORE_SELL\":\"40.9700\",\"CUR_NAME\":\"英磅\",\"BUY\":\"40.5100\",\"HIGHEST_IN_7day\":\"40.5700\",\"SELL\":\"40.9100\",\"THE_DAY_BEFORE_BUY\":\"40.5700\",\"CUR\":\"GBP\",\"LOWEST_IN_7day\":\"40.4700\",\"LOWEST_IN_30day\":\"40.4700\",\"HIGHEST_IN_30day\":\"40.5700\"},{\"THE_DAY_BEFORE_SELL\":\"3.0480\",\"CUR_NAME\":\"瑞典幣\",\"BUY\":\"2.9450\",\"HIGHEST_IN_7day\":\"2.9500\",\"SELL\":\"3.0450\",\"THE_DAY_BEFORE_BUY\":\"2.9480\",\"CUR\":\"SEK\",\"LOWEST_IN_7day\":\"3.0090\",\"LOWEST_IN_30day\":\"3.0090\",\"HIGHEST_IN_30day\":\"2.9920\"},{\"THE_DAY_BEFORE_SELL\":\"19.5200\",\"CUR_NAME\":\"紐幣\",\"BUY\":\"19.3000\",\"HIGHEST_IN_7day\":\"19.3200\",\"SELL\":\"19.5000\",\"THE_DAY_BEFORE_BUY\":\"19.3200\",\"CUR\":\"NZD\",\"LOWEST_IN_7day\":\"19.2800\",\"LOWEST_IN_30day\":\"19.1900\",\"HIGHEST_IN_30day\":\"19.3300\"}]},\"rt\":\"0\"}"
+    }
+
+    let packet_setDataJson = {
+      "type": "setData",
+      "data": JSON.stringify(packet_setDataJsonData),
+    }
+
+    function setDataJson() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setDataJson);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setDataJsonData);
+          jstoapp.setDataJson(action);
+        }
+      }
+    }
 
     let packet_getData = {
       "type": "getData"
