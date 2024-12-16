@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">TestWebView 0516</th>
+            <th colspan="2">TestWebView 241216</th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +30,12 @@
         </tr>
         <tr>
             <td><button onclick="goHome()">goHome</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="goFunc()更多">goFunc1</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="goFunc()快登設定">goFunc2</button><td>
         </tr>
     </tbody>
   </table>
@@ -108,6 +114,50 @@
       }
     }
 
+    let packet_goFunc1Data = {
+      "FuncNo": "180000"
+    }
+
+    let packet_goFunc1 = {
+      "type": "goFunc",
+      "data": JSON.stringify(packet_goFunc1Data),
+    }
+
+    function goFunc1() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goFunc1);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_goFunc1Data);
+          jstoapp.goFunc1(action);
+        }
+      }
+    }
+
+    let packet_goFunc2Data = {
+      "FuncNo": "330100"
+    }
+
+    let packet_goFunc2 = {
+      "type": "goFunc",
+      "data": JSON.stringify(packet_goFunc2Data),
+    }
+
+    function goFunc2() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goFunc2);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_goFunc2Data);
+          jstoapp.goFunc2(action);
+        }
+      }
+    }
+    
     // 收JS
     function rtCodeResult(data) {
       document.getElementById("qrcodeResult").innerText = "收到type:" + data["type"] + ", result:" + data["result"] + ", decodeUrl:" + data["decodeUrl"];
