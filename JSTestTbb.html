@@ -32,10 +32,7 @@
             <td><button onclick="goHome()">goHome</button><td>
         </tr>
         <tr>
-            <td><button onclick="goFunc()更多">goFunc1</button><td>
-        </tr>
-        <tr>
-            <td><button onclick="goFunc()快登設定">goFunc2</button><td>
+            <td><button onclick="goFunc()">goFunc</button><td>
         </tr>
     </tbody>
   </table>
@@ -114,46 +111,24 @@
       }
     }
 
-    let packet_goFunc1Data = {
+    let packet_goFuncData = {
       "FuncNo": "180000"
     }
 
-    let packet_goFunc1 = {
+    let packet_goFunc = {
       "type": "goFunc",
-      "data": JSON.stringify(packet_goFunc1Data),
+      "data": JSON.stringify(packet_goFuncData),
     }
 
-    function goFunc1() {
+    function goFunc() {
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_goFunc1);
+        var action = JSON.stringify(packet_goFunc);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_goFunc1Data);
-          jstoapp.goFunc1(action);
-        }
-      }
-    }
-
-    let packet_goFunc2Data = {
-      "FuncNo": "330100"
-    }
-
-    let packet_goFunc2 = {
-      "type": "goFunc",
-      "data": JSON.stringify(packet_goFunc2Data),
-    }
-
-    function goFunc2() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_goFunc2);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_goFunc2Data);
-          jstoapp.goFunc2(action);
+          var action = JSON.stringify(packet_goFuncData);
+          jstoapp.goFunc(action);
         }
       }
     }
