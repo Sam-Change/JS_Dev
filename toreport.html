@@ -3,6 +3,17 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="refresh" content="5;url=finai://">
 		<title>即將跳轉...</title>
+		<script>
+	        let countdown = 5;
+	        function updateCountdown() {
+	            const countdownElement = document.getElementById('countdown');
+	            if (countdown > 0) {
+	                countdown--;
+	                countdownElement.textContent = countdown;
+	            }
+	        }
+	        setInterval(updateCountdown, 1000);
+    	</script>
 	</head>
 
 	<body>
@@ -11,7 +22,7 @@
 			 <!-- 定義特定的URL與Schema -->  
 			<br>
 
-		    <p>5秒後自動跳轉APP...<p>
+		    <p><span id="countdown">5</span> 秒後將自動跳轉APP...</p>
 		    <p>
 		    <p>若無法跳轉，點擊<a href="finai://">此連結</a>。</p>
 	
