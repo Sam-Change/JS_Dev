@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">TestWebView 241216</th>
+            <th colspan="2">TestWebView 250108</th>
         </tr>
     </thead>
     <tbody>
@@ -33,6 +33,9 @@
         </tr>
         <tr>
             <td><button onclick="goFunc()">goFunc</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="login()">login(客服)</button><td>
         </tr>
     </tbody>
   </table>
@@ -133,6 +136,28 @@
       }
     }
     
+    let packet_loginData = {
+      "sessionId": "xxx000aaa"
+    }
+
+    let packet_login = {
+      "type": "login",
+      "data": JSON.stringify(packet_loginData),
+    }
+
+    function login() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_login);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_loginData);
+          jstoapp.login(action);
+        }
+      }
+    }
+
     // 收JS
     function rtCodeResult(data) {
       document.getElementById("qrcodeResult").innerText = "收到type:" + data["type"] + ", result:" + data["result"] + ", decodeUrl:" + data["decodeUrl"];
