@@ -11,7 +11,7 @@
   <table class="tableStyle">
     <thead> <!-- 標題 -->
         <tr>
-            <th colspan="2">無障礙 250109152855</th> <!-- 標題的行 -->
+            <th colspan="2">無障礙 250109153200</th> <!-- 標題的行 -->
         </tr>
     </thead>
     <tbody> <!-- 內容 -->
@@ -19,25 +19,25 @@
           <img class="imgStyle" src="https://github.com/Sam-Change/JS_Dev/blob/gh-pages/imgTest05.png?raw=true">
         </tr>
         <tr>
-            <td><button onclick="A11YLogin()">(無障礙)登入A11YLogin</button><td> <!-- 內容的行 -->
+            <td><button onclick="a11yLogin()">(無障礙)登入a11yLogin</button><td> <!-- 內容的行 -->
         </tr>
         <tr>
-            <td><button onclick="A11YChangeNormalVer()">(無障礙)切回一般版A11YChangeNormalVer</button><td> 
+            <td><button onclick="a11yChangeNormalVer()">(無障礙)切回一般版a11yChangeNormalVer</button><td> 
         </tr>
         <tr>
-            <td><button onclick="A11YGoFuncMore()">(無障礙)轉跳更多A11YGoFuncMore</button><td> 
+            <td><button onclick="a11yGoFuncMore()">(無障礙)轉跳更多a11yGoFuncMore</button><td> 
               <!-- 要提供功能列表 -->
         </tr>
         <tr>
-            <td><button onclick="A11YGoFuncQuickUseSetting()">(無障礙)轉跳快登快交設定頁A11YGoFuncQuickUseSetting</button><td> 
+            <td><button onclick="a11yGoFuncQuickUseSetting()">(無障礙)轉跳快登快交設定頁a11yGoFuncQuickUseSetting</button><td> 
               <!-- 要提供功能列表 -->
         </tr>
         <tr>
             <td><button onclick="updateTitle()">設定標題updateTitle</button><td>
-              <!-- 要先顯示標題列A11YGoSetNavBar，否則呼叫此js看不出差異 -->
+              <!-- 要先顯示標題列a11yGoSetNavBar，否則呼叫此js看不出差異 -->
         </tr>
         <tr>
-            <td><button onclick="A11YGoSetNavBar()">(無障礙)顯示隱藏標題列A11YGoSetNavBar</button><td> 
+            <td><button onclick="a11yGoSetNavBar()">(無障礙)顯示隱藏標題列a11yGoSetNavBar</button><td> 
         </tr>
         <tr>
             <td><button onclick="onTimeOut()">逾時onTimeOut</button><td>
@@ -46,7 +46,7 @@
             <td><button onclick="goBack()">通知網頁回上一頁goBack</button><td>
         </tr>
         <tr>
-            <td><button onclick="A11YRtWeb()">(無障礙)通知主導權回網頁A11YRtWeb</button><td>
+            <td><button onclick="a11yRtWeb()">(無障礙)通知主導權回網頁a11yRtWeb</button><td>
               <!-- 帶APP處理的參數回去。若是web自行暫存的走現行setKeepdata、getKeepdata存取 -->
         </tr>
 <!--
@@ -72,26 +72,24 @@ jstoweb timeout登出回首頁 需通知? -->
       return isMobileDevice
     }
     
-    let packet_showScanCodeData = {
-      "type": "01",
-      "title":"",
-      "msg":"",
+    let packet_a11yLoginData = {
+      "data": "",
     }
 
-    let packet_showScanCode = {
-      "type": "showScanCode",
-      "data": JSON.stringify(packet_showScanCodeData),
+    let packet_a11yLogin = {
+      "type": "a11yLogin",
+      "data": JSON.stringify(packet_a11yLoginData),
     }
 
-    function showScanCode() {
+    function a11yLogin() {
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_showScanCode);
+        var action = JSON.stringify(packet_a11yLogin);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_showScanCodeData);
-          jstoapp.showScanCode(action);
+          var action = JSON.stringify(packet_a11yLoginData);
+          jstoapp.a11yLogin(action);
         }
       }
     }
@@ -208,7 +206,7 @@ jstoweb timeout登出回首頁 需通知? -->
 
   .imgStyle {
     width: 100%;
-    aspect-ratio: 10 / 6;
+    aspect-ratio: 4 / 1;
     object-fit: cover; /* 確保圖片不會變形，並填滿容器（可根據需求調整為 contain 或 fill）*/
   }
 </style>
