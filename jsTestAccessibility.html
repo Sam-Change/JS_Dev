@@ -1,0 +1,229 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
+  <title>jsTest無障礙</title>
+  <style>
+        /* 讓圖片符合螢幕寬度，並維持 10:6 比例 */
+        .responsive-img {
+            width: 100%;
+            aspect-ratio: 10 / 6;
+            object-fit: cover; /* 確保圖片不會變形，並填滿容器（可根據需求調整為 contain 或 fill）*/
+        }
+  </style>
+</head>
+
+<body>
+  <table class="screenWidth border">
+    <thead> <!-- 標題 -->
+        <tr>
+            <th colspan="2">無障礙 250109</th> <!-- 標題的行 -->
+        </tr>
+    </thead>
+    <tbody> <!-- 內容 -->
+        <tr> <!-- 行 -->
+          <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest05.png" width="414" height="120">
+        </tr>
+        <tr>
+            <td><button onclick="goFunc()">轉跳功能goFunc</button><td> <!-- 內容的行 -->
+        </tr>
+        <tr>
+            <td><button onclick="A11YLogin()">(無障礙)登入A11YLogin</button><td> 
+        </tr>
+        <tr>
+            <td><button onclick="A11YChangeNormalVer()">(無障礙)切回一般版A11YChangeNormalVer</button><td> 
+        </tr>
+        <tr>
+            <td><button onclick="A11YGoFuncMore()">(無障礙)轉跳更多A11YGoFuncMore</button><td> 
+              <!-- 要提供功能列表 -->
+        </tr>
+        <tr>
+            <td><button onclick="A11YGoFuncQuickUseSetting()">(無障礙)轉跳快登快交設定頁A11YGoFuncQuickUseSetting</button><td> 
+              <!-- 要提供功能列表 -->
+        </tr>
+        <tr>
+            <td><button onclick="updateTitle()">設定標題updateTitle</button><td>
+              <!-- 要先顯示標題列A11YGoSetNavBar，否則呼叫此js看不出差異 -->
+        </tr>
+        <tr>
+            <td><button onclick="A11YGoSetNavBar()">(無障礙)顯示隱藏標題列A11YGoSetNavBar</button><td> 
+        </tr>
+        <tr>
+            <td><button onclick="onTimeOut()">逾時onTimeOut</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="goBack()">通知網頁回上一頁goBack</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="A11YRtWeb()">(無障礙)通知主導權回網頁A11YRtWeb</button><td>
+              <!-- 帶APP處理的參數回去。若是web自行暫存的走現行setKeepdata、getKeepdata存取 -->
+        </tr>
+<!--
+jstoapp 登出 走現行onReLogin重複登入 或 onTimeOut逾時?
+jstoapp 轉跳功能提供參數、功能代碼 有需要？
+jstoapp 叫APP提供資料(APP處理過的資料)
+切換無障礙 叫起url串參數在後面重load header塞是否為無障礙flag
+jstoweb timeout登出回首頁 需通知? -->
+
+    </tbody>
+    <!-- 結尾 -->
+    <tfoot>
+
+    </tfoot>
+  </table>
+  
+  <script>
+    var ideviceCheck = isiOSDevice()
+
+    function isiOSDevice() {
+      const mobileDevice = ['iPhone', 'iPad', 'iPod']
+      let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+      return isMobileDevice
+    }
+    
+    let packet_showScanCodeData = {
+      "type": "01",
+      "title":"",
+      "msg":"",
+    }
+
+    let packet_showScanCode = {
+      "type": "showScanCode",
+      "data": JSON.stringify(packet_showScanCodeData),
+    }
+
+    function showScanCode() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_showScanCode);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_showScanCodeData);
+          jstoapp.showScanCode(action);
+        }
+      }
+    }
+
+    let packet_showDialogData = {
+      "type": "1", 
+      "title": "404", 
+      "url": "https://172.22.11.245/", 
+    }
+
+    let packet_showDialog = {
+      "type": "showDialog",
+      "data": JSON.stringify(packet_showDialogData),
+    }
+
+    function showDialog() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_showDialog);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_showDialogData);
+          jstoapp.showDialog(action);
+        }
+      }
+    }
+
+    let packet_goHome = {
+      "type": "goHome",
+    }
+
+    function goHome() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goHome);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify();
+          jstoapp.goHome(action);
+        }
+      }
+    }
+
+    let packet_goFuncData = {
+      "FuncNo": "180000"
+    }
+
+    let packet_goFunc = {
+      "type": "goFunc",
+      "data": JSON.stringify(packet_goFuncData),
+    }
+
+    function goFunc() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goFunc);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_goFuncData);
+          jstoapp.goFunc(action);
+        }
+      }
+    }
+    
+    let packet_loginData = {
+      "sessionId": "xxx000aaa"
+    }
+
+    let packet_login = {
+      "type": "login",
+      "data": JSON.stringify(packet_loginData),
+    }
+
+    function login() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_login);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_loginData);
+          jstoapp.login(action);
+        }
+      }
+    }
+
+    // 收JS
+    function rtCodeResult(data) {
+      document.getElementById("qrcodeResult").innerText = "收到type:" + data["type"] + ", result:" + data["result"] + ", decodeUrl:" + data["decodeUrl"];
+    }
+  </script>
+</body>
+  
+<style>
+  .textFormat {
+    font-size: 14;
+  }
+
+  .screenWidth {
+    width: screen.width;
+  }
+  
+  .screenWidth20% {
+    width: screen.width*20%;
+  }
+
+  .screenWidth50% {
+    width: screen.width*50%;
+  }
+
+  .screenWidth80% {
+    width: screen.width*80%;
+  }
+
+  .border {
+    border: 1px solid #333;
+  }
+
+</style>
+  
+</html>
