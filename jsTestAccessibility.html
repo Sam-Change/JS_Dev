@@ -5,21 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
   <title>jsTest無障礙</title>
-  <style>
-        /* 讓圖片符合螢幕寬度，並維持 10:6 比例 */
-        .responsive-img {
-            width: 100%;
-            aspect-ratio: 10 / 6;
-            object-fit: cover; /* 確保圖片不會變形，並填滿容器（可根據需求調整為 contain 或 fill）*/
-        }
-  </style>
 </head>
 
 <body>
-  <table class="screenWidth border">
+  <table class="screenWidth">
     <thead> <!-- 標題 -->
         <tr>
-            <th colspan="2">無障礙 250109151040</th> <!-- 標題的行 -->
+            <th colspan="2">無障礙 250109152110</th> <!-- 標題的行 -->
         </tr>
     </thead>
     <tbody> <!-- 內容 -->
@@ -27,10 +19,7 @@
           <img src="https://github.com/Sam-Change/JS_Dev/blob/gh-pages/imgTest05.png?raw=true">
         </tr>
         <tr>
-            <td><button onclick="goFunc()">轉跳功能goFunc</button><td> <!-- 內容的行 -->
-        </tr>
-        <tr>
-            <td><button onclick="A11YLogin()">(無障礙)登入A11YLogin</button><td> 
+            <td><button onclick="A11YLogin()">(無障礙)登入A11YLogin</button><td> <!-- 內容的行 -->
         </tr>
         <tr>
             <td><button onclick="A11YChangeNormalVer()">(無障礙)切回一般版A11YChangeNormalVer</button><td> 
@@ -200,30 +189,27 @@ jstoweb timeout登出回首頁 需通知? -->
 </body>
   
 <style>
-  .textFormat {
+  .textFont {
     font-size: 14;
   }
 
   .screenWidth {
-    width: screen.width;
-  }
-  
-  .screenWidth20% {
+    width: 100%;
+  } 
+
+  /*.screenWidth20% {
     width: screen.width*20%;
-  }
-
-  .screenWidth50% {
-    width: screen.width*50%;
-  }
-
-  .screenWidth80% {
-    width: screen.width*80%;
-  }
+  }*/
 
   .border {
     border: 1px solid #333;
   }
 
+  .imgSize {
+    width: 100%;
+    aspect-ratio: 10 / 6;
+    object-fit: cover; /* 確保圖片不會變形，並填滿容器（可根據需求調整為 contain 或 fill）*/
+  }
 </style>
-  
+
 </html>
