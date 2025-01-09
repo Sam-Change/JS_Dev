@@ -11,7 +11,7 @@
   <table class="tableStyle">
     <thead> <!-- 標題 -->
         <tr>
-            <th colspan="2">無障礙 250109153200</th> <!-- 標題的行 -->
+            <th colspan="2">無障礙 250109155520</th> <!-- 標題的行 -->
         </tr>
     </thead>
     <tbody> <!-- 內容 -->
@@ -37,23 +37,21 @@
               <!-- 要先顯示標題列a11yGoSetNavBar，否則呼叫此js看不出差異 -->
         </tr>
         <tr>
-            <td><button onclick="a11yGoSetNavBar()">(無障礙)顯示隱藏標題列a11yGoSetNavBar</button><td> 
+            <td><button onclick="a11yGoSetNavBarY()">(無障礙)顯示隱藏標題列-顯示a11yGoSetNavBar</button><td> 
+        </tr>
+        <tr>
+            <td><button onclick="a11yGoSetNavBarN()">(無障礙)顯示隱藏標題列-隱藏a11yGoSetNavBar</button><td> 
         </tr>
         <tr>
             <td><button onclick="onTimeOut()">逾時onTimeOut</button><td>
-        </tr>
-        <tr>
-            <td><button onclick="goBack()">通知網頁回上一頁goBack</button><td>
-        </tr>
-        <tr>
-            <td><button onclick="a11yRtWeb()">(無障礙)通知主導權回網頁a11yRtWeb</button><td>
-              <!-- 帶APP處理的參數回去。若是web自行暫存的走現行setKeepdata、getKeepdata存取 -->
         </tr>
 <!--
 jstoapp 登出 走現行onReLogin重複登入 或 onTimeOut逾時?
 jstoapp 轉跳功能提供參數、功能代碼 有需要？
 jstoapp 叫APP提供資料(APP處理過的資料)
 切換無障礙 叫起url串參數在後面重load header塞是否為無障礙flag
+jstoweb goBack通知網頁回上一頁
+jstoweb rtA11yRtWeb通知主導權回網頁(帶APP處理的參數回去。若是web自行暫存的走現行setKeepdata、getKeepdata存取)
 jstoweb timeout登出回首頁 需通知? -->
 
     </tbody>
@@ -64,14 +62,15 @@ jstoweb timeout登出回首頁 需通知? -->
   </table>
   
   <script>
+    // 判斷是iOS還是Android
     var ideviceCheck = isiOSDevice()
-
     function isiOSDevice() {
       const mobileDevice = ['iPhone', 'iPad', 'iPod']
       let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
       return isMobileDevice
     }
     
+    // (無障礙)登入
     let packet_a11yLoginData = {
       "data": "",
     }
@@ -94,94 +93,138 @@ jstoweb timeout登出回首頁 需通知? -->
       }
     }
 
-    let packet_showDialogData = {
-      "type": "1", 
-      "title": "404", 
-      "url": "https://172.22.11.245/", 
+    // (無障礙)切回一般版
+    let packet_a11yChangeNormalVer = {
+      "type": "a11yChangeNormalVer",
     }
 
-    let packet_showDialog = {
-      "type": "showDialog",
-      "data": JSON.stringify(packet_showDialogData),
-    }
-
-    function showDialog() {
+    function a11yChangeNormalVer() {
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_showDialog);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_showDialogData);
-          jstoapp.showDialog(action);
-        }
-      }
-    }
-
-    let packet_goHome = {
-      "type": "goHome",
-    }
-
-    function goHome() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_goHome);
+        var action = JSON.stringify(packet_a11yChangeNormalVer);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
           var action = JSON.stringify();
-          jstoapp.goHome(action);
+          jstoapp.a11yChangeNormalVer(action);
         }
       }
     }
 
-    let packet_goFuncData = {
-      "FuncNo": "180000"
+    // (無障礙)轉跳更多
+    let packet_a11yGoFuncMoreData = {
+      "funcList": [{"funcID": "140200", "funcName": "臺外轉匯非約定轉帳",},
+                   {"funcID": "330100", "funcName": "快速登入與安全快速交易設定",}],
     }
 
-    let packet_goFunc = {
-      "type": "goFunc",
-      "data": JSON.stringify(packet_goFuncData),
+    let packet_a11yGoFuncMore = {
+      "type": "a11yGoFuncMore",
+      "data": JSON.stringify(packet_a11yGoFuncMoreData),
     }
 
-    function goFunc() {
+    function a11yGoFuncMore() {
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_goFunc);
+        var action = JSON.stringify(packet_a11yGoFuncMore);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_goFuncData);
-          jstoapp.goFunc(action);
+          var action = JSON.stringify(packet_a11yGoFuncMoreData);
+          jstoapp.a11yGoFuncMore(action);
         }
       }
     }
     
-    let packet_loginData = {
-      "sessionId": "xxx000aaa"
+    // (無障礙)轉跳快登快交設定頁
+    let packet_a11yGoFuncQuickUseSetting = {
+      "type": "a11yGoFuncQuickUseSetting",
     }
 
-    let packet_login = {
-      "type": "login",
-      "data": JSON.stringify(packet_loginData),
-    }
-
-    function login() {
+    function a11yGoFuncQuickUseSetting() {
       if (ideviceCheck) {
-        var action = JSON.stringify(packet_login);
+        var action = JSON.stringify(packet_a11yGoFuncQuickUseSetting);
         window.webkit.messageHandlers.jstoapp.postMessage(action);
       }
       else {
         if (jstoapp) {
-          var action = JSON.stringify(packet_loginData);
-          jstoapp.login(action);
+          var action = JSON.stringify();
+          jstoapp.a11yGoFuncQuickUseSetting(action);
+        }
+      }
+    }
+
+    // 設定標題
+    let packet_updateTitleData = {
+      "Title": "",
+      "canBack": "Y",
+    }
+
+    let packet_updateTitle = {
+      "type": "updateTitle",
+      "data": JSON.stringify(packet_updateTitleData),
+    }
+
+    function updateTitle() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_updateTitle);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_updateTitleData);
+          jstoapp.updateTitle(action);
+        }
+      }
+    }
+
+    // (無障礙)顯示隱藏標題列
+    let packet_a11yGoSetNavBarNData = {
+      "show": "N",
+    }
+
+    let packet_a11yGoSetNavBarN = {
+      "type": "a11yGoSetNavBar",
+      "data": JSON.stringify(packet_a11yGoSetNavBarNData),
+    }
+
+    function a11yGoSetNavBarN() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_a11yGoSetNavBarN);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_a11yGoSetNavBarNData);
+          jstoapp.a11yGoSetNavBarN(action);
+        }
+      }
+    }
+
+    let packet_a11yGoSetNavBarYData = {
+      "show": "Y",
+    }
+
+    let packet_a11yGoSetNavBarY = {
+      "type": "a11yGoSetNavBar",
+      "data": JSON.stringify(packet_a11yGoSetNavBarYData),
+    }
+
+    function a11yGoSetNavBarY() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_a11yGoSetNavBarY);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_a11yGoSetNavBarYData);
+          jstoapp.a11yGoSetNavBarY(action);
         }
       }
     }
 
     // 收JS
-    function rtCodeResult(data) {
-      document.getElementById("qrcodeResult").innerText = "收到type:" + data["type"] + ", result:" + data["result"] + ", decodeUrl:" + data["decodeUrl"];
+    function rtA11yRtWeb(data) {
+      document.getElementById("rtA11yRtWeb").innerText = "收到資料:" + data["data"];
     }
   </script>
 </body>
@@ -195,14 +238,6 @@ jstoweb timeout登出回首頁 需通知? -->
   .textFont {
     font-size: 14;
   }
-
-  .screenWidth {
-    width: 100%;
-  } 
-
-  /*.screenWidth20% {
-    width: screen.width*20%;
-  }*/
 
   .imgStyle {
     width: 100%;
