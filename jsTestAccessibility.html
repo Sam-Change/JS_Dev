@@ -11,7 +11,7 @@
   <table class="tableStyle">
     <thead> <!-- 標題 -->
         <tr>
-            <th colspan="2">無障礙 250109171040</th> <!-- 標題的行 -->
+            <th colspan="2">無障礙 250110110500</th> <!-- 標題的行 -->
         </tr>
     </thead>
     <tbody> <!-- 內容 -->
@@ -113,8 +113,18 @@ jstoweb timeout登出回首頁 需通知? -->
 
     // (無障礙)轉跳更多
     let packet_a11yGoFuncMoreData = {
-      "funcList": [{"funcID": "140200", "funcName": "臺外轉匯非約定轉帳",},
-                   {"funcID": "330100", "funcName": "快速登入與安全快速交易設定",}],
+      "funcList": [{"funcID": "A01", "funcName": "活存帳戶總覽",},
+                   {"funcID": "A02", "funcName": "交易明細查詢",},
+                   {"funcID": "B01", "funcName": "臺幣存款利率",},
+                   {"funcID": "B02", "funcName": "外幣存款利率",},],
+      "moreList": [
+                    {"folderName": "台幣服務", 
+                     "folderFuncList": [{"funcID": "A01", "funcName": "活存帳戶總覽",},
+                                        {"funcID": "A02", "funcName": "交易明細查詢",},]},
+                    {"folderName": "金融資訊", 
+                     "folderFuncList": [{"funcID": "B01", "funcName": "臺幣存款利率",},
+                                        {"funcID": "B02", "funcName": "外幣存款利率",},]},
+                  ]
     }
 
     let packet_a11yGoFuncMore = {
