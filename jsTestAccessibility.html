@@ -11,7 +11,7 @@
   <table class="tableStyle">
     <thead> <!-- 標題 -->
         <tr>
-            <th colspan="2">無障礙 250110110500</th> <!-- 標題的行 -->
+            <th colspan="2">無障礙 250110161100</th> <!-- 標題的行 -->
         </tr>
     </thead>
     <tbody> <!-- 內容 -->
@@ -228,6 +228,24 @@ jstoweb timeout登出回首頁 需通知? -->
         if (jstoapp) {
           var action = JSON.stringify(packet_a11yGoSetNavBarYData);
           jstoapp.a11yGoSetNavBarY(action);
+        }
+      }
+    }
+
+    // 逾時
+    let packet_onTimeOut = {
+      "type": "onTimeOut",
+    }
+
+    function onTimeOut() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_onTimeOut);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify();
+          jstoapp.onTimeOut(action);
         }
       }
     }
