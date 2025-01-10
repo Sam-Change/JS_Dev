@@ -11,7 +11,7 @@
   <table class="tableStyle">
     <thead> <!-- 標題 -->
         <tr>
-            <th colspan="2">無障礙 250110161100</th> <!-- 標題的行 -->
+            <th colspan="2">無障礙 250110174000</th> <!-- 標題的行 -->
         </tr>
     </thead>
     <tbody> <!-- 內容 -->
@@ -19,30 +19,39 @@
             <td><img class="imgStyle" src="https://github.com/Sam-Change/JS_Dev/blob/gh-pages/imgTest05.png?raw=true"></td>
         </tr>
         <tr>
-            <td><button onclick="a11yChangeNormalVer()">(無障礙)切回一般版a11yChangeNormalVer</button><td> 
+          <td>(無障礙)切回一般版</td>
         </tr>
         <tr>
-            <td><button onclick="a11yLogin()">(無障礙)登入a11yLogin</button><td> <!-- 內容的行 -->
+            <td><button onclick="a11yChangeNormalVer()">a11yChangeNormalVer</button></td> 
         </tr>
         <tr>
-            <td><button onclick="a11yGoFuncMore()">(無障礙)轉跳更多a11yGoFuncMore</button><td> 
+          <td>(無障礙)登入</td>
         </tr>
         <tr>
-            <td><button onclick="a11yGoFuncQuickUseSetting()">(無障礙)轉跳快登快交設定頁a11yGoFuncQuickUseSetting</button><td> 
+            <td><button onclick="a11yLogin()">a11yLogin</button></td> <!-- 內容的行 -->
+        </tr>
+        <tr>
+          <td>(無障礙)轉跳更多</td>
+        </tr>
+        <tr>
+            <td><button onclick="a11yGoFuncMore()">a11yGoFuncMore</button></td> 
+        </tr>
+        <tr>
+            <td><button onclick="a11yGoFuncQuickUseSetting()">(無障礙)轉跳快登快交設定頁a11yGoFuncQuickUseSetting</button></td> 
               <!-- 要提供功能列表 -->
         </tr>
         <tr>
-            <td><button onclick="updateTitle()">設定標題updateTitle</button><td>
+            <td><button onclick="updateTitle()">設定標題updateTitle</button></td>
               <!-- 要先顯示標題列a11yGoSetNavBar，否則呼叫此js看不出差異 -->
         </tr>
         <tr>
-            <td><button onclick="a11yGoSetNavBarY()">(無障礙)顯示隱藏標題列-顯示a11yGoSetNavBar</button><td> 
+            <td><button onclick="a11yGoSetNavBarY()">(無障礙)顯示隱藏標題列-顯示a11yGoSetNavBar</button></td> 
         </tr>
         <tr>
-            <td><button onclick="a11yGoSetNavBarN()">(無障礙)顯示隱藏標題列-隱藏a11yGoSetNavBar</button><td> 
+            <td><button onclick="a11yGoSetNavBarN()">(無障礙)顯示隱藏標題列-隱藏a11yGoSetNavBar</button></td> 
         </tr>
         <tr>
-            <td><button onclick="onTimeOut()">逾時onTimeOut</button><td>
+            <td><button onclick="onTimeOut()">逾時onTimeOut</button></td>
         </tr>
 <!--
 jstoapp 登出 走現行onReLogin重複登入 或 onTimeOut逾時?
@@ -260,6 +269,7 @@ jstoweb timeout登出回首頁 需通知? -->
   .tableStyle {
     width: 100%;
     border: 1px solid #333;
+    border-spacing: 20px;
   }
 
   .textFont {
