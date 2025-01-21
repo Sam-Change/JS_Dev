@@ -11,7 +11,7 @@
   <table class="tableStyle">
     <thead> <!-- 標題 -->
         <tr>
-            <th colspan="2">無障礙 250110174500</th> <!-- 標題的行 -->
+            <th colspan="2">無障礙 250121111000</th> <!-- 標題的行 -->
         </tr>
     </thead>
     <tbody> <!-- 內容 -->
@@ -19,6 +19,36 @@
             <td><img class="imgStyle" src="https://github.com/Sam-Change/JS_Dev/blob/gh-pages/imgTest05.png?raw=true"></td>
         </tr>
         <tr>
+          <td>逾時</td>
+        </tr>
+        <tr>
+            <td><button onclick="onTimeOut()">逾時onTimeOut</button></td>
+        </tr>
+        <tr>
+          <td>重複登入</td>
+        </tr>
+        <tr>
+            <td><button onclick="onReLogin()">重複登入onReLogin</button></td>
+        </tr>
+        <tr>
+          <td>登出</td>
+        </tr>
+        <tr>
+            <td><button onclick="logout()">登出logout</button></td>
+        </tr>
+        <tr>
+          <td>(無障礙)轉跳更多</td> <!-- 內容的行 -->
+        </tr>
+        <tr>
+            <td><button onclick="a11yGoMore()">a11yGoMore</button></td> 
+        </tr>
+        <tr>
+          <td>(無障礙)轉跳快登快交設定頁</td>
+        </tr>
+        <tr>
+            <td><button onclick="a11yGoQuickUseSetting()">a11yGoQuickUseSetting</button></td> 
+        </tr>
+        <!-- <tr>
           <td>(無障礙)切回一般版</td>
         </tr>
         <tr>
@@ -28,19 +58,7 @@
           <td>(無障礙)登入</td>
         </tr>
         <tr>
-            <td><button onclick="a11yLogin()">a11yLogin</button></td> <!-- 內容的行 -->
-        </tr>
-        <tr>
-          <td>(無障礙)轉跳更多</td>
-        </tr>
-        <tr>
-            <td><button onclick="a11yGoFuncMore()">a11yGoFuncMore</button></td> 
-        </tr>
-        <tr>
-          <td>(無障礙)轉跳快登快交設定頁</td>
-        </tr>
-        <tr>
-            <td><button onclick="a11yGoFuncQuickUseSetting()">a11yGoFuncQuickUseSetting</button></td> 
+            <td><button onclick="a11yLogin()">a11yLogin</button></td>
         </tr>
         <tr>
           <td>設定標題</td>
@@ -59,22 +77,7 @@
         </tr>
         <tr>
             <td><button onclick="a11yGoSetNavBarN()">a11yGoSetNavBar</button></td> 
-        </tr>
-        <tr>
-          <td>逾時</td>
-        </tr>
-        <tr>
-            <td><button onclick="onTimeOut()">逾時onTimeOut</button></td>
-        </tr>
-<!--
-jstoapp 登出 走現行onReLogin重複登入 或 onTimeOut逾時?
-jstoapp 轉跳功能提供參數、功能代碼 有需要？
-jstoapp 叫APP提供資料(APP處理過的資料)
-切換無障礙 叫起url串參數在後面重load header塞是否為無障礙flag
-jstoweb goBack通知網頁回上一頁
-jstoweb rtA11yRtWeb通知主導權回網頁(帶APP處理的參數回去。若是web自行暫存的走現行setKeepdata、getKeepdata存取)
-jstoweb timeout登出回首頁 需通知? -->
-
+        </tr> -->
     </tbody>
     <!-- 結尾 -->
     <tfoot>
@@ -83,174 +86,19 @@ jstoweb timeout登出回首頁 需通知? -->
   </table>
   
   <script>
+    // URL sample https://example.com/page?name=John&age=30
+    // 獲取當前 URL
+    const urlParams = new URLSearchParams(window.location.search);
+    // 獲取?後面特定參數
+    const name = urlParams.get('name'); // "John"
+    const age = urlParams.get('age');   // "30"
+
     // 判斷是iOS還是Android
     var ideviceCheck = isiOSDevice()
     function isiOSDevice() {
       const mobileDevice = ['iPhone', 'iPad', 'iPod']
       let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
       return isMobileDevice
-    }
-    
-    // (無障礙)登入
-    let packet_a11yLoginData = {
-      "data": "",
-    }
-
-    let packet_a11yLogin = {
-      "type": "a11yLogin",
-      "data": JSON.stringify(packet_a11yLoginData),
-    }
-
-    function a11yLogin() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_a11yLogin);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_a11yLoginData);
-          jstoapp.a11yLogin(action);
-        }
-      }
-    }
-
-    // (無障礙)切回一般版
-    let packet_a11yChangeNormalVer = {
-      "type": "a11yChangeNormalVer",
-    }
-
-    function a11yChangeNormalVer() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_a11yChangeNormalVer);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify();
-          jstoapp.a11yChangeNormalVer(action);
-        }
-      }
-    }
-
-    // (無障礙)轉跳更多
-    let packet_a11yGoFuncMoreData = {
-      "funcList": [{"funcID": "A01", "funcName": "活存帳戶總覽",},
-                   {"funcID": "A02", "funcName": "交易明細查詢",},
-                   {"funcID": "B01", "funcName": "臺幣存款利率",},
-                   {"funcID": "B02", "funcName": "外幣存款利率",},],
-      "moreList": [
-                    {"folderName": "台幣服務", 
-                     "folderFuncList": [{"funcID": "A01", "funcName": "活存帳戶總覽",},
-                                        {"funcID": "A02", "funcName": "交易明細查詢",},]},
-                    {"folderName": "金融資訊", 
-                     "folderFuncList": [{"funcID": "B01", "funcName": "臺幣存款利率",},
-                                        {"funcID": "B02", "funcName": "外幣存款利率",},]},
-                  ]
-    }
-
-    let packet_a11yGoFuncMore = {
-      "type": "a11yGoFuncMore",
-      "data": JSON.stringify(packet_a11yGoFuncMoreData),
-    }
-
-    function a11yGoFuncMore() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_a11yGoFuncMore);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_a11yGoFuncMoreData);
-          jstoapp.a11yGoFuncMore(action);
-        }
-      }
-    }
-    
-    // (無障礙)轉跳快登快交設定頁
-    let packet_a11yGoFuncQuickUseSetting = {
-      "type": "a11yGoFuncQuickUseSetting",
-    }
-
-    function a11yGoFuncQuickUseSetting() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_a11yGoFuncQuickUseSetting);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify();
-          jstoapp.a11yGoFuncQuickUseSetting(action);
-        }
-      }
-    }
-
-    // 設定標題
-    let packet_updateTitleData = {
-      "Title": "無障礙測試標題",
-      "canBack": "Y",
-    }
-
-    let packet_updateTitle = {
-      "type": "updateTitle",
-      "data": JSON.stringify(packet_updateTitleData),
-    }
-
-    function updateTitle() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_updateTitle);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_updateTitleData);
-          jstoapp.updateTitle(action);
-        }
-      }
-    }
-
-    // (無障礙)顯示隱藏標題列
-    let packet_a11yGoSetNavBarNData = {
-      "show": "N",
-    }
-
-    let packet_a11yGoSetNavBarN = {
-      "type": "a11yGoSetNavBar",
-      "data": JSON.stringify(packet_a11yGoSetNavBarNData),
-    }
-
-    function a11yGoSetNavBarN() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_a11yGoSetNavBarN);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_a11yGoSetNavBarNData);
-          jstoapp.a11yGoSetNavBarN(action);
-        }
-      }
-    }
-
-    let packet_a11yGoSetNavBarYData = {
-      "show": "Y",
-    }
-
-    let packet_a11yGoSetNavBarY = {
-      "type": "a11yGoSetNavBar",
-      "data": JSON.stringify(packet_a11yGoSetNavBarYData),
-    }
-
-    function a11yGoSetNavBarY() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_a11yGoSetNavBarY);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_a11yGoSetNavBarYData);
-          jstoapp.a11yGoSetNavBarY(action);
-        }
-      }
     }
 
     // 逾時
@@ -270,6 +118,204 @@ jstoweb timeout登出回首頁 需通知? -->
         }
       }
     }
+
+    // 重複登入
+    let packet_onReLogin = {
+      "type": "onReLogin",
+    }
+
+    function onReLogin() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_onReLogin);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify();
+          jstoapp.onReLogin(action);
+        }
+      }
+    }
+
+    // 重複登入
+    let packet_logout = {
+      "type": "logout",
+    }
+
+    function logout() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_logout);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify();
+          jstoapp.logout(action);
+        }
+      }
+    }
+
+    // (無障礙)轉跳更多
+    let packet_a11yGoMoreData = {
+      "funcList": [{"funcID": "A01", "funcName": "活存帳戶總覽",},
+                   {"funcID": "A02", "funcName": "交易明細查詢",},
+                   {"funcID": "B01", "funcName": "臺幣存款利率",},
+                   {"funcID": "B02", "funcName": "外幣存款利率",},],
+      "moreList": [
+                    {"folderName": "台幣服務", 
+                     "folderFuncList": [{"funcID": "A01", "funcName": "活存帳戶總覽",},
+                                        {"funcID": "A02", "funcName": "交易明細查詢",},]},
+                    {"folderName": "金融資訊", 
+                     "folderFuncList": [{"funcID": "B01", "funcName": "臺幣存款利率",},
+                                        {"funcID": "B02", "funcName": "外幣存款利率",},]},
+                  ]
+    }
+
+    let packet_a11yGoMore = {
+      "type": "a11yGoMore",
+      "data": JSON.stringify(packet_a11yGoMoreData),
+    }
+
+    function a11yGoMore() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_a11yGoMore);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_a11yGoMoreData);
+          jstoapp.a11yGoMore(action);
+        }
+      }
+    }
+    
+    // (無障礙)轉跳快登快交設定頁
+    let packet_a11yGoQuickUseSetting = {
+      "type": "a11yGoQuickUseSetting",
+    }
+
+    function a11yGoQuickUseSetting() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_a11yGoQuickUseSetting);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify();
+          jstoapp.a11yGoQuickUseSetting(action);
+        }
+      }
+    }
+
+    // // (無障礙)登入
+    // let packet_a11yLoginData = {
+    //   "data": "",
+    // }
+
+    // let packet_a11yLogin = {
+    //   "type": "a11yLogin",
+    //   "data": JSON.stringify(packet_a11yLoginData),
+    // }
+
+    // function a11yLogin() {
+    //   if (ideviceCheck) {
+    //     var action = JSON.stringify(packet_a11yLogin);
+    //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+    //   }
+    //   else {
+    //     if (jstoapp) {
+    //       var action = JSON.stringify(packet_a11yLoginData);
+    //       jstoapp.a11yLogin(action);
+    //     }
+    //   }
+    // }
+
+    // // (無障礙)切回一般版
+    // let packet_a11yChangeNormalVer = {
+    //   "type": "a11yChangeNormalVer",
+    // }
+
+    // function a11yChangeNormalVer() {
+    //   if (ideviceCheck) {
+    //     var action = JSON.stringify(packet_a11yChangeNormalVer);
+    //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+    //   }
+    //   else {
+    //     if (jstoapp) {
+    //       var action = JSON.stringify();
+    //       jstoapp.a11yChangeNormalVer(action);
+    //     }
+    //   }
+    // }
+
+    // // 設定標題
+    // let packet_updateTitleData = {
+    //   "Title": "無障礙測試標題",
+    //   "canBack": "Y",
+    // }
+
+    // let packet_updateTitle = {
+    //   "type": "updateTitle",
+    //   "data": JSON.stringify(packet_updateTitleData),
+    // }
+
+    // function updateTitle() {
+    //   if (ideviceCheck) {
+    //     var action = JSON.stringify(packet_updateTitle);
+    //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+    //   }
+    //   else {
+    //     if (jstoapp) {
+    //       var action = JSON.stringify(packet_updateTitleData);
+    //       jstoapp.updateTitle(action);
+    //     }
+    //   }
+    // }
+
+    // // (無障礙)顯示隱藏標題列
+    // let packet_a11yGoSetNavBarNData = {
+    //   "show": "N",
+    // }
+
+    // let packet_a11yGoSetNavBarN = {
+    //   "type": "a11yGoSetNavBar",
+    //   "data": JSON.stringify(packet_a11yGoSetNavBarNData),
+    // }
+
+    // function a11yGoSetNavBarN() {
+    //   if (ideviceCheck) {
+    //     var action = JSON.stringify(packet_a11yGoSetNavBarN);
+    //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+    //   }
+    //   else {
+    //     if (jstoapp) {
+    //       var action = JSON.stringify(packet_a11yGoSetNavBarNData);
+    //       jstoapp.a11yGoSetNavBarN(action);
+    //     }
+    //   }
+    // }
+
+    // let packet_a11yGoSetNavBarYData = {
+    //   "show": "Y",
+    // }
+
+    // let packet_a11yGoSetNavBarY = {
+    //   "type": "a11yGoSetNavBar",
+    //   "data": JSON.stringify(packet_a11yGoSetNavBarYData),
+    // }
+
+    // function a11yGoSetNavBarY() {
+    //   if (ideviceCheck) {
+    //     var action = JSON.stringify(packet_a11yGoSetNavBarY);
+    //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+    //   }
+    //   else {
+    //     if (jstoapp) {
+    //       var action = JSON.stringify(packet_a11yGoSetNavBarYData);
+    //       jstoapp.a11yGoSetNavBarY(action);
+    //     }
+    //   }
+    // }
 
     // 收JS
     function rtA11yRtWeb(data) {
