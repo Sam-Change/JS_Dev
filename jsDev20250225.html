@@ -1,0 +1,208 @@
+<!-- jsDev -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>jsDev</title>
+</head>
+
+<body>
+  <!--畫面組成-->
+  <table class="screenWidth border">
+    <thead>
+        <tr>
+            <th colspan="2">jsDev 250225110000</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest04.png" width="414" height="120">
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">取得GPS結果</td>
+            <td class="screenWidth80% border textFormat" id="rtLocationInfo"></td>
+        </tr>
+        <tr>
+            <td><button onclick="showShareDialog()">結果分享showShareDialog</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="getLocationInfo()">取得定位資訊getLocationInfo</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="testGoFuncWithData()">轉跳特定功能帶參數(setKeepdata+goFunc)</button><td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <script>
+    var ideviceCheck = isiOSDevice()
+
+    function isiOSDevice() {
+      const mobileDevice = ['iPhone', 'iPad', 'iPod']
+      let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+      return isMobileDevice
+    }
+    
+
+    function testGoFuncWithData() {     
+      setKeepdata()
+      goFunc()
+    }
+
+
+    let packet_showShareDialogData = {
+      "text": "轉1元給你囉，帳號末五碼xxxxx。\n(yyyy/MM/dd HH:mm)",
+    }
+
+    let packet_showShareDialog = {
+      "type": "showShareDialog",
+      "data": JSON.stringify(packet_showScanCodeData),
+    }
+
+    function showShareDialog() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_showShareDialog);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_showShareDialogData);
+          jstoapp.showShareDialog(action);
+        }
+      }
+    }
+
+    
+    // 取得GPS
+    let packet_getLocationInfo = {
+      "type": "getLocationInfo",
+    }
+
+    function getLocationInfo() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getLocationInfo);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify();
+          jstoapp.getLocationInfo(action);
+        }
+      }
+    }
+
+
+    // 暫存資料在APP端
+    let packet_setKeepdataData = {
+      "id": "390100"
+      "HaveLine": "N",
+      "StatusCode": "0000",
+      "LOGINTYPE": "MB",
+      "SystemID": "NB",
+      "HavePhone": "Y",
+      "CustomerID": "A100000000",
+      "HaveEmail": "N",
+      "StatusDesc": "OK",
+      "msgCode": "0",
+      "resultCode": true,
+    }
+
+    let packet_setKeepdata = {
+      "type": "setKeepdata",
+      "data": JSON.stringify(packet_setKeepdataData),
+    }
+
+    function setKeepdata() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setKeepdata);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setKeepdataData);
+          jstoapp.setKeepdata(action);
+        }
+      }
+    }
+
+
+    // 轉跳功能
+    let packet_goFuncData = {
+      "FuncNo": "390100"
+    }
+
+    let packet_goFunc = {
+      "type": "goFunc",
+      "data": JSON.stringify(packet_goFuncData),
+    }
+
+    function goFunc() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goFunc);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_goFuncData);
+          jstoapp.goFunc(action);
+        }
+      }
+    }
+    
+    // let packet_loginData = {
+    //   "sessionId": "xxx000aaa"
+    // }
+
+    // let packet_login = {
+    //   "type": "login",
+    //   "data": JSON.stringify(packet_loginData),
+    // }
+
+    // function login() {
+    //   if (ideviceCheck) {
+    //     var action = JSON.stringify(packet_login);
+    //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+    //   }
+    //   else {
+    //     if (jstoapp) {
+    //       var action = JSON.stringify(packet_loginData);
+    //       jstoapp.login(action);
+    //     }
+    //   }
+    // }
+
+    // 收JS
+    function rtLocationInfo(data) {
+      document.getElementById("rtLocationInfo").innerText = "結果:" + data["result"] == "1" ? "成功":"失敗" + ", 緯度:" + data["lat"] + ", 經度:" + data["lng"];
+    }
+  </script>
+</body>
+  
+<style>
+  .textFormat {
+    font-size: 14;
+  }
+
+  .screenWidth {
+    width: screen.width;
+  }
+  
+  .screenWidth20% {
+    width: screen.width*20%;
+  }
+
+  .screenWidth50% {
+    width: screen.width*50%;
+  }
+
+  .screenWidth80% {
+    width: screen.width*80%;
+  }
+
+  .border {
+    border: 1px solid #333;
+  }
+
+</style>
+  
+</html>
