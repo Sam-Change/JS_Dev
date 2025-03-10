@@ -11,17 +11,17 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev 250310174555</th>
+            <th colspan="2">jsDev 250310174804</th>
         </tr>
     </thead>
     <tbody>
         <tr>
           <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest04.png" width="414" height="120">
         </tr>
-        <!-- <tr>
+        <tr>
             <td class="screenWidth20% border textFormat">取得GPS結果</td>
             <td class="screenWidth80% border textFormat" id="rtLocationInfo"></td>
-        </tr> -->
+        </tr>
         <tr>
             <td><button onclick="showShareDialog()">結果分享showShareDialog</button><td>
         </tr>
@@ -171,10 +171,10 @@
     // //   }
     // // }
 
-    // // 收JS
-    // function rtLocationInfo(data) {
-    //   document.getElementById("rtLocationInfo").innerText = "結果:" + data["result"] == "1" ? "成功":"失敗" + ", 緯度:" + data["lat"] + ", 經度:" + data["lng"];
-    // }
+    // 收JS
+    function rtLocationInfo(data) {
+      document.getElementById("rtLocationInfo").innerText = "結果:" + data["result"] == "1" ? "成功":"失敗" + ", 緯度:" + data["lat"] + ", 經度:" + data["lng"];
+    }
   </script>
 </body>
   
