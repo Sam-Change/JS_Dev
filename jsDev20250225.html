@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev 250310174211</th>
+            <th colspan="2">jsDev 250310174555</th>
         </tr>
     </thead>
     <tbody>
@@ -28,9 +28,9 @@
         <tr> 
             <td><button onclick="getLocationInfo()">取得定位資訊getLocationInfo</button><td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td><button onclick="testGoFuncWithData()">轉跳特定功能帶參數(setKeepdata+goFunc)</button><td>
-        </tr>
+        </tr> -->
     </tbody>
   </table>
   
@@ -44,10 +44,10 @@
     }
     
 
-    function testGoFuncWithData() {     
-      setKeepdata()
-      goFunc()
-    }
+    // function testGoFuncWithData() {     
+    //   setKeepdata()
+    //   goFunc()
+    // }
 
 
     let packet_showShareDialogData = {
@@ -92,89 +92,89 @@
     }
 
 
-    // 暫存資料在APP端
-    let packet_setKeepdataData = {
-      "id": "390100"
-      "HaveLine": "N",
-      "StatusCode": "0000",
-      "LOGINTYPE": "MB",
-      "SystemID": "NB",
-      "HavePhone": "Y",
-      "CustomerID": "A100000000",
-      "HaveEmail": "N",
-      "StatusDesc": "OK",
-      "msgCode": "0",
-      "resultCode": true,
-    }
-
-    let packet_setKeepdata = {
-      "type": "setKeepdata",
-      "data": JSON.stringify(packet_setKeepdataData),
-    }
-
-    function setKeepdata() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_setKeepdata);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_setKeepdataData);
-          jstoapp.setKeepdata(action);
-        }
-      }
-    }
-
-
-    // 轉跳功能
-    let packet_goFuncData = {
-      "FuncNo": "390100"
-    }
-
-    let packet_goFunc = {
-      "type": "goFunc",
-      "data": JSON.stringify(packet_goFuncData),
-    }
-
-    function goFunc() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_goFunc);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_goFuncData);
-          jstoapp.goFunc(action);
-        }
-      }
-    }
-    
-    // let packet_loginData = {
-    //   "sessionId": "xxx000aaa"
+    // // 暫存資料在APP端
+    // let packet_setKeepdataData = {
+    //   "id": "390100"
+    //   "HaveLine": "N",
+    //   "StatusCode": "0000",
+    //   "LOGINTYPE": "MB",
+    //   "SystemID": "NB",
+    //   "HavePhone": "Y",
+    //   "CustomerID": "A100000000",
+    //   "HaveEmail": "N",
+    //   "StatusDesc": "OK",
+    //   "msgCode": "0",
+    //   "resultCode": true,
     // }
 
-    // let packet_login = {
-    //   "type": "login",
-    //   "data": JSON.stringify(packet_loginData),
+    // let packet_setKeepdata = {
+    //   "type": "setKeepdata",
+    //   "data": JSON.stringify(packet_setKeepdataData),
     // }
 
-    // function login() {
+    // function setKeepdata() {
     //   if (ideviceCheck) {
-    //     var action = JSON.stringify(packet_login);
+    //     var action = JSON.stringify(packet_setKeepdata);
     //     window.webkit.messageHandlers.jstoapp.postMessage(action);
     //   }
     //   else {
     //     if (jstoapp) {
-    //       var action = JSON.stringify(packet_loginData);
-    //       jstoapp.login(action);
+    //       var action = JSON.stringify(packet_setKeepdataData);
+    //       jstoapp.setKeepdata(action);
     //     }
     //   }
     // }
 
-    // 收JS
-    function rtLocationInfo(data) {
-      document.getElementById("rtLocationInfo").innerText = "結果:" + data["result"] == "1" ? "成功":"失敗" + ", 緯度:" + data["lat"] + ", 經度:" + data["lng"];
-    }
+
+    // // 轉跳功能
+    // let packet_goFuncData = {
+    //   "FuncNo": "390100"
+    // }
+
+    // let packet_goFunc = {
+    //   "type": "goFunc",
+    //   "data": JSON.stringify(packet_goFuncData),
+    // }
+
+    // function goFunc() {
+    //   if (ideviceCheck) {
+    //     var action = JSON.stringify(packet_goFunc);
+    //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+    //   }
+    //   else {
+    //     if (jstoapp) {
+    //       var action = JSON.stringify(packet_goFuncData);
+    //       jstoapp.goFunc(action);
+    //     }
+    //   }
+    // }
+    
+    // // let packet_loginData = {
+    // //   "sessionId": "xxx000aaa"
+    // // }
+
+    // // let packet_login = {
+    // //   "type": "login",
+    // //   "data": JSON.stringify(packet_loginData),
+    // // }
+
+    // // function login() {
+    // //   if (ideviceCheck) {
+    // //     var action = JSON.stringify(packet_login);
+    // //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+    // //   }
+    // //   else {
+    // //     if (jstoapp) {
+    // //       var action = JSON.stringify(packet_loginData);
+    // //       jstoapp.login(action);
+    // //     }
+    // //   }
+    // // }
+
+    // // 收JS
+    // function rtLocationInfo(data) {
+    //   document.getElementById("rtLocationInfo").innerText = "結果:" + data["result"] == "1" ? "成功":"失敗" + ", 緯度:" + data["lat"] + ", 經度:" + data["lng"];
+    // }
   </script>
 </body>
   
