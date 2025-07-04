@@ -23,10 +23,17 @@
             <td class="screenWidth80% border textFormat" id="rtLocationInfo"></td>
         </tr>
         <tr>
+            <td class="screenWidth20% border textFormat">取得傳遞參數</td>
+            <td class="screenWidth80% border textFormat" id="rtKeepdata"></td>
+        </tr>
+        <tr>
             <td><button onclick="showShareDialog()">結果分享showShareDialog</button><td>
         </tr>
         <tr> 
             <td><button onclick="getLocationInfo()">取得定位資訊getLocationInfo</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="getKeepdata()">取得傳遞資料getKeepdata</button><td>
         </tr>
         <tr> 
             <td><button onclick="goHome()">回首頁goHome</button><td>
@@ -94,6 +101,24 @@
     }
 
 
+    // 取得傳遞資料
+    let packet_getKeepdata = {
+      "type": "getKeepdata",
+    }
+
+    function getKeepdata() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getKeepdata);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          jstoapp.getKeepdata();
+        }
+      }
+    }
+    
+    
     //回首頁
     let packet_goHome = {
       "type": "goHome",
@@ -193,6 +218,10 @@
     // 收JS
     function rtLocationInfo(data) {
       document.getElementById("rtLocationInfo").innerText = "結果:" + data["result"] + ", 緯度:" + data["lat"] + ", 經度:" + data["lng"];
+    }
+
+    function rtKeepdata(data) {
+      document.getElementById("rtKeepdata").innerText = "傳遞參數:" + data;
     }
   </script>
 </body>
