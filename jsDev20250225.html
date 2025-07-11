@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev 250711102000</th>
+            <th colspan="2">jsDev 250711102400</th>
         </tr>
     </thead>
     <tbody>
@@ -66,11 +66,11 @@
       const inputValue = document.getElementById("funcInput").value || "100000"; // 預設值為100000
       
       const packet_goFuncData = {
-        "FunctionData": inputValue
+        "FuncNo": inputValue
       };
 
       const packet_goFunc = {
-        "name": "goFunc",
+        "type": "goFunc",
         "data": JSON.stringify(packet_goFuncData),
       };
 
