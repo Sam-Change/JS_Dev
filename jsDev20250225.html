@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev 250723100000</th>
+            <th colspan="2">jsDev 250818141000</th>
         </tr>
     </thead>
     <tbody>
@@ -46,6 +46,12 @@
         </tr>
         <tr> 
             <td><button onclick="goHome()">回首頁goHome</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="showScanCode()">無卡提款顯示主掃showScanCode</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="showATMQRCode()">無卡提款顯示被掃showATMQRCode</button><td>
         </tr>
         <!-- <tr>
             <td><button onclick="testGoFuncWithData()">轉跳特定功能帶參數(setKeepdata+goFunc)</button><td>
@@ -185,6 +191,55 @@
       }
     }
     
+    //無卡提款顯示主掃
+    let packet_showScanCodeData = {
+      "type": "00",
+      "title": "我是標題",
+      "msg": "我是內文"
+    }
+
+    let packet_showScanCode = {
+      "type": "showScanCode",
+      "data": JSON.stringify(packet_showScanCodeData),
+    }
+
+    function showScanCode() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_showScanCode);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_showScanCodeData);
+          jstoapp.showScanCode(action);
+        }
+      }
+    }
+
+    //無卡提款顯示被掃
+    let packet_showATMQRCodeData = {
+      "qrcode": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFMTI0NDQ2NTY3LFJPTEVfQUxMLDA4MDFjdGNAZ21haWwuY29tLFRiYjA3MzVDYiwwLDUsZGYzOTY2MDctNWRkYS00YThlLTk5YzktN2I0NzNmODdhMmFmLDZlYTFkYzQyLWRlZWEtNDJhNS05MjAxLTViNzEyMGVkYmEzZCxOLCxZLOW8teW6reWYiSwv"
+    }
+
+    let packet_showATMQRCode = {
+      "type": "showATMQRCode",
+      "data": JSON.stringify(packet_showATMQRCodeData),
+    }
+
+    function showATMQRCode() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_showATMQRCode);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_showATMQRCodeData);
+          jstoapp.showATMQRCode(action);
+        }
+      }
+    }
+    
+
     // // 暫存資料在APP端
     // let packet_setKeepdataData = {
     //   "id": "390100"
