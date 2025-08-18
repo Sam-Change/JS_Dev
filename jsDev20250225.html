@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev 250818141000</th>
+            <th colspan="2">jsDev 250818141500</th>
         </tr>
     </thead>
     <tbody>
@@ -33,6 +33,10 @@
             <td class="screenWidth80% border textFormat" id="rtKeepdata"></td>
         </tr>
         <tr>
+            <td class="screenWidth20% border textFormat">掃碼結果</td>
+            <td class="screenWidth80% border textFormat" id="rtCodeResult"></td>
+        </tr>
+        <tr>
             <td><button onclick="goFunc()">轉跳功能goFunc</button><td>
         </tr>
         <tr>
@@ -48,7 +52,7 @@
             <td><button onclick="goHome()">回首頁goHome</button><td>
         </tr>
         <tr> 
-            <td><button onclick="showScanCode()">無卡提款顯示主掃showScanCode</button><td>
+            <td><button onclick="showScanCode()">顯示主掃showScanCode</button><td>
         </tr>
         <tr> 
             <td><button onclick="showATMQRCode()">無卡提款顯示被掃showATMQRCode</button><td>
@@ -191,7 +195,7 @@
       }
     }
     
-    //無卡提款顯示主掃
+    //顯示主掃
     let packet_showScanCodeData = {
       "type": "00",
       "title": "我是標題",
@@ -326,6 +330,10 @@
 
     function rtKeepdata(data) {
       document.getElementById("rtKeepdata").innerText = "傳遞參數:" + data["data"];
+    }
+
+    function rtCodeResult(data) {
+      document.getElementById("rtCodeResult").innerText = "結果 type:" + data["type"] + ", result:" + data["result"] + ", decodeUrl:" + data["decodeUrl"];
     }
   </script>
 </body>
