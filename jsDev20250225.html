@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev 250818141500</th>
+            <th colspan="2">jsDev 250826160000</th>
         </tr>
     </thead>
     <tbody>
@@ -56,6 +56,9 @@
         </tr>
         <tr> 
             <td><button onclick="showATMQRCode()">無卡提款顯示被掃showATMQRCode</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="eddaOpenUri()">外開URL並回首頁eddaOpenUri</button><td>
         </tr>
         <!-- <tr>
             <td><button onclick="testGoFuncWithData()">轉跳特定功能帶參數(setKeepdata+goFunc)</button><td>
@@ -243,6 +246,28 @@
       }
     }
     
+    //外開URL並回首頁
+    let packet_eddaOpenUriData = {
+      "url": "https://news.yahoo.co.jp/pickup/6550396"
+    }
+
+    let packet_eddaOpenUri = {
+      "type": "eddaOpenUri",
+      "data": JSON.stringify(packet_eddaOpenUriData),
+    }
+
+    function eddaOpenUri() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_eddaOpenUri);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_eddaOpenUriData);
+          jstoapp.eddaOpenUri(action);
+        }
+      }
+    }
 
     // // 暫存資料在APP端
     // let packet_setKeepdataData = {
