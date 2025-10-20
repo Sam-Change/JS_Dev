@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev10201600</th>
+            <th colspan="2">jsDev10201612</th>
         </tr>
     </thead>
     <tbody>
@@ -102,28 +102,28 @@
       }
     }
 
-    // 轉跳功能
-    let packet_goFuncData = {
-      "FuncNo": "001"
-    }
+    // // 轉跳功能
+    // let packet_goFuncData = {
+    //   "FuncNo": "001"
+    // }
 
-    let packet_goFunc = {
-      "type": "goFunc",
-      "data": JSON.stringify(packet_goFuncData),
-    }
+    // let packet_goFunc = {
+    //   "type": "goFunc",
+    //   "data": JSON.stringify(packet_goFuncData),
+    // }
 
-    function goFunc() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_goFunc);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_goFuncData);
-          jstoapp.goFunc(action);
-        }
-      }
-    }
+    // function goFunc() {
+    //   if (ideviceCheck) {
+    //     var action = JSON.stringify(packet_goFunc);
+    //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+    //   }
+    //   else {
+    //     if (jstoapp) {
+    //       var action = JSON.stringify(packet_goFuncData);
+    //       jstoapp.goFunc(action);
+    //     }
+    //   }
+    // }
 
     let packet_showShareDialogData = {
       "text": "轉1,000元給你囉，帳號末五碼xxxxx。(2025/05/07 13:13)",
@@ -329,28 +329,28 @@
     }
 
 
-    // 轉跳功能
-    let packet_goFuncData = {
-      "FuncNo": "390100"
-    }
+    // // 轉跳功能
+    // let packet_goFuncData = {
+    //   "FuncNo": "390100"
+    // }
 
-    let packet_goFunc = {
-      "type": "goFunc",
-      "data": JSON.stringify(packet_goFuncData),
-    }
+    // let packet_goFunc = {
+    //   "type": "goFunc",
+    //   "data": JSON.stringify(packet_goFuncData),
+    // }
 
-    function goFunc() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_goFunc);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_goFuncData);
-          jstoapp.goFunc(action);
-        }
-      }
-    }
+    // function goFunc() {
+    //   if (ideviceCheck) {
+    //     var action = JSON.stringify(packet_goFunc);
+    //     window.webkit.messageHandlers.jstoapp.postMessage(action);
+    //   }
+    //   else {
+    //     if (jstoapp) {
+    //       var action = JSON.stringify(packet_goFuncData);
+    //       jstoapp.goFunc(action);
+    //     }
+    //   }
+    // }
     
     // let packet_loginData = {
     //   "sessionId": "xxx000aaa"
