@@ -18,7 +18,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsScanDev12241700</th>
+            <th colspan="2">jsScanDev12241705</th>
         </tr>
     </thead>
     <tbody>
@@ -147,6 +147,25 @@
       }
     }
 
+    // exitApp
+    function exitApp() {
+      let packet_exitApp = {
+        action: "exitApp"
+      }
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.nativeHandler.postMessage(
+          JSON.stringify(packet_exitApp)
+        );
+      }
+      else {
+        if (window.nativeHandler) {
+          window.nativeHandler.exitApp(
+            JSON.stringify(packet_exitApp)
+          );
+        }
+      }
+    }
 
 
     //=========================收JS=========================//
