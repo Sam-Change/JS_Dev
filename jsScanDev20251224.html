@@ -2,67 +2,141 @@
 <html>
 
 <head>
-  <meta http-equiv="Content-Type" content="width=device-width, initial-scale=1.0, text/html, charset=utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>jsDev</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
-      overflow-x: hidden;
       background: transparent;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    * {
-      box-sizing: border-box;
-    } 
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed; /* 關鍵：避免超出 */
+    }
+
+    th, td {
+      border: 1px solid #333;
+      padding: 6px;
+      vertical-align: top;
+      font-size: 14px;
+      word-break: break-all;      /* 強制斷行 */
+      overflow-wrap: break-word;  /* 長字串換行 */
+    }
+
+    th {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .col-title {
+      width: 30%;
+    }
+
+    .col-content {
+      width: 70%;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .time {
+      font-size: 12px;
+      color: gray;
+      margin-top: 4px;
+    }
   </style>
 </head>
 
 <body>
-  <!--畫面組成-->
-  <table class="screenWidth border">
+  <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev12241710</th>
+            <th colspan="2">jsScanDev12241720</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-          <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest01.png" class="responsive-img">
+          <td colspan="2">
+            <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest01.png">
+          </td>
         </tr>
         <tr>
-            <td class="screenWidth20% border textFormat">取得掃碼結果</td>
-            <td class="screenWidth80% border textFormat" id="getScanResult"></td>
-            <div id="currentTime" style="font-size: 12px; color: gray;"></div>
+          <td class="col-title">
+            取得掃碼結果
+            <div id="currentTime" class="time"></div>
+          </td>
+          <td class="col-content" id="getScanResult">
+            尚未掃碼
+          </td>
         </tr>
+        
         <tr>
-            <td><button onclick="startScan()">開啟相機開始掃碼startScan</button><td>
+          <td colspan="2">
+            <button onclick="startScan()">開啟相機開始掃碼startScan</button>
+          </td>
         </tr>
-        <tr> 
-            <td><button onclick="continueScan()">繼續掃碼continueScan</button><td>
+
+        <tr>
+          <td colspan="2">
+            <button onclick="continueScan()">繼續掃碼continueScan</button>
+          </td>
         </tr>
-        <tr> 
-            <td><button onclick="stopScan()">停止掃碼stopScan</button><td>
+
+        <tr>
+          <td colspan="2">
+            <button onclick="stopScan()">停止掃碼stopScan</button>
+          </td>
         </tr>
-        <tr> 
-            <td><button onclick="setScanType('QR')">設定掃碼QRCode格式setScanType</button><td>
+
+        <tr>
+          <td colspan="2">
+            <button onclick="setScanType('QR')">設定QRCode掃碼格式setScanType</button>
+          </td>
         </tr>
-        <tr> 
-            <td><button onclick="setScanType('Barcode')">設定掃碼Barcode格式setScanType</button><td>
+
+        <tr>
+          <td colspan="2">
+            <button onclick="setScanType('Barcode')">設定Barcode掃碼格式setScanType</button>
+          </td>
         </tr>
-        <tr> 
-            <td><button onclick="exitApp()">exitApp</button><td>
+
+        <tr>
+          <td colspan="2">
+            <button onclick="exitApp()">exitApp</button>
+          </td>
         </tr>
     </tbody>
   </table>
   
   <script>
-    var ideviceCheck = isiOSDevice()
+    var ideviceCheck = isiOSDevice();
 
     function isiOSDevice() {
-      const mobileDevice = ['iPhone', 'iPad', 'iPod']
-      let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
-      return isMobileDevice
+      const mobileDevice = ['iPhone', 'iPad', 'iPod'];
+      return mobileDevice.some(e => navigator.userAgent.match(e));
     }
 
     //=========================發JS=========================//
@@ -177,42 +251,9 @@
 
     // 取得掃碼結果
     function getScanResult(data) {
-      document.getElementById("getScanResult").innerText = "掃碼結果:" + data["result"];
+      document.getElementById("getScanResult").innerText = "掃碼結果:\n" + data["result"];
+      document.getElementById("currentTime").innerText = new Date().toLocaleTimeString();
     }
   </script>
-</body>
-  
-<style>
-  .responsive-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .textFormat {
-    font-size: 14;
-  }
-
-  .screenWidth {
-    width: screen.width;
-  }
-  
-  .screenWidth20% {
-    width: screen.width*20%;
-  }
-
-  .screenWidth50% {
-    width: screen.width*50%;
-  }
-
-  .screenWidth80% {
-    width: screen.width*80%;
-  }
-
-  .border {
-    border: 1px solid #333;
-  }
-
-</style>
-  
+</body>  
 </html>
