@@ -2,14 +2,19 @@
 <html>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Type" content="width=device-width, initial-scale=1.0, text/html, charset=utf-8">
   <title>jsDev</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      overflow-x: hidden;
       background: transparent;
     }
+    * {
+      box-sizing: border-box;
+    } 
   </style>
 </head>
 
@@ -18,12 +23,12 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsScanDev12241705</th>
+            <th colspan="2">jsScanDev12241710</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-          <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest01.png" width="414" height="120">
+          <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest01.png" class="responsive-img">
         </tr>
         <tr>
             <td class="screenWidth20% border textFormat">取得掃碼結果</td>
@@ -178,6 +183,12 @@
 </body>
   
 <style>
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
   .textFormat {
     font-size: 14;
   }
