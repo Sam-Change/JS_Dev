@@ -18,7 +18,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsScanDev12241600</th>
+            <th colspan="2">jsScanDev12241700</th>
         </tr>
     </thead>
     <tbody>
@@ -77,6 +77,46 @@
         if (window.nativeHandler) {
           window.nativeHandler.startScan(
             JSON.stringify(packet_startScan)
+          );
+        }
+      }
+    }
+
+    // 繼續掃碼
+    function continueScan() {
+      let packet_continueScan = {
+        action: "continueScan"
+      }
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.nativeHandler.postMessage(
+          JSON.stringify(packet_continueScan)
+        );
+      }
+      else {
+        if (window.nativeHandler) {
+          window.nativeHandler.continueScan(
+            JSON.stringify(packet_continueScan)
+          );
+        }
+      }
+    }
+    
+    // 停止掃碼
+    function stopScan() {
+      let packet_stopScan = {
+        action: "stopScan"
+      }
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.nativeHandler.postMessage(
+          JSON.stringify(packet_stopScan)
+        );
+      }
+      else {
+        if (window.nativeHandler) {
+          window.nativeHandler.stopScan(
+            JSON.stringify(packet_stopScan)
           );
         }
       }
