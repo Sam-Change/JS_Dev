@@ -1,0 +1,140 @@
+<!-- jsDev -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>jsDev</title>
+</head>
+
+<body>
+  <!--畫面組成-->
+  <table class="screenWidth border">
+    <thead>
+        <tr>
+            <th colspan="2">jsScanDev12241600</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest01.png" width="414" height="120">
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">取得掃碼結果</td>
+            <td class="screenWidth80% border textFormat" id="getScanResult"></td>
+        </tr>
+        <tr>
+            <td><button onclick="startScan()">開啟相機開始掃碼startScan</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="continueScan()">繼續掃碼continueScan</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="stopScan()">停止掃碼stopScan</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="setScanType('QR')">設定掃碼QRCode格式setScanType</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="setScanType('Barcode')">設定掃碼Barcode格式setScanType</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="goHome()">回首頁goHome</button><td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <script>
+    var ideviceCheck = isiOSDevice()
+
+    function isiOSDevice() {
+      const mobileDevice = ['iPhone', 'iPad', 'iPod']
+      let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+      return isMobileDevice
+    }
+
+    //=========================發JS=========================//
+
+    // 開啟相機開始掃碼
+    function startScan() {
+      let packet_startScan = {
+        action: "startScan"
+      }
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.nativeHandler.postMessage(
+          JSON.stringify(packet_startScan)
+        );
+      }
+      else {
+        if (window.nativeHandler) {
+          window.nativeHandler.startScan(
+            JSON.stringify(packet_startScan)
+          );
+        }
+      }
+    }
+
+    // 設定掃描QRCode格式
+    function setScanType(type) {
+      let packet_setScanTypeData = {
+        type: type
+      };
+
+      let packet_setScanType = {
+        action: "setScanType",
+        data: packet_setScanTypeData
+      };
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.nativeHandler.postMessage(
+          JSON.stringify(packet_setScanType)
+        );
+      }
+      else {
+        if (window.nativeHandler) {
+          window.nativeHandler.setScanType(
+            JSON.stringify(packet_setScanType)
+          );
+        }
+      }
+    }
+
+
+
+    //=========================收JS=========================//
+
+    // 取得掃碼結果
+    function getScanResult(data) {
+      document.getElementById("getScanResult").innerText = "掃碼結果:" + data["result"];
+    }
+  </script>
+</body>
+  
+<style>
+  .textFormat {
+    font-size: 14;
+  }
+
+  .screenWidth {
+    width: screen.width;
+  }
+  
+  .screenWidth20% {
+    width: screen.width*20%;
+  }
+
+  .screenWidth50% {
+    width: screen.width*50%;
+  }
+
+  .screenWidth80% {
+    width: screen.width*80%;
+  }
+
+  .border {
+    border: 1px solid #333;
+  }
+
+</style>
+  
+</html>
