@@ -74,7 +74,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512261150</th>
+            <th colspan="2">jsScanDev2512261155</th>
         </tr>
     </thead>
     <tbody>
@@ -86,7 +86,7 @@
         <tr>
           <td class="col-title">
             取得掃碼結果
-            <div id="currentTime" class="time"></div>
+            <div id="getScanResultTime" class="time"></div>
           </td>
           <td class="col-content" id="getScanResult">
             尚未掃碼
@@ -95,7 +95,7 @@
         <tr>
           <td class="col-title">
             取得讀碼結果
-            <div id="currentTime" class="time"></div>
+            <div id="getPhotoResultTime" class="time"></div>
           </td>
           <td class="col-content" id="getPhotoResult">
             尚未選取照片
@@ -278,13 +278,13 @@
     // 取得掃碼結果
     function getScanResult(data) {
       document.getElementById("getScanResult").innerText = "掃碼結果:\n" + data["result"];
-      document.getElementById("currentTime").innerText = new Date().toLocaleTimeString();
+      document.getElementById("getScanResultTime").innerText = new Date().toLocaleTimeString();
     }
 
     // 取得讀碼結果
     function getPhotoResult(data) {
       document.getElementById("getPhotoResult").innerText = "讀碼結果:\n" + data["result"];
-      document.getElementById("currentTime").innerText = new Date().toLocaleTimeString();
+      document.getElementById("getPhotoResultTime").innerText = new Date().toLocaleTimeString();
     }
   </script>
 </body>  
