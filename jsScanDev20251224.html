@@ -74,7 +74,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev12241720</th>
+            <th colspan="2">jsScanDev2512261105</th>
         </tr>
     </thead>
     <tbody>
@@ -95,37 +95,34 @@
         
         <tr>
           <td colspan="2">
-            <button onclick="startScan()">開啟相機開始掃碼startScan</button>
+            <div class="button-grid">
+              <button onclick="startScan()">開啟相機開始掃碼startScan</button>
+              <button onclick="continueScan()">繼續掃碼continueScan</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="button-grid">
+              <button onclick="stopScan()">停止掃碼stopScan</button>
+              <button onclick="chooseCodeFromAlbum()">從相簿選擇chooseCodeFromAlbum</button>
+            </div>
           </td>
         </tr>
 
         <tr>
           <td colspan="2">
-            <button onclick="continueScan()">繼續掃碼continueScan</button>
+            <div class="button-grid">
+              <button onclick="setScanType('QR')">設定QRCode掃碼格式setScanType</button>
+              <button onclick="setScanType('Barcode')">設定Barcode掃碼格式setScanType</button>
+            </div>
           </td>
         </tr>
-
         <tr>
           <td colspan="2">
-            <button onclick="stopScan()">停止掃碼stopScan</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2">
-            <button onclick="setScanType('QR')">設定QRCode掃碼格式setScanType</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2">
-            <button onclick="setScanType('Barcode')">設定Barcode掃碼格式setScanType</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2">
-            <button onclick="exitApp()">exitApp</button>
+            <div class="button-grid">
+              <button onclick="exitApp()">exitApp</button>
+            </div>
           </td>
         </tr>
     </tbody>
@@ -196,6 +193,26 @@
         if (window.nativeHandler) {
           window.nativeHandler.stopScan(
             JSON.stringify(packet_stopScan)
+          );
+        }
+      }
+    }
+
+    // 從相簿選擇
+    function chooseCodeFromAlbum() {
+      let packet_chooseCodeFromAlbum = {
+        action: "chooseCodeFromAlbum"
+      }
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.nativeHandler.postMessage(
+          JSON.stringify(packet_chooseCodeFromAlbum)
+        );
+      }
+      else {
+        if (window.nativeHandler) {
+          window.nativeHandler.chooseCodeFromAlbum(
+            JSON.stringify(packet_chooseCodeFromAlbum)
           );
         }
       }
