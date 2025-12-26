@@ -74,7 +74,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512261155</th>
+            <th colspan="2">jsScanDev2512261205</th>
         </tr>
     </thead>
     <tbody>
@@ -277,13 +277,13 @@
 
     // 取得掃碼結果
     function getScanResult(data) {
-      document.getElementById("getScanResult").innerText = "掃碼結果:\n" + data["result"];
+      document.getElementById("getScanResult").innerText = "掃碼結果:\n" + data["data"];
       document.getElementById("getScanResultTime").innerText = new Date().toLocaleTimeString();
     }
 
     // 取得讀碼結果
     function getPhotoResult(data) {
-      document.getElementById("getPhotoResult").innerText = "讀碼結果:\n" + data["result"];
+      document.getElementById("getPhotoResult").innerText = "讀碼結果:\n" + data["data"];
       document.getElementById("getPhotoResultTime").innerText = new Date().toLocaleTimeString();
     }
   </script>
