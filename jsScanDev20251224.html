@@ -77,9 +77,10 @@
 
     .img-container img {
       width: 100%;
-      height: auto;           /* 自適應寬度 */
+      height: auto;           /* 保持比例 */
+      display: block;
+      transform: translateY(-50%); /* 向上移 50% 高度 → 顯示下半部 */
       object-fit: cover;      /* 保留比例，填滿容器 */
-      object-position: center; /* 中間對齊 */
     }
   </style>
 </head>
@@ -88,7 +89,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512261508</th>
+            <th colspan="2">jsScanDev2512261511</th>
         </tr>
     </thead>
     <tbody>
