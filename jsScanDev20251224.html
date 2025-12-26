@@ -101,7 +101,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512261518</th>
+            <th colspan="2">jsScanDev2512261521</th>
         </tr>
     </thead>
     <tbody>
@@ -134,16 +134,16 @@
         <tr>
           <td colspan="2">
             <div class="button-grid">
-              <button onclick="startScan()">開啟相機開始掃碼startScan</button>
-              <button onclick="continueScan()">繼續掃碼continueScan</button>
+              <button onclick="startScan()">startScan</button>
+              <button onclick="continueScan()">continueScan</button>
             </div>
           </td>
         </tr>
         <tr>
           <td colspan="2">
             <div class="button-grid">
-              <button onclick="stopScan()">停止掃碼stopScan</button>
-              <button onclick="chooseCodeFromAlbum()">從相簿選擇chooseCodeFromAlbum</button>
+              <button onclick="stopScan()">stopScan</button>
+              <button onclick="chooseFromAlbum()">chooseFromAlbum</button>
             </div>
           </td>
         </tr>
@@ -151,8 +151,8 @@
         <tr>
           <td colspan="2">
             <div class="button-grid">
-              <button onclick="setScanType('QR')">設定QRCode掃碼格式setScanType</button>
-              <button onclick="setScanType('Barcode')">設定Barcode掃碼格式setScanType</button>
+              <button onclick="setScanType('QR')">setScanType[QR]</button>
+              <button onclick="setScanType('Barcode')">setScanType[Barcode]</button>
             </div>
           </td>
         </tr>
@@ -237,20 +237,20 @@
     }
 
     // 從相簿選擇
-    function chooseCodeFromAlbum() {
-      let packet_chooseCodeFromAlbum = {
-        action: "chooseCodeFromAlbum"
+    function chooseFromAlbum() {
+      let packet_chooseFromAlbum = {
+        action: "chooseFromAlbum"
       }
 
       if (ideviceCheck) {
         window.webkit.messageHandlers.nativeHandler.postMessage(
-          JSON.stringify(packet_chooseCodeFromAlbum)
+          JSON.stringify(packet_chooseFromAlbum)
         );
       }
       else {
         if (window.nativeHandler) {
-          window.nativeHandler.chooseCodeFromAlbum(
-            JSON.stringify(packet_chooseCodeFromAlbum)
+          window.nativeHandler.chooseFromAlbum(
+            JSON.stringify(packet_chooseFromAlbum)
           );
         }
       }
