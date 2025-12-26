@@ -82,6 +82,18 @@
       transform: translateY(-40%); /* 向上移 40% 高度 → 顯示下半部 */
       object-fit: cover;      /* 保留比例，填滿容器 */
     }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 兩欄，平均分 */
+      gap: 6px;                        /* 欄間距 */
+    }
+
+    .button-grid button {
+      width: 100%; /* 撐滿欄位，但不換行 */
+      padding: 8px;
+      font-size: 14px;
+    }
   </style>
 </head>
 
@@ -89,7 +101,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512261513</th>
+            <th colspan="2">jsScanDev2512261518</th>
         </tr>
     </thead>
     <tbody>
