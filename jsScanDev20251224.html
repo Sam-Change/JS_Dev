@@ -67,6 +67,20 @@
       color: gray;
       margin-top: 4px;
     }
+
+    .img-container {
+      width: 100%;           /* 占滿表格寬度 */
+      height: 120px;          /* 你想顯示的高度 */
+      overflow: hidden;       /* 超出的部分不顯示 */
+      position: relative;
+    }
+
+    .img-container img {
+      width: 100%;
+      height: auto;           /* 自適應寬度 */
+      object-fit: cover;      /* 保留比例，填滿容器 */
+      object-position: center; /* 中間對齊 */
+    }
   </style>
 </head>
 
@@ -74,13 +88,15 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512261205</th>
+            <th colspan="2">jsScanDev2512261505</th>
         </tr>
     </thead>
     <tbody>
         <tr>
           <td colspan="2">
-            <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest01.png">
+            <div class="img-container">
+              <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest01.png">
+            </div>
           </td>
         </tr>
         <tr>
