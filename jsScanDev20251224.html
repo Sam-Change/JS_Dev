@@ -94,6 +94,23 @@
       padding: 8px;
       font-size: 14px;
     }
+
+    /* 模擬掃碼區容器 */
+    .scan-simulation {
+      width: 100%;
+      height: 144px; /* 大約三行按鈕高度 48px * 3 */
+      display: flex;
+      justify-content: center; /* 水平置中 */
+      align-items: center;     /* 垂直置中 */
+    }
+
+    /* 正方形掃碼框 */
+    .scan-box {
+      width: 120px;  /* 可以依需求調整 */
+      height: 120px;
+      border: 2px solid red;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 
@@ -101,7 +118,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512261521</th>
+            <th colspan="2">jsScanDev2512261536</th>
         </tr>
     </thead>
     <tbody>
@@ -130,7 +147,14 @@
             尚未選取照片
           </td>
         </tr>
-        
+        <tr>
+          <td colspan="2">
+            <!-- 掃碼區 -->
+            <div class="scan-simulation">
+              <div class="scan-box"></div>
+            </div>
+          </td>
+        </tr>
         <tr>
           <td colspan="2">
             <div class="button-grid">
