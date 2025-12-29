@@ -118,7 +118,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512291610</th>
+            <th colspan="2">jsScanDev2512291614</th>
         </tr>
     </thead>
     <tbody>
@@ -163,7 +163,7 @@
         <tr>
           <td colspan="2">
             <div class="button-grid">
-              <button onclick="startScan()">startScan</button>
+              <button onclick="startScan('QR')">startScan[QR]</button>
               <button onclick="continueScan()">continueScan</button>
             </div>
           </td>
@@ -199,9 +199,22 @@
     //=========================發JS=========================//
 
     // 開啟相機開始掃碼
-    function startScan() {
+    function startScan(type) {
+      let rect = {
+        top: 20,
+        left: 20,
+        width: 200,
+        height: 200
+      }
+
+      let packet_startScanData = {
+        type: type,
+        rect: rect
+      };
+
       let packet_startScan = {
-        action: "startScan"
+        action: "startScan",
+        data: packet_startScanData
       }
 
       if (ideviceCheck) {
