@@ -118,7 +118,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512261553</th>
+            <th colspan="2">jsScanDev2512291610</th>
         </tr>
     </thead>
     <tbody>
@@ -331,7 +331,7 @@
       document.getElementById("getPhotoResult").innerText = "";
       document.getElementById("getPhotoResultTime").innerText = "";
 
-      document.getElementById("getScanResult").innerText = "掃碼結果:\n" + data["data"];
+      document.getElementById("getScanResult").innerText = "[掃碼結果]\n" + "rt:" + data["rt"] + "\nmsg:" + data["msg"] + "\ndata:" + data["data"];
       document.getElementById("getScanResultTime").innerText = new Date().toLocaleTimeString();
     }
 
@@ -340,7 +340,7 @@
       document.getElementById("getScanResult").innerText = "";
       document.getElementById("getScanResultTime").innerText = "";
 
-      document.getElementById("getPhotoResult").innerText = "讀碼結果:\n" + data["data"];
+      document.getElementById("getPhotoResult").innerText = "[讀碼結果]\n" + "rt:" + data["rt"] + "\nmsg:" + data["msg"] + "\ndata:" + data["data"];"讀碼結果:\n" + data["data"];
       document.getElementById("getPhotoResultTime").innerText = new Date().toLocaleTimeString();
     }
   </script>
