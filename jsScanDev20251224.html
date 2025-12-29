@@ -118,7 +118,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512291654</th>
+            <th colspan="2">jsScanDev2512291700</th>
         </tr>
     </thead>
     <tbody>
@@ -196,7 +196,7 @@
           <td colspan="2">
             <div class="button-grid">
               <button onclick="setBrightest()">setBrightest</button>
-              <button onclick="setOriginalBrightness(0.3)">setOriginalBrightness[0.3]</button>
+              <button onclick="setOriginalBrightness()">setOriginalBrightness</button>
             </div>
           </td>
         </tr>
@@ -402,14 +402,9 @@
     }
 
     // 調回原亮度
-    function setOriginalBrightness(brightest) {
-      let packet_setOriginalBrightnessData = {
-        orignal: brightest
-      };
-
+    function setOriginalBrightness() {
       let packet_setOriginalBrightness = {
-        action: "setOriginalBrightness",
-        data: packet_setOriginalBrightnessData
+        action: "setOriginalBrightness"
       };
 
       if (ideviceCheck) {
