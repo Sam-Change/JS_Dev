@@ -118,7 +118,7 @@
   <table>
     <thead>
         <tr>
-            <th colspan="2">jsScanDev2512291618</th>
+            <th colspan="2">jsScanDev2512291624</th>
         </tr>
     </thead>
     <tbody>
@@ -164,6 +164,7 @@
           <td colspan="2">
             <div class="button-grid">
               <button onclick="startScan('QR')">startScan[QR]</button>
+              <button onclick="startScan('barcode')">startScan[barcode]</button>
             </div>
           </td>
         </tr>
@@ -171,7 +172,7 @@
           <td colspan="2">
             <div class="button-grid">
               <button onclick="setScanType('QR')">setScanType[QR]</button>
-              <button onclick="setScanType('Barcode')">setScanType[Barcode]</button>
+              <button onclick="setScanType('barcode')">setScanType[barcode]</button>
             </div>
           </td>
         </tr>
@@ -212,6 +213,17 @@
         height: 200
       }
 
+      let rectBarcode = {
+        top: 20,
+        left: 20,
+        width: 200,
+        height: 44
+      }
+
+      if (type === "barcode") {
+        rect = rectBarcode
+      }
+
       let packet_startScanData = {
         type: type,
         rect: rect
@@ -243,6 +255,17 @@
         left: 20,
         width: 200,
         height: 200
+      }
+
+      let rectBarcode = {
+        top: 20,
+        left: 20,
+        width: 200,
+        height: 44
+      }
+
+      if (type === "barcode") {
+        rect = rectBarcode
       }
 
       let packet_setScanTypeData = {
