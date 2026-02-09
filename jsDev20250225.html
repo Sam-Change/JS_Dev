@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev10201615</th>
+            <th colspan="2">jsDev02091005</th>
         </tr>
     </thead>
     <tbody>
@@ -36,9 +36,9 @@
             <td class="screenWidth20% border textFormat">掃碼結果</td>
             <td class="screenWidth80% border textFormat" id="rtCodeResult"></td>
         </tr>
-        <!-- <tr>
+        <tr>
             <td><button onclick="goFunc()">轉跳功能goFunc</button><td>
-        </tr> -->
+        </tr>
         <tr>
             <td><button onclick="showShareDialog()">結果分享showShareDialog</button><td>
         </tr>
@@ -63,9 +63,9 @@
         <tr> 
             <td><button onclick="openUri()">外開URL openUri</button><td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td><button onclick="testGoFuncWithData()">轉跳特定功能帶參數(setKeepdata+goFunc)</button><td>
-        </tr>
+        </tr> -->
     </tbody>
   </table>
   
@@ -78,29 +78,29 @@
       return isMobileDevice
     }
     
-    // function goFunc() {
-    //   const inputValue = document.getElementById("funcInput").value || "100000"; // 預設值為100000
+    function goFunc() {
+      const inputValue = document.getElementById("funcInput").value || "100000"; // 預設值為100000
       
-    //   const packet_goFuncData = {
-    //     "FuncNo": inputValue
-    //   };
+      const packet_goFuncData = {
+        "FuncNo": inputValue
+      };
 
-    //   const packet_goFunc = {
-    //     "type": "goFunc",
-    //     "data": JSON.stringify(packet_goFuncData),
-    //   };
+      const packet_goFunc = {
+        "type": "goFunc",
+        "data": JSON.stringify(packet_goFuncData),
+      };
 
-    //   if (ideviceCheck) {
-    //     var action = JSON.stringify(packet_goFunc);
-    //     window.webkit?.messageHandlers?.jstoapp?.postMessage(action);
-    //   } 
-    //   else {
-    //     if (typeof jstoapp !== "undefined" && jstoapp.goFunc) {
-    //       var action = JSON.stringify(packet_goFuncData);
-    //       jstoapp.goFunc(action);
-    //     }
-    //   }
-    // }
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goFunc);
+        window.webkit?.messageHandlers?.jstoapp?.postMessage(action);
+      } 
+      else {
+        if (typeof jstoapp !== "undefined" && jstoapp.goFunc) {
+          var action = JSON.stringify(packet_goFuncData);
+          jstoapp.goFunc(action);
+        }
+      }
+    }
 
     // // 轉跳功能
     // let packet_goFuncData = {
