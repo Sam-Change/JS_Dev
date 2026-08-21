@@ -11,23 +11,12 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev08211600</th>
+            <th colspan="2">jsDev08211610</th>
         </tr>
     </thead>
     <tbody>
         <tr>
           <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest04.png" width="414" height="120">
-        </tr>
-        <tr>
-          <td>
-            輸入 FunctionData：
-            <input type="text" id="funcInput" placeholder="輸入功能        top: 20,
-代碼">
-          </td>
-        </tr>
-        <tr>
-            <td class="screenWidth20% border textFormat">第幾頁web?</td>
-            <td class="screenWidth80% border textFormat" id="pageNo"></td>
         </tr>
         <tr>
             <td><button onclick="setNavBar('預約查詢/取消','Y','Y','','Y')">設定web第一頁標題/back/step/funcMenu/first</button><td>
@@ -96,13 +85,13 @@
       };
 
       if (ideviceCheck) {
-        window.webkit.messageHandlers.nativeHandler.postMessage(
+        window.webkit.messageHandlers.jstoapp.postMessage(
           JSON.stringify(packet_setNavBar)
         );
       }
       else {
-        if (window.nativeHandler) {
-          window.nativeHandler.setNavBar(
+        if (window.jstoapp) {
+          window.jstoapp.setNavBar(
             JSON.stringify(packet_setNavBar)
           );
         }
@@ -148,13 +137,13 @@
       };
 
       if (ideviceCheck) {
-        window.webkit.messageHandlers.nativeHandler.postMessage(
+        window.webkit.messageHandlers.jstoapp.postMessage(
           JSON.stringify(packet_onLoading)
         );
       }
       else {
-        if (window.nativeHandler) {
-          window.nativeHandler.onLoading(
+        if (window.jstoapp) {
+          window.jstoapp.onLoading(
             JSON.stringify(packet_onLoading)
           );
         }
@@ -174,13 +163,13 @@
       };
 
       if (ideviceCheck) {
-        window.webkit.messageHandlers.nativeHandler.postMessage(
+        window.webkit.messageHandlers.jstoapp.postMessage(
           JSON.stringify(packet_showPopWeb)
         );
       }
       else {
-        if (window.nativeHandler) {
-          window.nativeHandler.showPopWeb(
+        if (window.jstoapp) {
+          window.jstoapp.showPopWeb(
             JSON.stringify(packet_showPopWeb)
           );
         }
@@ -303,10 +292,6 @@
     }
 
     // 收JS
-    function pageNo(data) {
-      document.getElementById("pageNo").innerText = "第" + data["pageNo"] + "頁";
-    }
-
     function rtKeepdata(data) {
       document.getElementById("rtKeepdata").innerText = "傳遞參數:" + data["data"];
     }
