@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev08211620</th>
+            <th colspan="2">jsDev08211624</th>
         </tr>
     </thead>
     <tbody>
@@ -81,7 +81,7 @@
 
       const packet_setNavBar = {
         type: "setNavBar",
-        data: packet_setNavBarData
+        data: JSON.stringify(packet_setNavBarData),
       };
 
       if (ideviceCheck) {
@@ -133,7 +133,7 @@
 
       const packet_onLoading = {
         type: "onLoading",
-        data: packet_onLoadingData
+        data: JSON.stringify(packet_onLoadingData),
       };
 
       if (ideviceCheck) {
@@ -159,7 +159,7 @@
 
       const packet_showPopWeb = {
         type: "showPopWeb",
-        data: packet_showPopWebData
+        data: JSON.stringify(packet_showPopWebData),
       };
 
       if (ideviceCheck) {
