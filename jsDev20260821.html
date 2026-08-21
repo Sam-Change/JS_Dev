@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev08211624</th>
+            <th colspan="2">jsDev08211707</th>
         </tr>
     </thead>
     <tbody>
@@ -19,7 +19,7 @@
           <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest04.png" width="414" height="120">
         </tr>
         <tr>
-            <td><button onclick="setNavBar('預約查詢/取消','Y','Y','','Y')">設定web第一頁標題/back/step/funcMenu/first</button><td>
+            <td><button onclick="setNavBar('預約查詢/取消','Y','','Y','Y')">設定web第一頁標題/back/step/funcMenu/first</button><td>
         </tr>
         <tr>
             <td><button onclick="setNavBar('預約資料編輯','Y','1/4','','N')">設定web第二頁標題/back/step/funcMenu/first</button><td>
@@ -68,7 +68,12 @@
         pageCount = 1;
       }
       else {
-        pageCount += 1;
+        if (titleV === '預約查詢取消結果') {
+          pageCount = 4;
+        }
+        else {
+          pageCount = 2;
+        }
       }
 
       const packet_setNavBarData = {
@@ -297,18 +302,11 @@
     }
 
     function goBack() {
-      if (pageCount > 1) {
-        pageCount -= 1;
-      }
-      
       if (pageCount === 1) {
-        setNavBar('預約查詢/取消','Y','Y','','Y')
+        goPreview()
       }
       else if (pageCount === 2) {
-        setNavBar('預約資料編輯','Y','1/4','','N')
-      }
-      else {
-        setNavBar('預約查詢取消結果','N','4/4','','N')
+        setNavBar('預約查詢/取消','Y','','Y','Y')
       }
     }
   </script>
