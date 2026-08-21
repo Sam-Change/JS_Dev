@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev08211535</th>
+            <th colspan="2">jsDev08211600</th>
         </tr>
     </thead>
     <tbody>
@@ -82,7 +82,7 @@
         pageCount += 1;
       }
 
-      let packet_setNavBarData = {
+      const packet_setNavBarData = {
         title: titleV,
         canBack: canBackV,
         rightMsg: rightMsgV,
@@ -90,7 +90,7 @@
         isFirstPage: isFirstPageV,
       };
 
-      let packet_setNavBar = {
+      const packet_setNavBar = {
         action: "setNavBar",
         data: packet_setNavBarData
       };
@@ -137,12 +137,12 @@
 
     function onLoading(openV, msgV) {
 
-      let packet_onLoadingData = {
+      const packet_onLoadingData = {
         open: openV,
         msg: msgV,
       };
 
-      let packet_onLoading = {
+      const packet_onLoading = {
         action: "onLoading",
         data: packet_onLoadingData
       };
@@ -163,12 +163,12 @@
 
     function showPopWeb(titleV, uriV) {
 
-      let packet_showPopWebData = {
+      const packet_showPopWebData = {
         title: titleV,
         uri: uriV,
       };
 
-      let packet_showPopWeb = {
+      const packet_showPopWeb = {
         action: "showPopWeb",
         data: packet_showPopWebData
       };
@@ -242,54 +242,6 @@
       else {
         if (jstoapp) {
           jstoapp.goHome();
-        }
-      }
-    }
-
-    //顯示主掃
-    let packet_showScanCodeData = {
-      "type": "00",
-      "title": "我是標題",
-      "msg": "我是內文"
-    }
-
-    let packet_showScanCode = {
-      "type": "showScanCode",
-      "data": JSON.stringify(packet_showScanCodeData),
-    }
-
-    function showScanCode() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_showScanCode);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_showScanCodeData);
-          jstoapp.showScanCode(action);
-        }
-      }
-    }
-
-    //無卡提款顯示被掃
-    let packet_showATMQRCodeData = {
-      "qrcode": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFMTI0NDQ2NTY3LFJPTEVfQUxMLDA4MDFjdGNAZ21haWwuY29tLFRiYjA3MzVDYiwwLDUsZGYzOTY2MDctNWRkYS00YThlLTk5YzktN2I0NzNmODdhMmFmLDZlYTFkYzQyLWRlZWEtNDJhNS05MjAxLTViNzEyMGVkYmEzZCxOLCxZLOW8teW6reWYiSwv"
-    }
-
-    let packet_showATMQRCode = {
-      "type": "showATMQRCode",
-      "data": JSON.stringify(packet_showATMQRCodeData),
-    }
-
-    function showATMQRCode() {
-      if (ideviceCheck) {
-        var action = JSON.stringify(packet_showATMQRCode);
-        window.webkit.messageHandlers.jstoapp.postMessage(action);
-      }
-      else {
-        if (jstoapp) {
-          var action = JSON.stringify(packet_showATMQRCodeData);
-          jstoapp.showATMQRCode(action);
         }
       }
     }
