@@ -1,0 +1,407 @@
+<!-- jsDev -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>jsDev</title>
+</head>
+
+<body>
+  <!--畫面組成-->
+  <table class="screenWidth border">
+    <thead>
+        <tr>
+            <th colspan="2">jsDev08211535</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest04.png" width="414" height="120">
+        </tr>
+        <tr>
+          <td>
+            輸入 FunctionData：
+            <input type="text" id="funcInput" placeholder="輸入功能        top: 20,
+代碼">
+          </td>
+        </tr>
+        <tr>
+            <td class="screenWidth20% border textFormat">第幾頁web?</td>
+            <td class="screenWidth80% border textFormat" id="pageNo"></td>
+        </tr>
+        <tr>
+            <td><button onclick="setNavBar('預約查詢/取消','Y','Y','','Y')">設定web第一頁標題/back/step/funcMenu/first</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="setNavBar('預約資料編輯','Y','1/4','','N')">設定web第二頁標題/back/step/funcMenu/first</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="setNavBar('預約查詢取消結果','N','4/4','','N')">設定web結果頁標題/back/step/funcMenu/first</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="goPreview()">回前一頁goPreview</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="onLoadingTest()">顯示onLoading</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="showPopWeb('新聞','https://news.ltn.com.tw/news/life/breakingnews/5546822')">開popWeb畫面showPopWeb</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="goFunc()">轉跳功能goFunc</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="getKeepdata()">取得傳遞資料getKeepdata</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="openUri()">外開URL openUri</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="goHome()">回首頁goHome</button><td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <script>
+    let pageCount = 1;
+
+    var ideviceCheck = isiOSDevice()
+
+    function isiOSDevice() {
+      const mobileDevice = ['iPhone', 'iPad', 'iPod']
+      let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
+      return isMobileDevice
+    }
+
+    function setNavBar(titleV, canBackV, rightMsgV, showFuncMenuV, isFirstPageV) {
+
+      if (isFirstPageV === 'Y') {
+        pageCount = 1;
+      }
+      else {
+        pageCount += 1;
+      }
+
+      let packet_setNavBarData = {
+        title: titleV,
+        canBack: canBackV,
+        rightMsg: rightMsgV,
+        showFuncMenu: showFuncMenuV,
+        isFirstPage: isFirstPageV,
+      };
+
+      let packet_setNavBar = {
+        action: "setNavBar",
+        data: packet_setNavBarData
+      };
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.nativeHandler.postMessage(
+          JSON.stringify(packet_setNavBar)
+        );
+      }
+      else {
+        if (window.nativeHandler) {
+          window.nativeHandler.setNavBar(
+            JSON.stringify(packet_setNavBar)
+          );
+        }
+      }
+    }
+
+    function goPreview() {
+      let packet_goPreview = {
+        "type": "goPreview",
+      }
+
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goPreview);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          jstoapp.packet_goPreview();
+        }
+      }
+    }
+
+
+    function onLoadingTest() {
+      onLoading('Y','交易進行中請勿關閉畫面');
+
+      // 5秒後關掉
+      setTimeout(function() { 
+        onLoading('N',''); 
+      }, 5000);
+    }
+
+    function onLoading(openV, msgV) {
+
+      let packet_onLoadingData = {
+        open: openV,
+        msg: msgV,
+      };
+
+      let packet_onLoading = {
+        action: "onLoading",
+        data: packet_onLoadingData
+      };
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.nativeHandler.postMessage(
+          JSON.stringify(packet_onLoading)
+        );
+      }
+      else {
+        if (window.nativeHandler) {
+          window.nativeHandler.onLoading(
+            JSON.stringify(packet_onLoading)
+          );
+        }
+      }
+    }
+
+    function showPopWeb(titleV, uriV) {
+
+      let packet_showPopWebData = {
+        title: titleV,
+        uri: uriV,
+      };
+
+      let packet_showPopWeb = {
+        action: "showPopWeb",
+        data: packet_showPopWebData
+      };
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.nativeHandler.postMessage(
+          JSON.stringify(packet_showPopWeb)
+        );
+      }
+      else {
+        if (window.nativeHandler) {
+          window.nativeHandler.showPopWeb(
+            JSON.stringify(packet_showPopWeb)
+          );
+        }
+      }
+    }
+
+    function goFunc() {
+      const inputValue = document.getElementById("funcInput").value || "100000"; // 預設值為100000
+      
+      const packet_goFuncData = {
+        "FuncNo": inputValue
+      };
+
+      const packet_goFunc = {
+        "type": "goFunc",
+        "data": JSON.stringify(packet_goFuncData),
+      };
+
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goFunc);
+        window.webkit?.messageHandlers?.jstoapp?.postMessage(action);
+      } 
+      else {
+        if (typeof jstoapp !== "undefined" && jstoapp.goFunc) {
+          var action = JSON.stringify(packet_goFuncData);
+          jstoapp.goFunc(action);
+        }
+      }
+    }
+
+    // 取得傳遞資料
+    let packet_getKeepdata = {
+      "type": "getKeepdata",
+    }
+
+    function getKeepdata() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_getKeepdata);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          jstoapp.getKeepdata();
+        }
+      }
+    }
+    
+    
+    //回首頁
+    let packet_goHome = {
+      "type": "goHome",
+    }
+
+    function goHome() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_goHome);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          jstoapp.goHome();
+        }
+      }
+    }
+
+    //顯示主掃
+    let packet_showScanCodeData = {
+      "type": "00",
+      "title": "我是標題",
+      "msg": "我是內文"
+    }
+
+    let packet_showScanCode = {
+      "type": "showScanCode",
+      "data": JSON.stringify(packet_showScanCodeData),
+    }
+
+    function showScanCode() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_showScanCode);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_showScanCodeData);
+          jstoapp.showScanCode(action);
+        }
+      }
+    }
+
+    //無卡提款顯示被掃
+    let packet_showATMQRCodeData = {
+      "qrcode": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFMTI0NDQ2NTY3LFJPTEVfQUxMLDA4MDFjdGNAZ21haWwuY29tLFRiYjA3MzVDYiwwLDUsZGYzOTY2MDctNWRkYS00YThlLTk5YzktN2I0NzNmODdhMmFmLDZlYTFkYzQyLWRlZWEtNDJhNS05MjAxLTViNzEyMGVkYmEzZCxOLCxZLOW8teW6reWYiSwv"
+    }
+
+    let packet_showATMQRCode = {
+      "type": "showATMQRCode",
+      "data": JSON.stringify(packet_showATMQRCodeData),
+    }
+
+    function showATMQRCode() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_showATMQRCode);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_showATMQRCodeData);
+          jstoapp.showATMQRCode(action);
+        }
+      }
+    }
+
+    //外開URL
+    let packet_openUriData = {
+      "url": "https://www.cwa.gov.tw/V8/C/"
+    }
+
+    let packet_openUri = {
+      "type": "openUri",
+      "data": JSON.stringify(packet_openUriData),
+    }
+
+    function openUri() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_openUri);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_openUriData);
+          jstoapp.openUri(action);
+        }
+      }
+    }
+
+    // 暫存資料在APP端
+    let packet_setKeepdataData = {
+      "id": "390100",
+      "HaveLine": "N",
+      "StatusCode": "0000",
+      "LOGINTYPE": "MB",
+      "SystemID": "NB",
+      "HavePhone": "Y",
+      "CustomerID": "A100000000",
+      "HaveEmail": "N",
+      "StatusDesc": "OK",
+      "msgCode": "0",
+      "resultCode": true,
+    }
+
+    let packet_setKeepdata = {
+      "type": "setKeepdata",
+      "data": JSON.stringify(packet_setKeepdataData),
+    }
+
+    function setKeepdata() {
+      if (ideviceCheck) {
+        var action = JSON.stringify(packet_setKeepdata);
+        window.webkit.messageHandlers.jstoapp.postMessage(action);
+      }
+      else {
+        if (jstoapp) {
+          var action = JSON.stringify(packet_setKeepdataData);
+          jstoapp.setKeepdata(action);
+        }
+      }
+    }
+
+    // 收JS
+    function pageNo(data) {
+      document.getElementById("pageNo").innerText = "第" + data["pageNo"] + "頁";
+    }
+
+    function rtKeepdata(data) {
+      document.getElementById("rtKeepdata").innerText = "傳遞參數:" + data["data"];
+    }
+
+    function goBack() {
+      if (pageCount > 1) {
+        pageCount -= 1;
+      }
+      
+      if (pageCount === 1) {
+        setNavBar('預約查詢/取消','Y','Y','','Y')
+      }
+      else if (pageCount === 2) {
+        setNavBar('預約資料編輯','Y','1/4','','N')
+      }
+      else {
+        setNavBar('預約查詢取消結果','N','4/4','','N')
+      }
+    }
+  </script>
+</body>
+  
+<style>
+  .textFormat {
+    font-size: 14;
+  }
+
+  .screenWidth {
+    width: screen.width;
+  }
+  
+  .screenWidth20% {
+    width: screen.width*20%;
+  }
+
+  .screenWidth50% {
+    width: screen.width*50%;
+  }
+
+  .screenWidth80% {
+    width: screen.width*80%;
+  }
+
+  .border {
+    border: 1px solid #333;
+  }
+
+</style>
+  
+</html>
