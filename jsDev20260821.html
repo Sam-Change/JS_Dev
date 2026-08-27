@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev08211710</th>
+            <th colspan="2">jsDev08271720</th>
         </tr>
     </thead>
     <tbody>
@@ -19,13 +19,21 @@
           <img src="https://raw.githubusercontent.com/Sam-Change/JS_Dev/5e1161f9161c1896cfca1c67119710f1ad2b0eaf/imgTest04.png" width="414" height="120">
         </tr>
         <tr>
-            <td><button onclick="setNavBar('預約查詢/取消','Y','','Y','Y')">設定web第一頁標題/back/step/funcMenu/first</button><td>
+            <td class="screenWidth20% border textFormat">rtAppdata取得結果</td>
+            <td class="screenWidth80% border textFormat" id="rtAppdata"></td>
         </tr>
         <tr>
-            <td><button onclick="setNavBar('預約資料編輯','Y','1/4','','N')">設定web第二頁標題/back/step/funcMenu/first</button><td>
+            <td class="screenWidth20% border textFormat">rtEyesOn取得眼睛隱碼狀態</td>
+            <td class="screenWidth80% border textFormat" id="rtEyesOn"></td>
         </tr>
         <tr>
-            <td><button onclick="setNavBar('預約查詢取消結果','N','4/4','','N')">設定web結果頁標題/back/step/funcMenu/first</button><td>
+            <td><button onclick="setNavBar('預約查詢/取消','Y','Y','Y','','Y','Y')">設定web第一頁標題/back/step/funcMenu/first</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="setNavBar('預約資料編輯','Y','Y','N','1/4','','N')">設定web第二頁標題/back/step/funcMenu/first</button><td>
+        </tr>
+        <tr>
+            <td><button onclick="setNavBar('預約查詢取消結果','N','N','N','4/4','','N')">設定web結果頁標題/back/step/funcMenu/first</button><td>
         </tr>
         <tr> 
             <td><button onclick="goPreview()">回前一頁goPreview</button><td>
@@ -41,6 +49,12 @@
         </tr>
         <tr> 
             <td><button onclick="getKeepdata()">取得傳遞資料getKeepdata</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="setAppdata('WB_isOn','Y')">存手機端資料setAppdata</button><td>
+        </tr>
+        <tr> 
+            <td><button onclick="getAppdata('WB_isOn')">取得手機端資料getAppdata</button><td>
         </tr>
         <tr> 
             <td><button onclick="openUri()">外開URL openUri</button><td>
@@ -62,7 +76,7 @@
       return isMobileDevice
     }
 
-    function setNavBar(titleV, canBackV, rightMsgV, showFuncMenuV, isFirstPageV) {
+    function setNavBar(titleV, canBackV, showEyesV, isEyesOnV, rightMsgV, showFuncMenuV, isFirstPageV) {
 
       if (isFirstPageV === 'Y') {
         pageCount = 1;
@@ -222,7 +236,58 @@
       }
     }
     
+
+    function setAppdata(titleV, dataV) {
+
+      const packet_setAppdataData = {
+        title: titleV,
+        data: dataV,
+      };
+
+      const packet_setAppdata = {
+        type: "setAppdata",
+        data: JSON.stringify(packet_setAppdataData),
+      };
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.jstoapp.postMessage(
+          JSON.stringify(packet_setAppdata)
+        );
+      }
+      else {
+        if (window.jstoapp) {
+          window.jstoapp.setAppdata(
+            JSON.stringify(packet_setAppdataData)
+          );
+        }
+      }
+    }
     
+    function getAppdata(titleV) {
+
+      const packet_getAppdataData = {
+        title: titleV,
+      };
+
+      const packet_getAppdata = {
+        type: "getAppdata",
+        data: JSON.stringify(packet_getAppdataData),
+      };
+
+      if (ideviceCheck) {
+        window.webkit.messageHandlers.jstoapp.postMessage(
+          JSON.stringify(packet_getAppdata)
+        );
+      }
+      else {
+        if (window.jstoapp) {
+          window.jstoapp.getAppdata(
+            JSON.stringify(packet_getAppdataData)
+          );
+        }
+      }
+    }
+
     //回首頁
     let packet_goHome = {
       "type": "goHome",
@@ -301,12 +366,21 @@
       document.getElementById("rtKeepdata").innerText = "傳遞參數:" + data["data"];
     }
 
+    function rtAppdata(data) {
+      document.getElementById("rtAppdata").innerText = "手機端儲存參數:" + data["title"] + "值:" + data["data"];
+    }
+
+    function rtEyesOn(data) {
+      document.getElementById("rtEyesOn").innerText = data["eyesOn"];
+      setNavBar('更新隱碼眼睛','Y','Y',data["eyesOn"],'','Y','Y')
+    }
+
     function goBack() {
       if (pageCount === 1) {
         goPreview()
       }
       else if (pageCount === 2) {
-        setNavBar('預約查詢/取消','Y','','Y','Y')
+        setNavBar('預約查詢/取消','Y','N','N','','Y','Y')
       }
     }
   </script>
