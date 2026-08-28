@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev08280955</th>
+            <th colspan="2">jsDev08281000</th>
         </tr>
     </thead>
     <tbody>
@@ -104,6 +104,9 @@
         type: "setNavBar",
         data: JSON.stringify(packet_setNavBarData),
       };
+
+      console.log("packet_setNavBarData:", packet_setNavBarData);
+      console.log("packet_setNavBar:", JSON.stringify(packet_setNavBar));
 
       if (ideviceCheck) {
         window.webkit.messageHandlers.jstoapp.postMessage(
