@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev08281012</th>
+            <th colspan="2">jsDev08281020</th>
         </tr>
     </thead>
     <tbody>
@@ -377,6 +377,7 @@
     }
 
     function rtEyesOn(data) {
+      console.log("rtEyesOn =", data);
       document.getElementById("rtEyesOn").innerText = data["eyesOn"];
       setNavBar('更新隱碼眼睛','Y','Y',data["eyesOn"],'','Y','Y')
     }
