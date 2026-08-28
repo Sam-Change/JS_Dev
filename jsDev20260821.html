@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev08281000</th>
+            <th colspan="2">jsDev08281012</th>
         </tr>
     </thead>
     <tbody>
@@ -105,8 +105,8 @@
         data: JSON.stringify(packet_setNavBarData),
       };
 
-      console.log("packet_setNavBarData:", packet_setNavBarData);
-      console.log("packet_setNavBar:", JSON.stringify(packet_setNavBar));
+      console.log("packet_setNavBarData =", packet_setNavBarData);
+      console.log("packet_setNavBar =", JSON.stringify(packet_setNavBar));
 
       if (ideviceCheck) {
         window.webkit.messageHandlers.jstoapp.postMessage(
@@ -372,7 +372,8 @@
     }
 
     function rtAppdata(data) {
-      document.getElementById("rtAppdata").innerText = "手機端儲存參數:" + data["title"] + "值:" + data["data"];
+      console.log("rtAppdata =", data);
+      document.getElementById("rtAppdata").innerText = "手機端儲存參數:" + data["title"] + ", 值:" + data["data"];
     }
 
     function rtEyesOn(data) {
