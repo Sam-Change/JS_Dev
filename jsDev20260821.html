@@ -11,7 +11,7 @@
   <table class="screenWidth border">
     <thead>
         <tr>
-            <th colspan="2">jsDev08281045</th>
+            <th colspan="2">jsDev08281050</th>
         </tr>
     </thead>
     <tbody>
@@ -23,17 +23,17 @@
             <td class="screenWidth80% border textFormat" id="rtAppdata"></td>
         </tr>
         <tr>
-            <td class="screenWidth20% border textFormat">rtEyesOn</td>
-            <td class="screenWidth80% border textFormat" id="rtEyesOnResult"></td>
+            <td class="screenWidth20% border textFormat">rtEyesOn取得眼睛隱碼狀態</td>
+            <td class="screenWidth80% border textFormat" id="rtEyesOn"></td>
         </tr>
         <tr>
-            <td><button onclick="setNavBar('預約查詢/取消','Y','Y','','Y','Y')">設定web第一頁標題</button><td>
+            <td><button onclick="setNavBar('預約查詢/取消','Y','Y','Y','','Y','Y')">設定web第一頁標題</button><td>
         </tr>
         <tr>
-            <td><button onclick="setNavBar('預約資料編輯','Y','Y','1/4','','N')">設定web第二頁標題</button><td>
+            <td><button onclick="setNavBar('預約資料編輯','Y','Y','N','1/4','','N')">設定web第二頁標題</button><td>
         </tr>
         <tr>
-            <td><button onclick="setNavBar('預約查詢取消結果','N','N','4/4','','N')">設定web結果頁標題</button><td>
+            <td><button onclick="setNavBar('預約查詢取消結果','N','N','N','4/4','','N')">設定web結果頁標題</button><td>
         </tr>
         <tr> 
             <td><button onclick="goPreview()">回前一頁goPreview</button><td>
@@ -66,7 +66,6 @@
   </table>
   
   <script>
-    let bEyesOn = document.getElementById("rtEyesOn").innerText;
     let pageCount = 1;
 
     var ideviceCheck = isiOSDevice()
@@ -77,7 +76,7 @@
       return isMobileDevice
     }
 
-    function setNavBar(titleV, canBackV, showEyesV, rightMsgV, showFuncMenuV, isFirstPageV) {
+    function setNavBar(titleV, canBackV, showEyesV, isEyesOnV, rightMsgV, showFuncMenuV, isFirstPageV) {
 
       if (isFirstPageV === 'Y') {
         pageCount = 1;
@@ -95,7 +94,7 @@
         title: titleV,
         canBack: canBackV,
         showEyes: showEyesV,
-        isEyesOn: bEyesOn,
+        isEyesOn: isEyesOnV,
         rightMsg: rightMsgV,
         showFuncMenu: showFuncMenuV,
         isFirstPage: isFirstPageV,
@@ -378,16 +377,9 @@
     }
 
     function rtEyesOn(data) {
-      console.log("rtEyesOn = ", data);
+      console.log("rtEyesOn =", data);
       document.getElementById("rtEyesOn").innerText = data["eyesOn"];
-
-      if (data["eyesOn"] === 'Y') {
-        document.getElementById("rtEyesOnResult").innerText = 'rtEyesOn=' + data["eyesOn"] + ', $*****'
-      }
-      else {
-        document.getElementById("rtEyesOnResult").innerText = 'rtEyesOn=' + data["eyesOn"] + ', $8,786,334'
-      }
-      setNavBar('更新隱碼眼睛','Y','Y','','Y','Y')
+      setNavBar('更新隱碼眼睛','Y','Y',data["eyesOn"],'','Y','Y')
     }
 
     function goBack() {
@@ -395,7 +387,7 @@
         goPreview()
       }
       else if (pageCount === 2) {
-        setNavBar('預約查詢/取消','Y','N','','Y','Y')
+        setNavBar('預約查詢/取消','Y','N','N','','Y','Y')
       }
     }
   </script>
